@@ -1,0 +1,44 @@
+\ifcase\myBlockingNote
+
+\or
+    \include{pages/11_sperrvermerk}
+\else
+\fi
+\include{pages/12_inhaltsverzeichnis}
+
+\ifcase\myAbrevationDirectory
+
+\or
+    \include{pages/13_abkuerzungsverzeichnis}
+\else
+\fi
+\ifcase\myIllustrationDirectory
+
+\or
+    \include{pages/15_abbildungsverzeichnis}
+\else
+\fi
+\ifcase\myTableDirectory
+
+\or
+    \include{pages/16_tabellenverzeichnis}
+\else
+\fi
+\ifcase\myListingDirectory
+
+\or
+    \include{pages/17_listingsverzeichnis}
+\else
+\fi
+\ifcase\myFormularDirectory
+
+\or
+    \include{pages/14_Formelverzeichnis}
+\else
+\fi
+\ifcase\mySymbolDirectory
+
+\or
+    \include{pages/19_symbolverzeichnis}
+\else
+\fi

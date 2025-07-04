@@ -1,0 +1,39 @@
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		\LARGE\bf\myTopic\\
+		\Large\rm\mySubTopic\\
+		\vspace*{2cm}
+		\bf \myTypeOfWork \\
+		\vspace*{0.5cm}\singlespacing
+		\normalsize\rm
+		\ifcase\myNeedForFieldOfStudy
+    		an der Fakultät für Wirtschaft\\
+    		im Studiengang \myStudyProgram \\
+            \or 
+                an der Fakultät für Wirtschaft\\
+    		im Studiengang \myStudyProgram \\
+                in der Fachrichtung \myFieldOfStudy\\
+            \else
+            \fi
+		\vspace*{0.5cm}\singlespacing
+		an der\\
+		DHBW Ravensburg
+		\vfill
+	\end{center}
+	\begin{tabular}{ll}
+		\ifcase\myNames
+    		Autor/-in:
+            \or 
+                Autoren/Autorinnen:
+            \else
+            \fi
+            &\myAutor\\
+            Modul: &\myModule\\
+		Dozent/-in:&\myProf\\
+		Abgabefrist:&\myEndDate
+	\end{tabular}
+	
+\end{titlepage}
+\newpage
+\setcounter{page}{2}

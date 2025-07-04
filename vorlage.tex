@@ -1,0 +1,258 @@
+\documentclass[a4paper,12pt]{article}                                         % Schriftgröße, Layout, Papierformat, Art des Dokumentes
+\usepackage[left=3cm,right=2cm,top=2cm,bottom=2cm,includehead]{geometry}      % Einstellungen der Seitenränder
+%\usepackage{ngerman}                                                          % neue Rechtschreibung
+\usepackage[ngerman]{babel}                                             % deutsche Silbentrennung                                                % Umlaute
+\usepackage[hyperfootnotes=false, pdfborder={0 0 0}]{hyperref}                                   % pfd-Output [Fußnoten nicht verlinken]
+\usepackage[nottoc]{tocbibind}                                                % Inhaltsverzeichniserweiterung (Inhaltsverzeichnis selbst ausblenden)
+\usepackage{makeidx}                                                          % Index
+%\usepackage[intoc]{nomencl}                                                   % Abkürzungsverzeichnis
+\usepackage{fancyhdr}           	                                          % Fancy Header
+\usepackage{pdfpages}															% 
+\usepackage{amsmath}                                                          % Zurücksetzen der Tabellen- und Abbildungsnummerierung je Sektion
+\usepackage[labelfont=bf,aboveskip=1mm]{caption}                              % Bild- und Tabellenunterschrift (fett)
+\usepackage{setspace}                                                         % Zeilenabstand (vor footmisc laden!)
+\usepackage[bottom,multiple,hang,marginal]{footmisc}                          % Fußnoten [Ausrichtung unten, Trennung durch Seperator bei mehreren Fußnoten]
+\usepackage{wrapfig}
+\usepackage{nomencl} % Für das Symbolverzeichnis
+\usepackage{chngcntr} % Für die Nummerierung der Formeln in separaten Dateien
+\usepackage{import} % Zum Einbinden von externen Dateien
+% Umfließende Grafiken und Tabellen
+\usepackage{graphicx}                                                         % Grafiken
+\usepackage{tabularx}                                                         % erweiterte Tabellen
+\usepackage{longtable}                                                        % mehrseitige Tabellen
+\usepackage{color}                                                            % Farben
+\usepackage{enumitem}                                                         % Befehl setlist (Zeilenabstand für itemize Umgebung auf 1 setzen)
+\usepackage{listings}                                                         % Quelltexte
+\usepackage{zref}                                                             % Verweise (Anhangsverweise)
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{xspace}
+\widowpenalty=300
+\clubpenalty=300
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\RequirePackage{multirow}
+\RequirePackage{longtable}
+\RequirePackage{mwe}
+\RequirePackage{listings}    
+\RequirePackage{etoolbox} 
+
+
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{hanging}
+\usepackage[printonlyused,withpage]{acronym}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Konfiguration %%
+\input{config/config}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Eigene Farbwerte definieren %%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{boxgray}{gray}{0.9}         % Hintergrundfarbe für Zitatboxen
+\definecolor{commentgray}{gray}{0.5}     % Grau für Kommentare in Quelltexten
+\definecolor{darkgreen}{rgb}{0,.5,0}     % Grün für Strings in Quelltexten
+
+%%%%%%%%%%%%%%%%%%%%%%%% Eigene Kommandos definieren %%%%%%%%%%%%%%%%%%%%%%%%
+% Definition von \gqq{#1: text}: Text in Anführungszeichen
+\newcommand{\gqq}[1]{\glqq #1\grqq}
+
+% Definition von \footref{#1: label}
+% Verweis auf bereits existierende Fußnoten mittels
+\providecommand*{\footref}[1]{
+	\begingroup
+		\unrestored@protected@xdef\@thefnmark{\ref{#1}}
+	\endgroup
+\@footnotemark}
+
+% Definition von \mypageref{#1: label}
+% Kombination aus \ref{#1: label} und \pageref{#1: label}
+\newcommand{\mypageref}[1]{\ref{#1} \nameref{#1} auf Seite \pageref{#1}}
+
+% Definition von \myboxquote{#1: text}
+% grau hinterlegte Quotation-Umgebung (für Zitate)
+\newcommand{\myboxquote}[1]{
+	\begin{quotation}
+		\colorbox{boxgray}{\parbox{0.78\textwidth}{#1}}
+	\end{quotation}
+	\vspace*{1mm}
+}
+
+% Definition von \vgl{#1}{#2}
+\newcommand{\vgl}[2][]{vgl. \parencite[#1]{#2}}
+
+
+\makeatletter
+\zref@newprop*{appsec}{}
+\zref@addprop{main}{appsec}
+
+% Definition von \applabel{#1: label}{#2: text}
+% von \appsec{#1: text}{#2: label} zur Erzeugung des Labels verwendet)
+\def\applabel#1#2{%
+	\zref@setcurrent{appsec}{#2}%
+	\zref@wrapper@immediate{\zref@label{#1}}%
+}
+
+% Definition von \appref{#1: label}
+% anstelle \ref{#1: label} zum referenzieren von Anhängen verwenden)
+\def\appref#1{%
+	\hyperref[#1]{\zref@extract{#1}{appsec}}%
+}
+\makeatother
+
+% Definition von \appsection{#1: text}{#2: label}
+% Ersetzt \section{#1: text} und \label{#2: label} für Anhänge)
+\newcommand{\theappsection}[1]{Anhang \Alph{section}:~\protect #1}
+\newcommand{\appsection}[2]{
+	\addtocounter{section}{1}
+	\phantomsection
+	\addcontentsline{toc}{section}{\theappsection{#1}}
+	\markboth{\theappsection{#1}}{}
+
+	\section*{\theappsection{#1}}
+	\applabel{#2}{Anhang \Alph{section}}
+	\label{#2}
+}
+
+% Nummerierung der Formeln
+\renewcommand{\theequation}{\arabic{equation}}
+
+%%%%%%%%%%%%% Index, Abkürzungsverzeichnis und Glossar erstellen %%%%%%%%%%%%
+\makeindex
+\makenomenclature
+
+% Festlegung der Art der Zitierung (Havardmethode: Abkuerzung Autor + Jahr) %
+\usepackage[
+  backend=biber,
+  style=authoryear, % oder 'numeric', 'apa', 'authortitle' etc.
+  citestyle=authoryear,
+  language=ngerman,
+  autolang=hyphen
+]{biblatex}
+
+\addbibresource{literatur.bib}
+\usepackage{csquotes}     
+
+
+\setlength{\headheight}{14.5pt}
+\addtolength{\topmargin}{-2.5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PDF-Optionen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{
+	bookmarksopen=false,
+	bookmarksnumbered=true,
+	bookmarksopenlevel=0,
+	pdftitle=\myTopic,
+	pdfsubject=\myTopic,
+	pdfauthor=\myAutor,
+	pdfborder=0,
+	pdfstartview=Fit,
+	pdfpagelayout=SinglePage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kopf- und Fußzeile %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}                         % Kopfzeile rechts bzw. außen
+\renewcommand{\headrulewidth}{0.5pt}            % Kopfzeile rechts bzw. außen
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Layout und Beschriftungen %%%%%%%%%%%%%%%%%%%%%%%%%
+\onehalfspacing                % Zeilenabstand: 1.5 (Standard: 1.2)
+\setlist{noitemsep}            % Zeilenabstand für items auf 1 setzen
+
+\addto\captionsngerman{        % Tabllen- und ildungsunterschriften ändern
+  \renewcommand{\figurename}{Abb.}
+  \renewcommand{\tablename}{Tab.}
+}
+\numberwithin{table}{section}                               % Tabellennummerierung je Sektion zurücksetzen
+\numberwithin{figure}{section}                              % Abbildungsnummerierung je Sektion zurücksetzen
+\renewcommand{\thetable}{\arabic{section}.\arabic{table}}   % Tabellennummerierung mit Section
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}} % Abbildungsnummerierung mit Section
+\renewcommand{\thefootnote}{\arabic{footnote}}              % Sektionsbezeichnung von Fußnoten entfernen
+
+\renewcommand{\multfootsep}{, }                             % Mehrere Fußnoten durch ", " trennen
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Listingstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{
+	basicstyle=\ttfamily\scriptsize,
+	commentstyle=\color{commentgray}\textit,
+	showstringspaces=false,
+	stringstyle=\color{darkgreen},
+	keywordstyle=\color{blue},
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=15pt,
+	tabsize=2,
+	fontadjust=true,
+	frame=single,
+	backgroundcolor=\color{boxgray},
+	captionpos=b,
+	linewidth=0.94\linewidth,
+	xleftmargin=0.1\linewidth,
+	breaklines=true,
+	aboveskip=16pt
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                         %%
+%% \/   \/      Bitte hier nur bei Bedarf Änderungen vornehmen     \/   \/ %%
+%%                                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Seiten und Kapitel einbinden
+\begin{document}
+	\pagenumbering{Roman}
+	% Das Titelblatt wird automatisch ausgewählt. Keine Änderung hier
+	\ifcase\myType
+            \include{pages/10_titel_projekt}
+        \or
+            \include{pages/10_titel_bachelor}
+        \or
+            \include{pages/10_titel_projekt_doku}
+        \else
+        \fi
+
+	\pagestyle{fancy}
+	\input{config/metaseiten}
+
+	% Kapitel
+	\pagestyle{fancy}
+	\fancyhead[L]{\nouppercase{\leftmark}}                               % Kopfzeile links bzw. innen
+	\pagenumbering{arabic}
+
+	\input{config/gliederung}
+
+	% Anhang
+	\renewcommand{\thetable}{\Alph{section}.\arabic{table}}              % Tabellennummerierung mit Section
+	\renewcommand{\thefigure}{\Alph{section}.\arabic{figure}}            % Abbildungsnummerierung mit Section
+	\renewcommand{\thelstlisting}{\Alph{section}.\arabic{lstlisting}}    % Listingsnummerierung mit Section
+
+	% Abschluss
+	\include{pages/18_literaturverzeichnis}
+        \include{pages/22_KiVerzeichnis}
+
+	\begin{appendix}
+		\include{appendix/index}
+	\end{appendix}
+
+        \ifcase\myDecOfIndependence
+
+        \or
+            \include{pages/20_erklaerung}
+        \else
+        \fi
+
+        
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                         %%
+%% /\   /\         Ab hier keine Änderungen mehr vornehmen         /\   /\ %%
+%%                                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

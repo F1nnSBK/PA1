@@ -1,0 +1,45 @@
+# LaTeX temporary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lol
+*.lot
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+*.gz
+
+# Specific to minted (if used for code listings)
+*.pyg
+
+# Specific to acronyms/glossaries if you use them differently
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.xdy
+
+# Folders for auxiliary files (if you configure LaTeX Workshop to use one)
+build/
+out/
+
+# VS Code specific (optional, but good practice)
+.vscode/

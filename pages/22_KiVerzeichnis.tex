@@ -1,0 +1,29 @@
+\thispagestyle{fancy}
+
+\section*{Erklärung zum Einsatz von KI-basierten Werkzeugen}
+\markboth{Erklärung zum Einsatz von KI-basierten Werkzeugen}{}
+
+Zur Verwendung KI-gestützter Werkzeuge erkläre ich in Kenntnis des Hinweisblatts
+\glqq{}Hinweise zum Einsatz von KI-basierten Werkzeugen bei der Anfertigung wissenschaftlicher Arbeiten, u.a. im prüfungsrechtlichen Kontext\grqq{} Folgendes:
+    \begin{itemize}
+    \item Ich habe mich aktiv über die Leistungsfähigkeit und Beschränkungen der in meiner Arbeit eingesetzten KI-Werkzeuge informiert.
+    \item Bei der Anfertigung der Arbeit habe ich durchgehend eigenständig und beim Einsatz KI-gestützter Werkzeuge maßgeblich steuernd gearbeitet.
+    \item Insbesondere habe ich die Inhalte entweder aus wissenschaftlichen oder anderen zugelassenen Quellen entnommen und diese gekennzeichnet oder diese unter Anwendung wissenschaftlicher Methoden selbst entwickelt.
+    \item Mir ist bewusst, dass ich als Autor/in der Arbeit die volle Verantwortung für die in ihr gemachten Angaben und Aussagen trage.
+    \item Soweit ich KI-gestützte Werkzeuge zur Erstellung der Arbeit eingesetzt habe, sind diese jeweils mit dem Produktnamen, den formulierten Eingaben (Prompts), der Einsatzform sowie der entsprechenden Seiten-/Bereichsreferenzierung auf die Arbeit im KI-Verzeichnis am Ende der Arbeit vollständig ausgewiesen und im Text belegt (z.B. als Fußnote). 
+\end{itemize}
+
+\newpage
+\thispagestyle{fancy}
+
+    \ifcase\myKiDirectory
+        
+    \or
+        \begin{center}
+            \noindent{\large\bf KI-Verzeichnis:}\\
+        \end{center}
+        \vspace{1cm}
+        \input{chapter/kiVerzeichnis}
+    \else
+    \fi
+\newpage
