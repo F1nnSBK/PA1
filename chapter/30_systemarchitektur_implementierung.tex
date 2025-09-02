@@ -34,15 +34,83 @@ Als zentraler Orchestrator dient ein in Python implementierter Service, der auf 
 Dieser Service ist nicht nur für die Entgegennahme von Anfragen und die Steuerung der Modell-Endpunkte verantwortlich, 
 sondern auch für die Hybridisierung der Empfehlungsergebnisse. Das Design wurde dabei modular gestaltet, 
 um zukünftig auch fortgeschrittenere Hybridisierungsstrategien integrieren zu können.
-\subsubsection{API und Orchestrirung}
-\subsubsection{Content Based Filtering}
-\subsubsection{NCF}
-Als zugrunde liegende Technologie des \ac{CF} wird in dieser Arbeit \ac{NCF} verwendet. Dadurch wird in kurzer Zeit 
-ein leistungsfähiges Modell bereitgestellt, welches zur Optimierung der Hybridisierungsstrategie verwendet werden kann.
+\subsubsection{API-Design und Orchestrierung}
+\label{sec:api_design}
 
+Das Herzstück des Systems bildet der API-Service, welcher die Schnittstelle nach außen darstellt und die interne Logik steuert. 
+Die API wird über einen REST-Endpunkt unter der Adresse \texttt{/v1/recommendations} bereitgestellt und kommuniziert über einen 
+JSON-basierten Datenvertrag. Eine Anfrage an den Dienst enthält die \texttt{user\_pseudo\_id}, die \texttt{article\_id} 
+als Kontext sowie die gewünschte Hybridisierungsstrategie. 
+
+Die Implementierung basiert auf dem Python-Framework FastAPI, das aufgrund seiner hohen asynchronen Performanz durch das \ac{ASGI} und 
+der automatischen Generierung von interaktiver Dokumentation ausgewählt wurde. Der Service orchestriert bei 
+jeder Anfrage die parallelen Abfragen an die untergeordneten ML-Dienste und die Datenbank, führt die Ergebnisse zusammen 
+und wendet die Logik zur Hybridisierung an, bevor die finale Empfehlungsliste an den Client zurückgesendet wird.
+
+\subsubsection{Content-Based Filtering mittels Vektorsuche}
+\label{sec:cbf_service}
+
+Die technische Umsetzung des \ac{CBF}-Ansatzes erfolgt mittels der Vertex AI Vektorsuche. 
+Das Finden der thematisch ähnlichsten Artikel zu einem gegebenen Beitrag ist ein Nearest-Neighbor-Problem
+im hochdimensionalen Vektorraum. 
+Eine exakte Brute-Force-Suche über den gesamten Datenbestand ist für Echtzeitanwendungen mit geringer Latenz rechentechnisch nicht durchführbar.
+
+Daher setzt Vertex AI Vektorsuche auf einen \ac{ANN}-Algorithmus. 
+Dieser Ansatz tauscht eine geringfügige Einbuße an Genauigkeit gegen einen massiven Gewinn an Abfragegeschwindigkeit. 
+Die zugrundeliegende Technologie ist Googles \ac{ScaNN}-Algorithmus, der im Kern auf zwei Prinzipien basiert:
+
+\begin{itemize}
+    \item \textbf{Partitionierung des Vektorraums:} Der Index unterteilt den hochdimensionalen Raum in eine Vielzahl von Clustern oder Zellen. 
+    Bei einer Suchanfrage müssen dann nicht mehr alle Vektoren durchsucht werden, sondern nur noch die Vektoren in den wahrscheinlichsten Partitionen.
+    \item \textbf{Vektorquantisierung:} Innerhalb dieser Partitionen werden die Vektoren durch eine Form der intelligenten Komprimierung repräsentiert, 
+    um den Speicherbedarf zu reduzieren und Distanzberechnungen zu beschleunigen. Google setzt hierbei auf fortgeschrittene Methoden wie die anisotrope 
+    Vektorquantisierung, um den Informationsverlust bei der Komprimierung zu minimieren \cite{avq_2020}.
+\end{itemize}
+
+Der ScaNN-Algorithmus lernt, die vielversprechendsten Partitionen für eine gegebene Anfrage effizient zu identifizieren und führt dann innerhalb 
+dieser Partitionen eine schnelle Distanzberechnung auf den quantisierten Vektoren durch. 
+Die Forschung zur Optimierung dieser Indexierungsstrategien entwickelt sich stetig weiter, wie das Paper zu SOAR zeigt, 
+einem Nachfolger-Ansatz zur Verbesserung der Indexeffizienz \cite{soar_2023}.
+
+\subsubsection{Neural Collaborative Filtering}
+\label{sec:ncf_service}
+
+Als kollaborativer Filteransatz wird in dieser Arbeit das \ac{NCF}-Modell eingesetzt. 
+Traditionelle Ansätze wie die \ac{MF} modellieren die Interaktion zwischen Nutzern und Artikeln durch ein einfaches Skalarprodukt ihrer latenten Vektoren,
+was die Ausdrucksstärke des Modells auf lineare Zusammenhänge limitiert.
+
+Das NCF-Framework generalisiert diesen Ansatz, indem es das Skalarprodukt durch eine neuronale Architektur ersetzt. 
+Konkret wird ein \ac{MLP} genutzt, um eine beliebige, auch nicht-lineare Interaktionsfunktion direkt aus den Daten zu erlernen \cite{he_neural_2017}. 
+Diese Fähigkeit, komplexe Muster im Nutzer-Item-Interaktionsverhalten zu erfassen, macht das NCF-Modell zu einer 
+leistungsfähigen Wahl für die Generierung personalisierter Empfehlungen.
+Für den produktiven Einsatz wird das trainierte Modell auf einem dedizierten Vertex AI Endpoint bereitgestellt, 
+um skalierbare Echtzeit-Inferenzen für gegebene Nutzer-IDs zu ermöglichen.
 
 
 \subsection{Datenbasis und Einschränkungen}
-% 70.000 embedded Artikel
-% GA4 Events: page_view, session_data
-% Interaktionsmatrix
+\label{sec:data}
+Der für das \ac{NCF} Modell zugrundeliegende Datensatz SM-News-Jan25 bezieht sich ausschließlich auf \ac{GA4}-Daten vom Januar 2025.
+Der Grund für diese Einschränkung liegt in den Kosten des Modelltrainings für große Datensätze. Für das Training werden die ersten 3 Wochen 
+und für den Test die letzte Woche des SM-News-Jan25 genutzt. 
+
+Eine grundlegende Eigenschaft des Datensatzes ist seine stark rechtsverschobene Verteilung, 
+sowohl bei der Artikelpopularität als auch bei der Nutzeraktivität. Dieses als Long-Tail-Verteilung 
+bekannte Phänomen ist typisch für Mediendaten und hat wesentliche Implikationen für die Modellierung.
+
+\input{content/figures/artikelverteilung_train.tex}
+\label{fig:artikelverteilung_train}
+
+Wie in Abbildung~\ref{fig:artikelverteilung_train} visualisiert, entfällt ein überproportional großer Anteil der Seitenaufrufe auf eine sehr 
+kleine Gruppe von "Hit"-Artikeln, während die breite Masse der Inhalte nur wenige Interaktionen erhält. 
+Ein analoges Muster zeigt sich bei der Nutzeraktivität: Wenige "Power-Nutzer" generieren eine immense Anzahl an Klicks, 
+wohingegen der Großteil der Nutzer nur sporadisch mit dem Portal interagiert.
+
+Diese ungleiche Verteilung führt zu einem inhärenten Popularity Bias in den Daten. 
+Dies stellt eine zentrale Herausforderung dar, die bei der Konzeption des Empfehlungssystems berücksichtigt werden muss, um zu verhindern, 
+dass ausschließlich populäre "Bestseller"-Artikel empfohlen werden. 
+Die zugrundeliegenden statistischen Kennzahlen des Trainingsdatensatzes sind in Tabelle~\ref{tab:train_stats} zusammengefasst.
+
+% Hier bindest du die Tabelle ein, die die Zahlen belegt.
+\input{content/tables/train_stats.tex}
+\label{tab:train_stats}
+
