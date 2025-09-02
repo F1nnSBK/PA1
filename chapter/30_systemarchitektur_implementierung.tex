@@ -7,7 +7,7 @@ Aus dem Anwendungsfall ergeben sich eine Reihe von \ac{NFR}s, die die technische
 \label{sec:nfr}
 Für den initialen Proof-of-Concept wurden drei zentrale NFRs als erfolgskritisch identifiziert. 
 Erstens muss das System eine hohe Performanz aufweisen und in der Lage sein, eine große Anzahl paralleler Anfragen effizient zu verarbeiten. 
-Als konkretes \ac{SLO} wird eine 95-Perzentil-Latenz von unter 500 Millisekunden angestrebt. 
+Als konkretes \ac{SLO} wird eine Latenz im 95. Perzentil von unter 500 Millisekunden angestrebt. 
 Zweitens ist die Skalierbarkeit der Architektur essenziell, um flexibel auf wachsende Nutzerzahlen und Datenmengen reagieren zu können, 
 wie sie im dynamischen Umfeld eines Nachrichtenportals zu erwarten sind. Drittens muss eine einfache Integrierbarkeit gewährleistet sein, 
 weshalb das System über eine standardisierte REST-API angebunden wird, um die Integration in bestehende Redaktions- und IT-Workflows zu erleichtern.
@@ -22,7 +22,7 @@ um das Vertrauen der Nutzer zu fördern. Diese Aspekte wurden im aktuellen Entwu
 
 Die bestehende IT-Infrastruktur der SV-Gruppe, die auf der \ac{GCP} basiert, definiert die zentralen Rahmenbedingungen für dieses Projekt. 
 Der gesamte Artikelkorpus sowie die aus \ac{GA4} stammenden Nutzerinteraktionsdaten liegen zentral in BigQuery-Tabellen vor. 
-Eine entscheidende und bereits vorhandene Ressource stellen hochdimensionale (3072D) Artikel-Embeddings dar, 
+Eine entscheidende Ressource stellen hochdimensionale (3072D) Artikel-Embeddings dar, 
 welche aus den Titeln und Texten der Artikel generiert wurden. Aufgrund ihrer bewährten Effektivität in verwandten Anwendungsfällen, 
 wie der semantischen Anzeigenausspielung, werden diese Embeddings auch im Rahmen dieser Arbeit genutzt.
 
@@ -32,8 +32,9 @@ Die technologische Architektur ist als cloud-nativer Microservice-Ansatz auf der
 um die in Abschnitt \ref{sec:nfr} definierten Anforderungen an Skalierbarkeit und Performanz zu erfüllen. 
 Als zentraler Orchestrator dient ein in Python implementierter Service, der auf dem performanten FastAPI-Framework basiert. 
 Dieser Service ist nicht nur für die Entgegennahme von Anfragen und die Steuerung der Modell-Endpunkte verantwortlich, 
-sondern auch für die Hybridisierung der Empfehlungsergebnisse. Das Design wurde dabei modular gestaltet, 
+sondern auch für die Hybridisierung der Empfehlungsergebnisse. Das Design wurde modular gestaltet, 
 um zukünftig auch fortgeschrittenere Hybridisierungsstrategien integrieren zu können.
+
 \subsubsection{API-Design und Orchestrierung}
 \label{sec:api_design}
 
@@ -42,8 +43,8 @@ Die API wird über einen REST-Endpunkt unter der Adresse \texttt{/v1/recommendat
 JSON-basierten Datenvertrag. Eine Anfrage an den Dienst enthält die \texttt{user\_pseudo\_id}, die \texttt{article\_id} 
 als Kontext sowie die gewünschte Hybridisierungsstrategie. 
 
-Die Implementierung basiert auf dem Python-Framework FastAPI, das aufgrund seiner hohen asynchronen Performanz durch das \ac{ASGI} und 
-der automatischen Generierung von interaktiver Dokumentation ausgewählt wurde. Der Service orchestriert bei 
+Die Implementierung basiert auf dem Python-Framework FastAPI, das aufgrund seiner hohen asynchronen Leistungsfähigkeit durch das \ac{ASGI} und 
+der automatischen Generierung interaktiver Dokumentation ausgewählt wurde. Der Service orchestriert bei 
 jeder Anfrage die parallelen Abfragen an die untergeordneten ML-Dienste und die Datenbank, führt die Ergebnisse zusammen 
 und wendet die Logik zur Hybridisierung an, bevor die finale Empfehlungsliste an den Client zurückgesendet wird.
 
@@ -86,31 +87,68 @@ leistungsfähigen Wahl für die Generierung personalisierter Empfehlungen.
 Für den produktiven Einsatz wird das trainierte Modell auf einem dedizierten Vertex AI Endpoint bereitgestellt, 
 um skalierbare Echtzeit-Inferenzen für gegebene Nutzer-IDs zu ermöglichen.
 
-
 \subsection{Datenbasis und Einschränkungen}
 \label{sec:data}
-Der für das \ac{NCF} Modell zugrundeliegende Datensatz SM-News-Jan25 bezieht sich ausschließlich auf \ac{GA4}-Daten vom Januar 2025.
-Der Grund für diese Einschränkung liegt in den Kosten des Modelltrainings für große Datensätze. Für das Training werden die ersten 3 Wochen 
+Der für das \ac{NCF}-Modell zugrundeliegende Datensatz SM-News-Jan25 bezieht sich ausschließlich auf \ac{GA4}-Daten vom Januar 2025.
+Der Grund für diese Einschränkung liegt in den Kosten des Modelltrainings für große Datensätze. Für das Training werden die ersten drei Wochen 
 und für den Test die letzte Woche des SM-News-Jan25 genutzt. 
 
-Eine grundlegende Eigenschaft des Datensatzes ist seine stark rechtsverschobene Verteilung, 
+Eine zentrale Eigenschaft des Datensatzes ist seine stark rechtsverschobene Verteilung, 
 sowohl bei der Artikelpopularität als auch bei der Nutzeraktivität. Dieses als Long-Tail-Verteilung 
-bekannte Phänomen ist typisch für Mediendaten und hat wesentliche Implikationen für die Modellierung.
+bekannte Phänomen ist typisch für Mediendaten und stellt eine Kernherausforderung für Empfehlungssysteme dar \cite{wu_personalized_2022, raza_news_2020}.
 
 \input{content/figures/artikelverteilung_train.tex}
-\label{fig:artikelverteilung_train}
 
-Wie in Abbildung~\ref{fig:artikelverteilung_train} visualisiert, entfällt ein überproportional großer Anteil der Seitenaufrufe auf eine sehr 
-kleine Gruppe von "Hit"-Artikeln, während die breite Masse der Inhalte nur wenige Interaktionen erhält. 
-Ein analoges Muster zeigt sich bei der Nutzeraktivität: Wenige "Power-Nutzer" generieren eine immense Anzahl an Klicks, 
-wohingegen der Großteil der Nutzer nur sporadisch mit dem Portal interagiert.
+Die Verteilung manifestiert sich in zwei Dimensionen:
+
+\begin{itemize}
+    \item 
+    \textbf{Artikelpopularität:} Wie in Abbildung~\ref{fig:artikelverteilung_train} dargestellt,\newline 
+    konzentriert sich ein 
+    überproportional großer Anteil der Seitenaufrufe auf eine sehr kleine Gruppe von viralen "Hit"-Artikeln, die den "Kopf" der Verteilung bilden. 
+    Dies wird durch die kurze Lebensdauer von Nachrichtenartikeln zusätzlich verstärkt.
+    \item \textbf{Nutzeraktivität:} Ein analoges Muster zeigt sich beim Nutzerverhalten. 
+    Eine kleine Kohorte von hochaktiven "Power-Nutzern" ist für einen Großteil der Klick-Events verantwortlich, während die Mehrheit der Nutzer nur 
+    sporadisch mit wenigen Klicks interagiert.
+\end{itemize}
 
 Diese ungleiche Verteilung führt zu einem inhärenten Popularity Bias in den Daten. 
-Dies stellt eine zentrale Herausforderung dar, die bei der Konzeption des Empfehlungssystems berücksichtigt werden muss, um zu verhindern, 
-dass ausschließlich populäre "Bestseller"-Artikel empfohlen werden. 
+Naive Modelle neigen dazu, allen Nutzern wiederholt dieselben populären Bestseller-Artikel zu empfehlen, 
+was das Ziel der Personalisierung untergräbt und die Gefahr birgt, Nutzer in einer Filterblase zu isolieren. 
+Gleichzeitig entsteht ein Kaltstart-Problem für Nischen-Artikel im Long Tail, die kaum eine Chance haben, empfohlen zu werden. 
+Eine zentrale Herausforderung dieser Arbeit ist daher die Konzeption eines Systems, 
+das diesen Popularity Bias aktiv ausbalanciert, um auch relevante Nischeninhalte an die passenden Nutzer auszuspielen.
+
+\input{content/figures/userverteilung_train.tex}
+
 Die zugrundeliegenden statistischen Kennzahlen des Trainingsdatensatzes sind in Tabelle~\ref{tab:train_stats} zusammengefasst.
 
-% Hier bindest du die Tabelle ein, die die Zahlen belegt.
 \input{content/tables/train_stats.tex}
 \label{tab:train_stats}
 
+Um die Klick-Events für das \ac{NCF}-Modell nutzbar zu machen, wurden sie in eine User-Item-Interaktionsmatrix überführt. 
+Dabei repräsentieren die Zeilen die einzigartigen Nutzer und die Spalten die einzigartigen Artikel des Trainingszeitraums. 
+Eine Zelle $(i, j)$ in der Matrix erhält den Wert 1, wenn der Nutzer $i$ mit dem Artikel $j$ interagiert hat, andernfalls den Wert 0. 
+Dieser Prozess resultiert in einer binären Matrix, die das implizite Feedback der Nutzer abbildet.
+
+\newpage
+Die resultierende Matrix weist mit Dimensionen von circa 2,3 Millionen Nutzern und 104.000 Artikeln eine Dichte von unter 0,005\,\% auf. 
+Ihre entscheidende Eigenschaft ist daher ihre extreme Dünnbesetzung. 
+Diese Sparsity ist eine typische Herausforderung für \ac{CF}-Modelle, da für jeden Nutzer nur eine verschwindend geringe Anzahl an Interaktionen im Verhältnis zur Gesamtmenge der Artikel vorliegt. 
+Dies erschwert es dem Modell, aussagekräftige Muster im Nutzerverhalten zu erlernen und auf neue User-Item-Paare zu generalisieren.
+
+Bei der Interpretation der Ergebnisse müssen folgende Limitationen berücksichtigt werden:
+
+\begin{itemize}
+    \item \textbf{Zeitlicher Rahmen:} Der verwendete Datensatz deckt ausschließlich den Januar 2025 ab. 
+    Dies stellt eine Momentaufnahme dar und verhindert, dass das Modell saisonale Effekte (z.B. Feiertage) oder langfristige Entwicklungen im Nutzerinteresse erfassen kann.
+
+    \item \textbf{Implizites Feedback:} Als Interaktionssignal werden ausschließlich Klicks verwendet. 
+    Diese Form des impliziten Feedbacks ist zwar reichlich vorhanden, aber mehrdeutig. 
+    Ein Klick ist kein garantierter Indikator für Nutzerzufriedenheit; er kann auch zu einem sofortigen Verlassen der Seite (Bounce) führen. 
+    Andere Signale wie die Verweildauer wurden in diesem Prototypen nicht berücksichtigt.
+
+    \item \textbf{Offline-Evaluation:} Die Modellgüte wird offline anhand historischer Daten mit Metriken wie dem \ac{nDCG} evaluiert. 
+    Diese Methodik kann die tatsächliche Auswirkung auf das Nutzerverhalten im Live-Betrieb nicht vollständig abbilden. 
+    Um den realen Business Impact auf KPIs wie Sitzungsdauer oder Nutzerbindung zu messen, wäre ein abschließender Online-A/B-Test der nächste logische Schritt.
+\end{itemize}
