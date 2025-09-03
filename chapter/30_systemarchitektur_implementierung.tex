@@ -3,7 +3,6 @@
 Die Konzeption eines Empfehlungssystems für den produktiven Einsatz bei der SV-Gruppe erfordert eine Architektur, die klar definierten Rahmenbedingungen gerecht wird. 
 Aus dem Anwendungsfall ergeben sich eine Reihe von \ac{NFR}s, die die technische Ausgestaltung maßgeblich beeinflussen.
 
-\subsection{Primäre nicht-funktionale Anforderungen}
 \label{sec:nfr}
 Für den initialen Proof-of-Concept wurden drei zentrale NFRs als erfolgskritisch identifiziert. 
 Erstens muss das System eine hohe Performanz aufweisen und in der Lage sein, eine große Anzahl paralleler Anfragen effizient zu verarbeiten. 
@@ -12,7 +11,7 @@ Zweitens ist die Skalierbarkeit der Architektur essenziell, um flexibel auf wach
 wie sie im dynamischen Umfeld eines Nachrichtenportals zu erwarten sind. Drittens muss eine einfache Integrierbarkeit gewährleistet sein, 
 weshalb das System über eine standardisierte REST-API angebunden wird, um die Integration in bestehende Redaktions- und IT-Workflows zu erleichtern.
 
-\subsection{Sekundäre und zukünftige Anforderungen}
+% \subsection{Sekundäre und zukünftige Anforderungen}
 Obwohl es sich zunächst um einen Prototypen handelt, wurden weitere Anforderungen identifiziert, die für einen späteren, 
 vollumfänglichen Produktivbetrieb relevant sind. Dazu gehören die Gewährleistung von Datenschutz und Sicherheit gemäß der \ac{DSGVO}, 
 eine hohe Verfügbarkeit und Ausfallsicherheit zur Sicherstellung eines unterbrechungsfreien Betriebs sowie die Transparenz der Empfehlungslogik, 
@@ -26,7 +25,7 @@ Eine entscheidende Ressource stellen hochdimensionale (3072D) Artikel-Embeddings
 welche aus den Titeln und Texten der Artikel generiert wurden. Aufgrund ihrer bewährten Effektivität in verwandten Anwendungsfällen, 
 wie der semantischen Anzeigenausspielung, werden diese Embeddings auch im Rahmen dieser Arbeit genutzt.
 
-\subsection{Technologische Architektur}
+% \subsection{Technologische Architektur}
 \input{content/figures/architektur.tex}
 Die technologische Architektur ist als cloud-nativer Microservice-Ansatz auf der \ac{GCP} konzipiert,
 um die in Abschnitt \ref{sec:nfr} definierten Anforderungen an Skalierbarkeit und Performanz zu erfüllen. 
@@ -35,7 +34,7 @@ Dieser Service ist nicht nur für die Entgegennahme von Anfragen und die Steueru
 sondern auch für die Hybridisierung der Empfehlungsergebnisse. Das Design wurde modular gestaltet, 
 um zukünftig auch fortgeschrittenere Hybridisierungsstrategien integrieren zu können.
 
-\subsubsection{API-Design und Orchestrierung}
+% \subsubsection{API-Design und Orchestrierung}
 \label{sec:api_design}
 
 Das Herzstück des Systems bildet der API-Service, welcher die Schnittstelle nach außen darstellt und die interne Logik steuert. 
@@ -48,7 +47,7 @@ der automatischen Generierung interaktiver Dokumentation ausgewählt wurde. Der 
 jeder Anfrage die parallelen Abfragen an die untergeordneten ML-Dienste und die Datenbank, führt die Ergebnisse zusammen 
 und wendet die Logik zur Hybridisierung an, bevor die finale Empfehlungsliste an den Client zurückgesendet wird.
 
-\subsubsection{Content-Based Filtering mittels Vektorsuche}
+% \subsubsection{Content-Based Filtering mittels Vektorsuche}
 \label{sec:cbf_service}
 
 Die technische Umsetzung des \ac{CBF}-Ansatzes erfolgt mittels der Vertex AI Vektorsuche. 
@@ -73,7 +72,7 @@ dieser Partitionen eine schnelle Distanzberechnung auf den quantisierten Vektore
 Die Forschung zur Optimierung dieser Indexierungsstrategien entwickelt sich stetig weiter, wie das Paper zu SOAR zeigt, 
 einem Nachfolger-Ansatz zur Verbesserung der Indexeffizienz \cite{soar_2023}.
 
-\subsubsection{Neural Collaborative Filtering}
+% \subsubsection{Neural Collaborative Filtering}
 \label{sec:ncf_service}
 
 Als kollaborativer Filteransatz wird in dieser Arbeit das \ac{NCF}-Modell eingesetzt. 
@@ -99,6 +98,7 @@ bekannte Phänomen ist typisch für Mediendaten und stellt eine Kernherausforder
 
 \input{content/figures/artikelverteilung_train.tex}
 
+\newpage
 Die Verteilung manifestiert sich in zwei Dimensionen:
 
 \begin{itemize}
@@ -131,7 +131,6 @@ Dabei repräsentieren die Zeilen die einzigartigen Nutzer und die Spalten die ei
 Eine Zelle $(i, j)$ in der Matrix erhält den Wert 1, wenn der Nutzer $i$ mit dem Artikel $j$ interagiert hat, andernfalls den Wert 0. 
 Dieser Prozess resultiert in einer binären Matrix, die das implizite Feedback der Nutzer abbildet.
 
-\newpage
 Die resultierende Matrix weist mit Dimensionen von circa 2,3 Millionen Nutzern und 104.000 Artikeln eine Dichte von unter 0,005\,\% auf. 
 Ihre entscheidende Eigenschaft ist daher ihre extreme Dünnbesetzung. 
 Diese Sparsity ist eine typische Herausforderung für \ac{CF}-Modelle, da für jeden Nutzer nur eine verschwindend geringe Anzahl an Interaktionen im Verhältnis zur Gesamtmenge der Artikel vorliegt. 
