@@ -2,9 +2,12 @@
 % V-Ansatz Teil 3 – Evaluation und Optimierung
 
 \subsection{Zielfunktion und Evaluationsmetriken}
-% Precision@5
-% APS (Articles per Session)
 % Begrenzte Zusatzmetriken (Diversity, Serendipity)
+
+
+\[
+score_{ges} = w_{cbf} \cdot score_{cbf} + w_{cf} \cdot score_{cf}
+\]
 
 \subsection{Modellvarianten}
 % CBF-Modell
@@ -15,6 +18,7 @@
 % α-Tuning (Score Fusion)
 % Vergleichsbaselines
 % Evaluation mit GA4-Daten
+\input{content/figures/hyperparameterraum.tex}
 
 \subsection{Ergebnisse}
 % % Tabellen: Precision@5, APS je α

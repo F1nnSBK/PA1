@@ -1,7 +1,7 @@
 \section{Einleitung}
 % (≈ 1,5 Seiten)
 
-\subsection{Motivation}
+% \subsection{Motivation}
 % Warum Empfehlersysteme wichtig für digitalen Journalismus sind
 Die digitale Transformation hat die Art und Weise, wie Nachrichten konsumiert werden, grundlegend verändert. 
 Mit der exponentiell steigenden Informationsmenge im Internet wird es für Nutzer zunehmend schwieriger, 
@@ -9,6 +9,9 @@ relevante Nachrichteninhalte zu erkennen, was einen kritischen Bedarf an Filterm
 In diesem Kontext spielen Empfehlungssysteme (ES) eine entscheidende Rolle, 
 indem sie die Informationsüberlastung von einem Hindernis für das Engagement in eine Chance für personalisierte 
 Inhalte verwandeln und so die Leseerfahrung der Nutzer verbessern (\cite{wu_personalized_2022}).
+Diese Personalisierung birgt jedoch die inhärente Gefahr, sogenannte Filterblasen zu erzeugen.
+Eine Filterblase tritt auf, wenn einem Nutzer nur noch Artikel zu einem spezifischen Thema angezeigt werden. 
+Das führt zu einer Verzerrung der Wahrnehmung von Informationen und begünstigt eine einseitige Meinungsbildung.
 \newline
 Über ihre Funktion als reine Filter hinaus werden sie in dir Medienbranche weitverbreitet eingesetzt, 
 um quantitative Metriken wie die Nutzerbindung, Verweildauer oder die Artikel pro Sitzung zu steigern. 
@@ -16,11 +19,39 @@ Die empirischen Belege aus verschiedenen Domänen, darunter E-Commerce, Straming
 und Nachrichtenportale, zeigen einen direkten kausalen Zusammenhang zwischen verbesserten
 Nutzerbindungsmetriken und greifbaren finanziellen Vorteilen wie Umsatz und Abonnements.
 
+% \subsection{Problemstellung}
+Die Generierung qualitativ hochwertiger Artikel-Empfehlungen für die Nutzer von der SV-Gruppe stellt eine mehrdimensionale Herausforderung dar. Ein zentrales Gütekriterium ist die Balance zwischen thematischer Relevanz und inhaltlicher Diversität, um sowohl die Interessen der Nutzer präzise abzubilden als auch die Entstehung von sogenannten Filterblasen zu verhindern.
 
-\subsection{Problemstellung}
-% Herausforderungen bei Schwäbisch Media: viele Artikel, Nutzerdiversität, kalter Start
+Die technische Realisierung wird durch drei primäre Faktoren erschwert:
+
+\begin{enumerate}
+    \item \textbf{Datenvolumen und Skalierbarkeit:} Das System muss ein hohes Volumen an Artikeln (über 440.000) mit einer umfangreichen Menge an Nutzerinteraktionsdaten (über 6,5\,TB) effizient verarbeiten können. Die performante Verknüpfung dieser beiden Datenquellen ist eine grundlegende Anforderung.
+    
+    \item \textbf{Item-Cold-Start-Problem:} Neu publizierte Artikel verfügen definitionsgemäß über keine oder nur sehr wenige Nutzerinteraktionen. Modelle des Collaborative Filtering (CF), wie das hier eingesetzte NCF-Modell, können für solche kalten Artikel keine Empfehlungen generieren. Es bedarf daher einer Strategie, um neue Inhalte unmittelbar nach der Veröffentlichung fair und effektiv in den Empfehlungsprozess zu integrieren. Der Ansatz des Content-Based Filtering (CBF), der auf textueller Ähnlichkeit basiert, wirkt diesem Problem entgegen.
+    
+    \item \textbf{Balance zwischen Relevanz und Serendipität:} Während das CBF-Modell eine hohe thematische Genauigkeit sicherstellt, birgt es die Gefahr, Nutzer in ihren bekannten Interessen zu isolieren (Filterblase). Das CF-Modell neigt hingegen zu einem Popularity Bias. Die zentrale Problemstellung dieser Arbeit liegt in der Konzeption und Optimierung einer hybriden Architektur, die diese gegensätzlichen Eigenschaften der Modelle gezielt kombiniert, um eine optimale Balance zu erreichen.
+\end{enumerate}
 
 \subsection{Zielsetzung und Aufbau der Arbeit}
-% Ziel: Entwicklung & Optimierung auf GCP
-% Ankündigung V-Struktur
-% Relevanz für Schwäbisch Media
+\label{sec:zielsetzung}
+Das primäre Ziel dieser Arbeit ist die Konzeption, Entwicklung und Optimierung eines prototypischen, 
+hybriden Empfehlungssystems für die SV-Gruppe, das auf der Google Cloud Platform implementiert wird. 
+Der Fokus liegt auf der Optimierung einer gewichteten Hybridisierungsstrategie, bei der die Empfehlungslisten 
+eines Content-Based-Filtering- und eines Collaborative-Filtering-Modells mittels einer gewichteten Summe 
+kombiniert werden. Dieser Ansatz dient als validierte Grundlage, auf deren Ergebnissen zukünftig komplexere 
+Hybridisierungsarchitekturen aufbauen können.
+
+Um die Übertragbarkeit der Resultate auf ein produktives Einsatzszenario zu gewährleisten, 
+erfolgt die Evaluation des Systems auf Basis realer Nutzerdaten unter Anwendung einer strengen 
+chronologischen Aufteilung von Trainings- und Testdaten. Ein weiteres Ziel ist es, nachzuweisen, 
+dass bereits ein datengetriebenes Empfehlungssystem eine signifikant höhere Empfehlungsqualität liefert 
+als Baseline-Strategien, wie etwa die zufällige Auswahl oder die Empfehlung der populärsten Artikel.
+
+Die Arbeit ist wie folgt strukturiert:
+\begin{description}
+    \item[Kapitel 2] legt die theoretischen Grundlagen für Empfehlungssysteme. Es werden sowohl die in dieser Arbeit angewandten fundamentalen Techniken (CF und CBF) erläutert als auch ein Überblick über fortgeschrittene State-of-the-Art-Konzepte gegeben.
+    \item[Kapitel 3] beschreibt die technische Architektur und Implementierung des Systems auf der \ac{GCP}. Der Fokus liegt auf den Anforderungen eines produktiven Systems und den gewählten Lösungsansätzen zur Erfüllung dieser Anforderungen.
+    \item[Kapitel 4] präsentiert den Kern der Arbeit: die datengetriebene Optimierung der Gewichtungsfaktoren \(w_{cbf}\) und \(w_{cf}\) mittels Optuna sowie die detaillierte Darstellung und Analyse der Evaluationsergebnisse.
+    \item[Kapitel 5] führt eine kritische Diskussion der erzielten Ergebnisse und beleuchtet die Limitationen der vorliegenden Arbeit. Dies schließt eine fundierte Einschätzung der Generalisierbarkeit und der praktischen Implikationen der Resultate ein.
+    \item[Kapitel 6] fasst die zentralen Erkenntnisse zusammen und liefert einen Ausblick auf potenzielle Weiterentwicklungen, die auf dem hier entwickelten Prototypen aufbauen und einen inkrementellen Mehrwert generieren könnten.
+\end{description}
