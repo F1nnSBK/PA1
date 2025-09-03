@@ -6,10 +6,12 @@ Aus dem Anwendungsfall ergeben sich eine Reihe von \ac{NFR}s, die die technische
 \label{sec:nfr}
 Für den initialen Proof-of-Concept wurden drei zentrale NFRs als erfolgskritisch identifiziert. 
 Erstens muss das System eine hohe Performanz aufweisen und in der Lage sein, eine große Anzahl paralleler Anfragen effizient zu verarbeiten. 
-Als konkretes \ac{SLO} wird eine Latenz im 95. Perzentil von unter 500 Millisekunden angestrebt. 
+Als konkretes \ac{SLO} wird eine Latenz im 95. Perzentil von unter 2000 Millisekunden angestrebt. 
 Zweitens ist die Skalierbarkeit der Architektur essenziell, um flexibel auf wachsende Nutzerzahlen und Datenmengen reagieren zu können, 
 wie sie im dynamischen Umfeld eines Nachrichtenportals zu erwarten sind. Drittens muss eine einfache Integrierbarkeit gewährleistet sein, 
 weshalb das System über eine standardisierte REST-API angebunden wird, um die Integration in bestehende Redaktions- und IT-Workflows zu erleichtern.
+
+\input{content/figures/latenzanalyse.tex}
 
 % \subsection{Sekundäre und zukünftige Anforderungen}
 Obwohl es sich zunächst um einen Prototypen handelt, wurden weitere Anforderungen identifiziert, die für einen späteren, 
