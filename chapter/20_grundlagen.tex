@@ -1,21 +1,16 @@
 \section{Theoretische Grundlagen}
 % V-Ansatz Teil 1 – Allgemeiner Rahmen
-Für moderne \ac{ES} existieren drei fundamentale Ansätze. 
-Der \ac{CBF}-Ansatz basiert auf dem Inhalt von Artikeln, um semantisch ähnliche Artikel zu 
-identifizieren. Im Gegensatz dazu konzentriert sich der \ac{CF}-Ansatz auf den Nutzer, 
-indem er die Lesehistorie eines Nutzers als Grundlage verwendet, 
-um personalisierte Empfehlungen zu generieren. Zusätzlich können dem Modell Informationen wie 
-Standortdaten oder die Länge eines Artikels hinzugefügt werden, um die Genauigkeit der 
-Empfehlungen zu erhöhen. Der dritte Ansatz kombiniert \ac{CBF} und \ac{CF}, 
-dabei vereinen hybride Ansätze die Vorteile der beiden zuvor genannten Methoden (\cite{raza_news_2020}).
-Eine einfache Implementierung solcher hybrider Methoden kann 
-durch die gewichtete Summe der beiden Scores erreicht werden, während fortgeschrittene Methoden, 
-wie etwa das Two Tower Modell oder Ensembel-Methoden, anspruchsvollere Ergebnisse liefern.
+Das Forschungsfeld der Empfehlungssysteme ist breit und umfasst zahlreiche methodische
+Ansätze. In der Praxis haben sich jedoch zwei grundlegende Paradigmen als besonders einflussreich erwiesen:
+Das \ac{CBF}, das auf Inhaltsmerkmalen der zu empfehlenden Items basiert und das \ac{CF}, das aus dem kollektiven
+Verhalten der Nutzer lernt. Aufgrund der komplementären Stärken und Schwächen dieser beiden Paradigmen
+stellen moderne hybride Architekturen, die beide Ansätze kombinieren, den aktuellen
+Stand der Technik dar. Diese Arbeit konzentriert sich auf die systematische Optimierung eines solchen hybriden Systems.
 
 \subsection{Empfehlungssysteme im Überblick}
-% CBF, CF, Hybrid
 \subsubsection{Content Based Filtering}
-Das CBF basiert auf der Umwandlung von Text in mathematische Vektoren.
+Das \ac{CBF} basiert auf der Idee, Artikel zu empfehlen, die thematisch ähnlich zueinander sind. Dafür werden
+die Artikeltexte 
 \subsubsection{Collaborative Filtering}
 
 \subsubsection{Hybrid Filtering}
