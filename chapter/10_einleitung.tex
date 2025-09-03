@@ -4,28 +4,31 @@
 % \subsection{Motivation}
 % Warum Empfehlersysteme wichtig für digitalen Journalismus sind
 Die digitale Transformation hat die Art und Weise, wie Nachrichten konsumiert werden, grundlegend verändert. 
-Mit der exponentiell steigenden Informationsmenge im Internet wird es für Nutzer zunehmend schwieriger, 
-relevante Nachrichteninhalte zu erkennen, was einen kritischen Bedarf an Filtermechanismen schafft. 
+Die exponentiell wachsende Informationsmenge im Internet erschwert es den Nutzern zunehmend,
+relevante Inhalte zu identifizieren. Dies erzeugt einen erheblichen Bedarf an effektiven Filtermechanismen.
 In diesem Kontext spielen Empfehlungssysteme (ES) eine entscheidende Rolle, 
 indem sie die Informationsüberlastung von einem Hindernis für das Engagement in eine Chance für personalisierte 
 Inhalte verwandeln und so die Leseerfahrung der Nutzer verbessern (\cite{wu_personalized_2022}).
 Diese Personalisierung birgt jedoch die inhärente Gefahr, sogenannte Filterblasen zu erzeugen.
 Eine Filterblase tritt auf, wenn einem Nutzer nur noch Artikel zu einem spezifischen Thema angezeigt werden. 
-Das führt zu einer Verzerrung der Wahrnehmung von Informationen und begünstigt eine einseitige Meinungsbildung.
-\newline
-Über ihre Funktion als reine Filter hinaus werden sie in dir Medienbranche weitverbreitet eingesetzt, 
-um quantitative Metriken wie die Nutzerbindung, Verweildauer oder die Artikel pro Sitzung zu steigern. 
-Die empirischen Belege aus verschiedenen Domänen, darunter E-Commerce, Straming-Dienste
+Das führt zu einer Verzerrung der Wahrnehmung von Informationen und begünstigt eine einseitige Meinungsbildung.  
+
+Über ihre reine Filterfunktion hinaus dienen sie in der Medienbranche als Instrument zur Steigerung 
+quantitativer Metriken wie Nutzerbindung, Verweildauer oder Artikel pro Sitzung.
+Die empirischen Belege aus verschiedenen Domänen, darunter E-Commerce, Streaming-Dienste
 und Nachrichtenportale, zeigen einen direkten kausalen Zusammenhang zwischen verbesserten
 Nutzerbindungsmetriken und greifbaren finanziellen Vorteilen wie Umsatz und Abonnements.
 
 % \subsection{Problemstellung}
-Die Generierung qualitativ hochwertiger Artikel-Empfehlungen für die Nutzer von der SV-Gruppe stellt eine mehrdimensionale Herausforderung dar. Ein zentrales Gütekriterium ist die Balance zwischen thematischer Relevanz und inhaltlicher Diversität, um sowohl die Interessen der Nutzer präzise abzubilden als auch die Entstehung von sogenannten Filterblasen zu verhindern.
+Die Generierung qualitativ hochwertiger Artikel-Empfehlungen für die Nutzer von der SV-Gruppe stellt eine 
+mehrdimensionale Herausforderung dar. 
+Ein zentrales Gütekriterium besteht in der Balance zwischen thematischer Relevanz und inhaltlicher Diversität. 
+Nur so lassen sich die Interessen der Nutzer präzise abbilden und gleichzeitig die Entstehung von Filterblasen vermeiden.
 
 Die technische Realisierung wird durch drei primäre Faktoren erschwert:
 
 \begin{enumerate}
-    \item \textbf{Datenvolumen und Skalierbarkeit:} Das System muss ein hohes Volumen an Artikeln (über 440.000) mit einer umfangreichen Menge an Nutzerinteraktionsdaten (über 6,5\,TB) effizient verarbeiten können. Die performante Verknüpfung dieser beiden Datenquellen ist eine grundlegende Anforderung.
+    \item \textbf{Datenvolumen und Skalierbarkeit:} Das System muss über 440.000 Artikel sowie mehr als 6,5,TB an Nutzerinteraktionsdaten effizient verarbeiten können. Die performante Verknüpfung dieser beiden Datenquellen ist eine grundlegende Anforderung.
     
     \item \textbf{Item-Cold-Start-Problem:} Neu publizierte Artikel verfügen definitionsgemäß über keine oder nur sehr wenige Nutzerinteraktionen. Modelle des Collaborative Filtering (CF), wie das hier eingesetzte NCF-Modell, können für solche kalten Artikel keine Empfehlungen generieren. Es bedarf daher einer Strategie, um neue Inhalte unmittelbar nach der Veröffentlichung fair und effektiv in den Empfehlungsprozess zu integrieren. Der Ansatz des Content-Based Filtering (CBF), der auf textueller Ähnlichkeit basiert, wirkt diesem Problem entgegen.
     
@@ -38,14 +41,15 @@ Das primäre Ziel dieser Arbeit ist die Konzeption, Entwicklung und Optimierung 
 hybriden Empfehlungssystems für die SV-Gruppe, das auf der Google Cloud Platform implementiert wird. 
 Der Fokus liegt auf der Optimierung einer gewichteten Hybridisierungsstrategie, bei der die Empfehlungslisten 
 eines Content-Based-Filtering- und eines Collaborative-Filtering-Modells mittels einer gewichteten Summe 
-kombiniert werden. Dieser Ansatz dient als validierte Grundlage, auf deren Ergebnissen zukünftig komplexere 
-Hybridisierungsarchitekturen aufbauen können.
+kombiniert werden. Dieser Ansatz bildet eine validierte Grundlage, auf der künftig komplexere 
+Hybridisierungsarchitekturen aufbauen können (\cite{burke_hybrid_2002}).
 
 Um die Übertragbarkeit der Resultate auf ein produktives Einsatzszenario zu gewährleisten, 
 erfolgt die Evaluation des Systems auf Basis realer Nutzerdaten unter Anwendung einer strengen 
-chronologischen Aufteilung von Trainings- und Testdaten. Ein weiteres Ziel ist es, nachzuweisen, 
-dass bereits ein datengetriebenes Empfehlungssystem eine signifikant höhere Empfehlungsqualität liefert 
-als Baseline-Strategien, wie etwa die zufällige Auswahl oder die Empfehlung der populärsten Artikel.
+chronologischen Aufteilung von Trainings- und Testdaten. Ein weiteres Ziel besteht darin zu zeigen, 
+dass bereits ein einfaches, datengetriebenes Empfehlungssystem eine deutlich höhere 
+Empfehlungsqualität erzielt als Baseline-Strategien wie die zufällige 
+Auswahl oder die Empfehlung populärer Artikel. (\cite{jannach_survey_2023}).
 
 Die Arbeit ist wie folgt strukturiert:
 \begin{description}
