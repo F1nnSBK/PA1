@@ -105,15 +105,52 @@ empfohlen werden, was die Vielfalt und Personalisierung einschränkt
 wird der CF-Ansatz in dieser Arbeit mit einem Content-Based-Ansatz kombiniert.
 
 \subsection{Hybrid Filtering}
+\label{sec:hybrid}
+Weder \ac{CBF} noch \ac{CF} decken in isolierter Form alle Anforderungen in der Nachrichtendomäne ab. 
+Hybride Architekturen gelten daher als praxiserprobter und in der Literatur breit beschriebener Entwurfsansatz, 
+um komplementäre Stärken zu kombinieren und typische Schwächen wie Item-Cold-Start oder Popularity Bias abzumildern 
+(vgl. \cite{burke_hybrid_2002,wu_personalized_2022,raza_news_2020}).
 
+Die Fachliteratur unterscheidet verschiedene Strategien der Hybridisierung. Hierzu zählen unter anderem die 
+gewichtete Kombination von Modell-Scores (weighted), eine fallweise Umschaltung zwischen Modellen (switching), 
+mehrstufige Pipelines (cascade), die parallele Darstellung heterogener Ergebnislisten (mixed) sowie die 
+Nutzung von Modellergebnissen als Eingangsmerkmale für nachfolgende Modelle (feature/meta-level) 
+(vgl. \cite{burke_hybrid_2002}).
+
+Diese Arbeit setzt eine gewichtete Hybridisierung ein. Für ein Nutzer–Artikel-Paar (bzw. den Kontextartikel) 
+seien $s_\mathrm{cbf}$ und $s_\mathrm{cf}$ der jeweilige Modellscore; der kombinierte Score ergibt sich als
+\begin{equation}
+\label{eq:target}
+s_\mathrm{hybrid} = w_\mathrm{cbf} \cdot s_\mathrm{cbf} + w_\mathrm{cf} \cdot s_\mathrm{cf}
+\end{equation}
+wobei $w_\mathrm{cbf}, w_\mathrm{cf} \geq 0$ und $w_\mathrm{cbf} + w_\mathrm{cf} = 1$. Eine zentrale Voraussetzung ist die Kalibrierung 
+der Scores, da die Rohwerte der Modelle auf unterschiedlichen Skalen liegen können und die Gewichte ansonsten nicht 
+interpretierbar sind. In der Praxis werden hierzu monotone Normalisierungen pro Modell eingesetzt, welche Techniken 
+wie die Z-Score-, Min-Max- oder Quantil-Normalisierung umfassen. Alternativ kann eine probabilistische 
+Kalibrierung erfolgen, beispielsweise durch isotone Regression oder Platt-Scaling. Die optimale, datengetriebene 
+Gewichtung wird in Kapitel~4 mittels Optuna bestimmt (vgl. \cite{Akiba_Optuna_2019}).
+
+Die gewichtete Kombination grenzt sich von Re-Ranking-Verfahren ab. Bei diesen wird zunächst eine 
+Kandidatenliste erzeugt und anschließend mit Bezug auf Diversität oder Neuheit umsortiert, wofür Algorithmen wie 
+Maximal Marginal Relevance (MMR) oder verwandte Penalty-Term-Ansätze zur Anwendung kommen. Solche Verfahren 
+adressieren Zielkonflikte wie Genauigkeit vs. Diversität direkt auf der Rankingebene und sind insbesondere 
+in mehrzieligen Settings relevant (vgl. \cite{jannach_survey_2023,Carbonell_mmr_1998}).
+
+News-spezifisch ist zudem die zeitliche Modellierung verbreitet. Hierbei werden kurzfristige Präferenzen, 
+die sich etwa aus den zuletzt gelesenen Artikeln ergeben, separat von langfristigen, stabileren Interessen 
+abgebildet. Viele Systeme führen dafür parallele oder themenspezifische Nutzerprofile und kombinieren diese 
+(vgl. \cite{Lops_CBRS_SOTA_2011,wu_personalized_2022}). In dieser Arbeit wird im \ac{CBF}
+bewusst ein kontextuelles Kurzzeitprofil (aktueller Artikel) genutzt und mit \ac{NCF}
+kombiniert, das wiederkehrende Muster in den Interaktionen erfasst. Die Erweiterung um aggregierte kurz- und 
+langfristige Profile, sowie fortschrittlichere, komplexere Verfahren ist in Kapitel~6 als Weiterentwicklung diskutiert.
 
 \subsection{Serendipität}
 \label{sec:serendipitaet}
 
 
 \subsection{Qualitätsdimensionen und Erfolgsmetriken}
-% Hit-Rate@k, Recall, NDCG
-% Serendipity, Diversität
+Um \ac{ES} miteinander vergleichen zu können, braucht es Metriken, welche die Performace unterschiedlicher
+Systeme abbilden können. Man unterscheidet zwischen 
 
 \subsection{Multikriterielle Systeme und Trade-offs}
 % Relevanz vs. Vielfalt
