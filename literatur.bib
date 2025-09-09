@@ -37,23 +37,16 @@
 	pages = {335},
 }
 
-@misc{zhou_graph_2018,
-	title = {Graph {Neural} {Networks}: {A} {Review} of {Methods} and {Applications}},
-	copyright = {arXiv.org perpetual, non-exclusive license},
-	shorttitle = {Graph {Neural} {Networks}},
-	url = {https://arxiv.org/abs/1812.08434},
-	doi = {10.48550/ARXIV.1812.08434},
-	abstract = {Lots of learning tasks require dealing with graph data which contains rich relation information among elements. Modeling physics systems, learning molecular fingerprints, predicting protein interface, and classifying diseases demand a model to learn from graph inputs. In other domains such as learning from non-structural data like texts and images, reasoning on extracted structures (like the dependency trees of sentences and the scene graphs of images) is an important research topic which also needs graph reasoning models. Graph neural networks (GNNs) are neural models that capture the dependence of graphs via message passing between the nodes of graphs. In recent years, variants of GNNs such as graph convolutional network (GCN), graph attention network (GAT), graph recurrent network (GRN) have demonstrated ground-breaking performances on many deep learning tasks. In this survey, we propose a general design pipeline for GNN models and discuss the variants of each component, systematically categorize the applications, and propose four open problems for future research.},
-	urldate = {2025-08-04},
-	publisher = {arXiv},
-	author = {Zhou, Jie and Cui, Ganqu and Hu, Shengding and Zhang, Zhengyan and Yang, Cheng and Liu, Zhiyuan and Wang, Lifeng and Li, Changcheng and Sun, Maosong},
-	year = {2018},
-	note = {Version Number: 6},
-	keywords = {Artificial Intelligence (cs.AI), FOS: Computer and information sciences, Machine Learning (cs.LG), Machine Learning (stat.ML)},
-	annote = {Other
-Published at AI Open 2021},
-}
-
+@inproceedings{NIPS2017_3f5ee243,
+	author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, \L ukasz and Polosukhin, Illia},
+	booktitle = {Advances in Neural Information Processing Systems},
+	editor = {I. Guyon and U. Von Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},
+	publisher = {Curran Associates, Inc.},
+	title = {Attention is All you Need},
+	url = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+	volume = {30},
+	year = {2017},
+	bdsk-url-1 = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf}}
 
 @article{burke_hybrid_2002,
 	abstract = {Recommender systems represent user preferences for the purpose of suggesting items to purchase or examine. They have become fundamental applications in electronic commerce and information access, providing suggestions that effectively prune large information spaces so that users are directed toward those items that best meet their needs and preferences. A variety of techniques have been proposed for performing recommendation, including content-based, collaborative, knowledge-based and other techniques. To improve performance, these methods have sometimes been combined in hybrid recommenders. This paper surveys the landscape of actual and possible hybrid recommenders, and introduces a novel hybrid, EntreeC, a system that combines knowledge-based recommendation and collaborative filtering to recommend restaurants. Further, we show that semantic ratings obtained from the knowledge-based part of the system enhance the effectiveness of collaborative filtering.},
@@ -70,7 +63,94 @@ Published at AI Open 2021},
 	year = {2002},
 	bdsk-url-1 = {https://doi.org/10.1023/A:1021240730564}}
 
+@inbook{Lops_CBRS_SOTA_2011,
+author = {Lops, Pasquale and de Gemmis, Marco and Semeraro, Giovanni},
+year = {2011},
+month = {01},
+pages = {73-105},
+title = {Content-based Recommender Systems: State of the Art and Trends},
+isbn = {978-0-387-85819-7},
+journal = {Recommender Systems Handbook},
+doi = {10.1007/978-0-387-85820-3_3}
+}
 
+@inproceedings{covington_DNN_YT_Recommendations_2016,
+author = {Covington, Paul and Adams, Jay and Sargin, Emre},
+year = {2016},
+month = {09},
+pages = {191-198},
+title = {Deep Neural Networks for YouTube Recommendations},
+doi = {10.1145/2959100.2959190}
+}
+
+@article{Kotkov_Serendipity_2016,
+author = {Kotkov, Denis and Wang, Shuaiqiang and Veijalainen, Jari},
+year = {2016},
+month = {08},
+pages = {},
+title = {A Survey of Serendipity in Recommender Systems},
+volume = {111},
+journal = {Knowledge-Based Systems},
+doi = {10.1016/j.knosys.2016.08.014}
+}
+
+@inproceedings{said_rival_2014,
+ abstract = {Currently, it is diffcult to put in context and compare the results from a given evaluation of a recommender system, mainly because too many alternatives exist when design- ing and implementing an evaluation strategy. Furthermore, the actual implementation of a recommendation algorithm sometimes diverges considerably from the well-known ideal formulation due to manual tuning and modifications observed to work better in some situations. RiVal - a recommender system evaluation toolkit - allows for complete control of the different evaluation dimensions that take place in any experimental evaluation of a recommender system: data split- ting, definition of evaluation strategies, and computation of evaluation metrics. In this demo we present some of the functionality of RiVal and show step-by-step how RiVal can be used to evaluate the results from any recommendation framework and make sure that the results are comparable and reproducible.},
+ author = {Said, A. and Bellogín, A.},
+ booktitle = {RecSys 2014 - Proceedings of the 8th ACM Conference on Recommender Systems},
+ copyright = {All rights reserved},
+ doi = {10.1145/2645710.2645712},
+ isbn = {978-1-4503-2668-1},
+ keywords = {Recommender systems, Benchmarking, Evaluation, Experiments, Recommendation frameworks, Reproducibility},
+ title = {RiVal - A toolkit to foster reproducibility in recommender system evaluation},
+ year = {2014}
+}
+
+
+@inproceedings{Akiba_Optuna_2019,
+author = {Akiba, Takuya and Sano, Shotaro and Yanase, Toshihiko and Ohta, Takeru and Koyama, Masanori},
+title = {Optuna: A Next-generation Hyperparameter Optimization Framework},
+year = {2019},
+isbn = {9781450362016},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3292500.3330701},
+doi = {10.1145/3292500.3330701},
+abstract = {The purpose of this study is to introduce new design-criteria for next-generation hyperparameter optimization software. The criteria we propose include (1) define-by-run API that allows users to construct the parameter search space dynamically, (2) efficient implementation of both searching and pruning strategies, and (3) easy-to-setup, versatile architecture that can be deployed for various purposes, ranging from scalable distributed computing to light-weight experiment conducted via interactive interface. In order to prove our point, we will introduce Optuna, an optimization software which is a culmination of our effort in the development of a next generation optimization software. As an optimization software designed with define-by-run principle, Optuna is particularly the first of its kind. We will present the design-techniques that became necessary in the development of the software that meets the above criteria, and demonstrate the power of our new design through experimental results and real world applications. Our software is available under the MIT license (https://github.com/pfnet/optuna/).},
+booktitle = {Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
+pages = {2623–2631},
+numpages = {9},
+keywords = {Bayesian optimization, black-box optimization, hyperparameter optimization, machine learning system},
+location = {Anchorage, AK, USA},
+series = {KDD '19}
+}
+
+@inproceedings{nguyen_filter_bubble_2014,
+author = {Nguyen, Tien T. and Hui, Pik-Mai and Harper, F. Maxwell and Terveen, Loren and Konstan, Joseph A.},
+title = {Exploring the filter bubble: the effect of using recommender systems on content diversity},
+year = {2014},
+isbn = {9781450327442},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2566486.2568012},
+doi = {10.1145/2566486.2568012},
+abstract = {Eli Pariser coined the term 'filter bubble' to describe the potential for online personalization to effectively isolate people from a diversity of viewpoints or content. Online recommender systems - built on algorithms that attempt to predict which items users will most enjoy consuming - are one family of technologies that potentially suffers from this effect. Because recommender systems have become so prevalent, it is important to investigate their impact on users in these terms. This paper examines the longitudinal impacts of a collaborative filtering-based recommender system on users. To the best of our knowledge, it is the first paper to measure the filter bubble effect in terms of content diversity at the individual level. We contribute a novel metric to measure content diversity based on information encoded in user-generated tags, and we present a new set of methods to examine the temporal effect of recommender systems on the user experience. We do find that recommender systems expose users to a slightly narrowing set of items over time. However, we also see evidence that users who actually consume the items recommended to them experience lessened narrowing effects and rate items more positively.},
+booktitle = {Proceedings of the 23rd International Conference on World Wide Web},
+pages = {677–686},
+numpages = {10},
+keywords = {user experience, recommender systems, longitudinal data, filter bubble, content diversity},
+location = {Seoul, Korea},
+series = {WWW '14}
+}
+
+@inproceedings{Abdollahpouri_Popularity_Bias_2019,
+author = {Abdollahpouri, Himan},
+year = {2019},
+month = {01},
+pages = {},
+title = {Popularity Bias in Ranking and Recommendation},
+doi = {10.1145/3306618.3314309}
+}
 
 @article{jannach_survey_2023,
 	abstract = {Recommender systems can be characterized as software solutions that provide users with convenient access to relevant content. Traditionally, recommender systems research predominantly focuses on developing machine learning algorithms that aim to predict which content is relevant for individual users. In real-world applications, however, optimizing the accuracy of such relevance predictions as a single objective in many cases is not sufficient. Instead, multiple and often competing objectives, e.g., long-term vs. short-term goals, have to be considered, leading to a need for more research in multi-objective recommender systems. We can differentiate between several types of such competing goals, including (i) competing recommendation quality objectives at the individual and aggregate level, (ii) competing objectives of different involved stakeholders, (iii) long-term vs. short-term objectives, (iv) objectives at the user interface level, and (v) engineering related objectives. In this paper, we review these types of multi-objective recommendation settings and outline open challenges in this area.},
@@ -86,20 +166,22 @@ Published at AI Open 2021},
 	bdsk-url-2 = {https://doi.org/10.3389/fdata.2023.1157899}}
 
 
-@misc{he_neural_2017,
-	title = {Neural {Collaborative} {Filtering}},
-	url = {http://arxiv.org/abs/1708.05031},
-	doi = {10.48550/arXiv.1708.05031},
-	abstract = {In recent years, deep neural networks have yielded immense success on speech recognition, computer vision and natural language processing. However, the exploration of deep neural networks on recommender systems has received relatively less scrutiny. In this work, we strive to develop techniques based on neural networks to tackle the key problem in recommendation -- collaborative filtering -- on the basis of implicit feedback. Although some recent work has employed deep learning for recommendation, they primarily used it to model auxiliary information, such as textual descriptions of items and acoustic features of musics. When it comes to model the key factor in collaborative filtering -- the interaction between user and item features, they still resorted to matrix factorization and applied an inner product on the latent features of users and items. By replacing the inner product with a neural architecture that can learn an arbitrary function from data, we present a general framework named NCF, short for Neural network-based Collaborative Filtering. NCF is generic and can express and generalize matrix factorization under its framework. To supercharge NCF modelling with non-linearities, we propose to leverage a multi-layer perceptron to learn the user-item interaction function. Extensive experiments on two real-world datasets show significant improvements of our proposed NCF framework over the state-of-the-art methods. Empirical evidence shows that using deeper layers of neural networks offers better recommendation performance.},
-	urldate = {2025-08-04},
-	publisher = {arXiv},
-	author = {He, Xiangnan and Liao, Lizi and Zhang, Hanwang and Nie, Liqiang and Hu, Xia and Chua, Tat-Seng},
-	month = aug,
-	year = {2017},
-	note = {arXiv:1708.05031 [cs]},
-	keywords = {Computer Science - Information Retrieval},
-	annote = {Comment: 10 pages, 7 figures},
-	file = {Preprint PDF:/Users/finnhertsch/Zotero/storage/B7BTL2S7/He et al. - 2017 - Neural Collaborative Filtering.pdf:application/pdf;Snapshot:/Users/finnhertsch/Zotero/storage/FXUK6B4F/1708.html:text/html},
+@inproceedings{he_neural_2017,
+author = {He, Xiangnan and Liao, Lizi and Zhang, Hanwang and Nie, Liqiang and Hu, Xia and Chua, Tat-Seng},
+title = {Neural Collaborative Filtering},
+year = {2017},
+isbn = {9781450349130},
+publisher = {International World Wide Web Conferences Steering Committee},
+address = {Republic and Canton of Geneva, CHE},
+url = {https://doi.org/10.1145/3038912.3052569},
+doi = {10.1145/3038912.3052569},
+abstract = {In recent years, deep neural networks have yielded immense success on speech recognition, computer vision and natural language processing. However, the exploration of deep neural networks on recommender systems has received relatively less scrutiny. In this work, we strive to develop techniques based on neural networks to tackle the key problem in recommendation --- collaborative filtering --- on the basis of implicit feedback.Although some recent work has employed deep learning for recommendation, they primarily used it to model auxiliary information, such as textual descriptions of items and acoustic features of musics. When it comes to model the key factor in collaborative filtering --- the interaction between user and item features, they still resorted to matrix factorization and applied an inner product on the latent features of users and items.By replacing the inner product with a neural architecture that can learn an arbitrary function from data, we present a general framework named NCF, short for Neural network-based Collaborative Filtering. NCF is generic and can express and generalize matrix factorization under its framework. To supercharge NCF modelling with non-linearities, we propose to leverage a multi-layer perceptron to learn the user-item interaction function. Extensive experiments on two real-world datasets show significant improvements of our proposed NCF framework over the state-of-the-art methods. Empirical evidence shows that using deeper layers of neural networks offers better recommendation performance.},
+booktitle = {Proceedings of the 26th International Conference on World Wide Web},
+pages = {173–182},
+numpages = {10},
+keywords = {collaborative filtering, deep learning, implicit feedback, matrix factorization, neural networks},
+location = {Perth, Australia},
+series = {WWW '17}
 }
 
 @inproceedings{hu_collaborative_2008,
@@ -118,84 +200,69 @@ Published at AI Open 2021},
 }
 
 @inproceedings{avq_2020,
-  title={Accelerating Large-Scale Inference with Anisotropic Vector Quantization},
-  author={Guo, Ruiqi and Sun, Philip and Lindgren, Erik and Geng, Quan and Simcha, David and Chern, Felix and Kumar, Sanjiv},
-  booktitle={International Conference on Machine Learning},
-  year={2020},
-  URL={https://arxiv.org/abs/1908.10396}
+author = {Guo, Ruiqi and Sun, Philip and Lindgren, Erik and Geng, Quan and Simcha, David and Chern, Felix and Kumar, Sanjiv},
+title = {Accelerating large-scale inference with anisotropic vector quantization},
+year = {2020},
+publisher = {JMLR.org},
+abstract = {Quantization based techniques are the current state-of-the-art for scaling maximum inner product search to massive databases. Traditional approaches to quantization aim to minimize the reconstruction error of the database points. Based on the observation that for a given query, the database points that have the largest inner products are more relevant, we develop a family of anisotropic quantization loss functions. Under natural statistical assumptions, we show that quantization with these loss functions leads to a new variant of vector quantization that more greatly penalizes the parallel component of a datapoint's residual relative to its orthogonal component. The proposed approach, whose implementation is open-source, achieves state-of-the-art results on the public benchmarks available at ann-benchmarks.com.},
+booktitle = {Proceedings of the 37th International Conference on Machine Learning},
+articleno = {364},
+numpages = {10},
+series = {ICML'20}
 }
 
 @inproceedings{soar_2023,
-  title={SOAR: Improved Indexing for Approximate Nearest Neighbor Search},
-  author={Sun, Philip and Simcha, David and Dopson, Dave and Guo, Ruiqi and Kumar, Sanjiv},
-  booktitle={Neural Information Processing Systems},
-  year={2023},
-  URL={https://arxiv.org/abs/2404.00774}
+author = {Sun, Philip and Simcha, David and Dopson, Dave and Guo, Ruiqi and Kumar, Sanjiv},
+title = {SOAR: improved indexing for approximate nearest neighbor search},
+year = {2023},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+abstract = {This paper introduces SOAR: Spilling with Orthogonality-Amplified Residuals, a novel data indexing technique for approximate nearest neighbor (ANN) search. SOAR extends upon previous approaches to ANN search, such as spill trees, that utilize multiple redundant representations while partitioning the data to reduce the probability of missing a nearest neighbor during search. Rather than training and computing these redundant representations independently, however, SOAR uses an orthogonality-amplified residual loss, which optimizes each representation to compensate for cases where other representations perform poorly. This drastically improves the overall index quality, resulting in state-of-the-art ANN benchmark performance while maintaining fast indexing times and low memory consumption.},
+booktitle = {Proceedings of the 37th International Conference on Neural Information Processing Systems},
+articleno = {141},
+numpages = {16},
+location = {New Orleans, LA, USA},
+series = {NIPS '23}
 }
 
-@misc{wu_personalized_2022,
-	title = {Personalized {News} {Recommendation}: {Methods} and {Challenges}},
-	shorttitle = {Personalized {News} {Recommendation}},
-	url = {http://arxiv.org/abs/2106.08934},
-	doi = {10.48550/arXiv.2106.08934},
-	abstract = {Personalized news recommendation is an important technique to help users find their interested news information and alleviate their information overload. It has been extensively studied over decades and has achieved notable success in improving users' news reading experience. However, there are still many unsolved problems and challenges that need to be further studied. To help researchers master the advances in personalized news recommendation over the past years, in this paper we present a comprehensive overview of personalized news recommendation. Instead of following the conventional taxonomy of news recommendation methods, in this paper we propose a novel perspective to understand personalized news recommendation based on its core problems and the associated techniques and challenges. We first review the techniques for tackling each core problem in a personalized news recommender system and the challenges they face. Next, we introduce the public datasets and evaluation methods for personalized news recommendation. We then discuss the key points on improving the responsibility of personalized news recommender systems. Finally, we raise several research directions that are worth investigating in the future. This paper can provide up-to-date and comprehensive views to help readers understand the personalized news recommendation field. We hope this paper can facilitate research on personalized news recommendation as well as related fields in natural language processing and data mining.},
-	urldate = {2025-08-13},
-	publisher = {arXiv},
-	author = {Wu, Chuhan and Wu, Fangzhao and Huang, Yongfeng and Xie, Xing},
-	month = feb,
-	year = {2022},
-	note = {arXiv:2106.08934 [cs]},
-	keywords = {Computer Science - Information Retrieval},
-	file = {Preprint PDF:/Users/finnhertsch/Zotero/storage/7UQ4X4YV/Wu et al. - 2022 - Personalized News Recommendation Methods and Challenges.pdf:application/pdf;Snapshot:/Users/finnhertsch/Zotero/storage/LIGCS9XW/2106.html:text/html},
+@article{wu_personalized_2022,
+author = {Wu, Chuhan and Wu, Fangzhao and Huang, Yongfeng and Xie, Xing},
+title = {Personalized News Recommendation: Methods and Challenges},
+year = {2023},
+issue_date = {January 2023},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {41},
+number = {1},
+issn = {1046-8188},
+url = {https://doi.org/10.1145/3530257},
+doi = {10.1145/3530257},
+abstract = {Personalized news recommendation is important for users to find interesting news information and alleviate information overload. Although it has been extensively studied over decades and has achieved notable success in improving user experience, there are still many problems and challenges that need to be further studied. To help researchers master the advances in personalized news recommendation, in this article, we present a comprehensive overview of personalized news recommendation. Instead of following the conventional taxonomy of news recommendation methods, in this article, we propose a novel perspective to understand personalized news recommendation based on its core problems and the associated techniques and challenges. We first review the techniques for tackling each core problem in a personalized news recommender system and the challenges they face. Next, we introduce the public datasets and evaluation methods for personalized news recommendation. We then discuss the key points on improving the responsibility of personalized news recommender systems. Finally, we raise several research directions that are worth investigating in the future. This article can provide up-to-date and comprehensive views on personalized news recommendation. We hope this article can facilitate research on personalized news recommendation as well as related fields in natural language processing and data mining.},
+journal = {ACM Trans. Inf. Syst.},
+month = {1},
+articleno = {24},
+numpages = {50},
+keywords = {natural language processing, user modeling, survey, personalization, News recommendation}
 }
 
-@misc{guo_accelerating_2020,
-	title = {Accelerating {Large}-{Scale} {Inference} with {Anisotropic} {Vector} {Quantization}},
-	url = {http://arxiv.org/abs/1908.10396},
-	doi = {10.48550/arXiv.1908.10396},
-	abstract = {Quantization based techniques are the current state-of-the-art for scaling maximum inner product search to massive databases. Traditional approaches to quantization aim to minimize the reconstruction error of the database points. Based on the observation that for a given query, the database points that have the largest inner products are more relevant, we develop a family of anisotropic quantization loss functions. Under natural statistical assumptions, we show that quantization with these loss functions leads to a new variant of vector quantization that more greatly penalizes the parallel component of a datapoint's residual relative to its orthogonal component. The proposed approach achieves state-of-the-art results on the public benchmarks available at {\textbackslash}url\{ann-benchmarks.com\}.},
-	urldate = {2025-08-13},
-	publisher = {arXiv},
-	author = {Guo, Ruiqi and Sun, Philip and Lindgren, Erik and Geng, Quan and Simcha, David and Chern, Felix and Kumar, Sanjiv},
-	month = dec,
-	year = {2020},
-	note = {arXiv:1908.10396 [cs]},
-	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
-	file = {Preprint PDF:/Users/finnhertsch/Zotero/storage/H76IAYSK/Guo et al. - 2020 - Accelerating Large-Scale Inference with Anisotropic Vector Quantization.pdf:application/pdf;Snapshot:/Users/finnhertsch/Zotero/storage/DJW684QW/1908.html:text/html},
+@Article{raza_news_2020,
+author={Raza, Shaina
+and Ding, Chen},
+title={News recommender system: a review of recent progress, challenges, and opportunities},
+journal={Artificial Intelligence Review},
+year={2022},
+month={1},
+day={01},
+volume={55},
+number={1},
+pages={749-800},
+abstract={Nowadays, more and more news readers read news online where they have access to millions of news articles from multiple sources. In order to help users find the right and relevant content, news recommender systems (NRS) are developed to relieve the information overload problem and suggest news items that might be of interest for the news readers. In this paper, we highlight the major challenges faced by the NRS and identify the possible solutions from the state-of-the-art. Our discussion is divided into two parts. In the first part, we present an overview of the recommendation solutions, datasets, evaluation criteria beyond accuracy and recommendation platforms being used in the NRS. We also talk about two popular classes of models that have been successfully used in recent years. In the second part, we focus on the deep neural networks as solutions to build the NRS. Different from previous surveys, we study the effects of news recommendations on user behaviors and try to suggest possible remedies to mitigate those effects. By providing the state-of-the-art knowledge, this survey can help researchers and professional practitioners have a better understanding of the recent developments in news recommendation algorithms. In addition, this survey sheds light on the potential new directions.},
+issn={1573-7462},
+doi={10.1007/s10462-021-10043-x},
+url={https://doi.org/10.1007/s10462-021-10043-x}
 }
 
-@misc{sun_soar_2024,
-	title = {{SOAR}: {Improved} {Indexing} for {Approximate} {Nearest} {Neighbor} {Search}},
-	shorttitle = {{SOAR}},
-	url = {http://arxiv.org/abs/2404.00774},
-	doi = {10.48550/arXiv.2404.00774},
-	abstract = {This paper introduces SOAR: Spilling with Orthogonality-Amplified Residuals, a novel data indexing technique for approximate nearest neighbor (ANN) search. SOAR extends upon previous approaches to ANN search, such as spill trees, that utilize multiple redundant representations while partitioning the data to reduce the probability of missing a nearest neighbor during search. Rather than training and computing these redundant representations independently, however, SOAR uses an orthogonality-amplified residual loss, which optimizes each representation to compensate for cases where other representations perform poorly. This drastically improves the overall index quality, resulting in state-of-the-art ANN benchmark performance while maintaining fast indexing times and low memory consumption.},
-	urldate = {2025-08-13},
-	publisher = {arXiv},
-	author = {Sun, Philip and Simcha, David and Dopson, Dave and Guo, Ruiqi and Kumar, Sanjiv},
-	month = mar,
-	year = {2024},
-	note = {arXiv:2404.00774 [cs]},
-	keywords = {Computer Science - Machine Learning},
-	file = {Preprint PDF:/Users/finnhertsch/Zotero/storage/UYZ8JCDE/Sun et al. - 2024 - SOAR Improved Indexing for Approximate Nearest Neighbor Search.pdf:application/pdf;Snapshot:/Users/finnhertsch/Zotero/storage/W2VFPPKY/2404.html:text/html},
-}
 
-@misc{raza_news_2020,
-	title = {News {Recommender} {System}: {A} review of recent progress, challenges, and opportunities},
-	copyright = {arXiv.org perpetual, non-exclusive license},
-	shorttitle = {News {Recommender} {System}},
-	url = {https://arxiv.org/abs/2009.04964},
-	doi = {10.48550/ARXIV.2009.04964},
-	abstract = {Nowadays, more and more news readers tend to read news online where they have access to millions of news articles from multiple sources. In order to help users to find the right and relevant content, news recommender systems (NRS) are developed to relieve the information overload problem and suggest news items that users might be interested in. In this paper, we highlight the major challenges faced by the news recommendation domain and identify the possible solutions from the state-of-the-art. Due to the rapid growth of building recommender systems using deep learning models, we divide our discussion in two parts. In the first part, we present an overview of the conventional recommendation solutions, datasets, evaluation criteria beyond accuracy and recommendation platforms being used in NRS. In the second part, we explain the deep learning-based recommendation solutions applied in NRS. Different from previous surveys, we also study the effects of news recommendations on user behavior and try to suggest the possible remedies to mitigate these effects. By providing the state-of-the-art knowledge, this survey can help researchers and practical professionals in their understanding of developments in news recommendation algorithms. It also sheds light on potential new directions},
-	urldate = {2025-08-13},
-	publisher = {arXiv},
-	author = {Raza, Shaina and Ding, Chen},
-	year = {2020},
-	note = {Version Number: 4},
-	keywords = {FOS: Computer and information sciences, Information Retrieval (cs.IR)},
-	annote = {Other
-Accepted in Artificial Intelligence Review},
-}
 
 @inproceedings{krichene_sampled_2020,
 	address = {Virtual Event CA USA},
@@ -217,7 +284,16 @@ Accepted in Artificial Intelligence Review},
 	bdsk-url-1 = {https://dl.acm.org/doi/10.1145/3394486.3403226},
 	bdsk-url-2 = {https://doi.org/10.1145/3394486.3403226}}
 
-
+@article{linden_amazon_2003,
+author = {Linden, Greg and Smith, B. and York, J.},
+year = {2003},
+month = {02},
+pages = {76 - 80},
+title = {Linden G, Smith B and York J: ‘Amazon.com recommendations: item-to-item collaborative filtering’, Internet Comput. IEEE, , 7},
+volume = {7},
+journal = {Internet Computing, IEEE},
+doi = {10.1109/MIC.2003.1167344}
+}
 
 @misc{dasc_pm,
 	author = {Schulz, Michael and Neuhaus, Uwe and Kaufmann, Jens and K{\"u}hnel, Stephan and Alekozai, Emal M. and Rohde, Heiko and Hoseini, Sayed and Theuerkauf, Ren{\'e} and Badura, Daniel and Kerzel, Ulrich and Lanquillon, Carsten and Daurer, Stephan and G{\"u}nther, Maik and Huber, Lukas and Thi{\'e}e, Lukas-Walter and zur Heiden, Philipp and Passlick, Jens and Dieckmann, Jonas and Schwade, Florian and Seyffarth, Tobias and Badewitz, Wolfgang and Rissler, Raphael and Sackmann, Stefan and G{\"o}lzer, Philipp and Welter, Felix and R{\"o}th, Jochen and Seidelmann, Julian and Haneke, Uwe},
