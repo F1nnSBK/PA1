@@ -132,8 +132,8 @@ optimalen Bereich im Parameterraum effizient und verlässlich zu identifizieren.
 Konkret wurde für die Suche der in Optuna standardmäßig implementierte \ac{TPE} als Suchalgorithmus verwendet (vgl. \cite{Akiba_Optuna_2019}). Der TPE-Algorithmus ist eine 
 Variante der Bayes'schen Optimierung, die ein probabilistisches Modell der Zielfunktion erstellt, 
 um intelligent zu entscheiden, welche Parameterkombination als Nächstes getestet werden soll. 
-Dafür werden die bisherigen Evaluationsergebnisse in eine Gruppe mit vielversprechenden (guten) 
-und eine mit weniger erfolgreichen (schlechten) Ergebnissen aufgeteilt.
+Dafür werden die bisherigen Evaluationsergebnisse in eine Gruppe mit vielversprechenden
+und eine mit weniger erfolgreichen Ergebnissen aufgeteilt.
 
 Für beide Gruppen werden separate Wahrscheinlichkeitsverteilungen modelliert. Der Algorithmus maximiert 
 anschließend die erwartete Verbesserung Expected Improvement, indem er gezielt nach Parametern sucht, 
@@ -146,8 +146,25 @@ Abbildung~\ref{fig:hyperparameterraum} gezeigten, deutlich schneller und ressour
 gefunden werden als durch uninformierte Methoden.
 
 \subsection{Ergebnisse}
-% % Tabellen: Precision@5, APS je α
+\label{sec:results}
+Der in Abschnitt~\ref{sec:opt_strat} beschriebene Optimierungsprozess führte zur Identifikation 
+einer robusten Gewichtungskonfiguration für das hybride Empfehlungssystem. Die finale 
+Evaluation zeigt, dass das optimierte Hybrid-Modell die definierten Baseline-Modelle 
+in allen Metriken signifikant übertrifft.
+
+Tabelle~\ref{tab:baseline_vergleich} listet die detaillierten Performance-Werte der evaluierten 
+Modellvarianten auf, während Abbildung~\ref{fig:model_vergleich} eine visuelle 
+Gegenüberstellung der Ergebnisse bietet.
+
 \input{content/tables/vergleich_baselines.tex}
+
+\input{content/figures/vergleich_baselines.tex}
+
+Abbildung~\ref{fig:kontourplot} zeigt die einzelnen Trials (Schwarze Punkte) auf der Hyperparameterlandschaft. 
+Es ist gut zu erkennen, dass die größte Anzahl an optima in einem Bereich liegt, in dem $w_{cbf}$ größer als 0.5 ist und
+$w_{cf}$ kleiner als 0.5.
+\input{content/figures/plot_kontour.tex}
+Diese Ergebnisse zeigen, dass
 % % Visualisierungen: Liniendiagramme, ggf. UMAP-Spaces
 
 % \subsection{Interpretation und Analyse}
@@ -156,6 +173,3 @@ gefunden werden als durch uninformierte Methoden.
 % % Ablationsidee: z. B. Ausschalten von CBF-/CF-Signal
 \input{content/figures/2d_performace.tex}
 % \input{content/figures/3d_scatter_plot.tex}
-\input{content/figures/plot_kontour.tex}
-\input{content/figures/plot_optimierungsverlauf.tex}
-% \input{content/figures/hyperparameterraum.tex}
