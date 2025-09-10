@@ -2,12 +2,32 @@
 % V-Ansatz Teil 3 – Evaluation und Optimierung
 
 \subsection{Zielfunktion und Evaluationsmetriken}
-% Begrenzte Zusatzmetriken (Diversity, Serendipity)
+\label{sec:metrics}
+Die empirische Bewertung und Optimierung des hybriden Empfehlungssystems erfordert ein klar definiertes 
+Evaluationsprotokoll sowie eine geeignete Zielfunktion. Als primäre Zielfunktion für die in Kapitel 4 
+beschriebene Hyperparameter-Optimierung dient die Maximierung der Empfehlungsqualität, gemessen durch 
+den normalisierten diskontierten kumulativen Gewinn bei einer Listenlänge von 10 (nDCG@10). Diese Metrik 
+wurde ausgewählt, da sie nicht nur die reine Trefferquote (ob ein relevanter Artikel in der Liste ist), 
+sondern auch die Position des Treffers innerhalb der Empfehlungsliste berücksichtigt, was das 
+Nutzerverhalten realistischer abbildet.
 
+Ein entscheidender Aspekt des Evaluationsdesigns ist die Handhabung negativer Instanzen. Anstatt auf 
+Verfahren des Negative Samplings zurückzugreifen, bei denen eine kleine, zufällige Teilmenge 
+nicht-interagierter Artikel als negative Beispiele dient, wird in dieser Arbeit eine 
+methodisch rigorosere Strategie des \textit{Full-Catalog Rankings} verfolgt. Bei diesem Vorgehen muss 
+das Modell für jeden positiven Testfall den relevanten Artikel aus der Gesamtheit aller im 
+Datensatz verfügbaren Artikel – abzüglich der bereits vom Nutzer gelesenen – identifizieren.
 
-\[
-score_{ges} = w_{cbf} \cdot score_{cbf} + w_{cf} \cdot score_{cf}
-\]
+Diese Methode vermeidet systematische Verzerrungen (sampling bias), die durch ein 
+unausgewogenes Sampling entstehen können, und simuliert ein anspruchsvolles, aber realistisches 
+Anwendungsszenario. Die Evaluation auf dem gesamten Artikelkatalog stellt eine enorme 
+Herausforderung für das Empfehlungssystem dar, was naturgemäß zu absolut gesehen niedrigen 
+Metrikwerten führt. Wie in der Fachliteratur bestätigt wird, sind solche Ergebnisse jedoch nicht 
+als Indikator für eine geringe Modellleistung zu interpretieren, sondern als Konsequenz eines 
+besonders anspruchsvollen und unverzerrten Evaluationsprotokolls 
+(vgl. \cite{krichene_sampled_2020}). Die auf diese Weise gewonnenen Erkenntnisse bieten eine 
+robuste und verlässliche Grundlage für die zukünftige Weiterentwicklung von 
+Empfehlungssystemen bei der SV-Gruppe.
 
 \subsection{Modellvarianten}
 % CBF-Modell
