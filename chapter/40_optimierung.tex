@@ -1,15 +1,54 @@
 \section{Optimierung der Empfehlungsqualität}
 % V-Ansatz Teil 3 – Evaluation und Optimierung
+\subsection{Zielfunktion}
+\label{sec:target_function}
+Als Zielfunktion für die Optimierung des hybriden Empfehlungssystems dient eine gewichtete 
+Linearkombination der Scores der beiden zugrundeliegenden Modelle. Dieser Ansatz wurde 
+aufgrund seiner einfachen Interpretierbarkeit und seiner weiten Verbreitung als robuste 
+Baseline für hybride Architekturen gewählt (vgl. \cite{burke_hybrid_2002}). 
+Die mathematische Formulierung der Funktion lautet:
 
-\subsection{Zielfunktion und Evaluationsmetriken}
+\begin{equation}
+\label{eq:target}
+s_\mathrm{hybrid} = w_\mathrm{cbf} \cdot s_\mathrm{cbf} + w_\mathrm{cf} \cdot s_\mathrm{cf}
+\end{equation}
+
+Die einzelnen Terme der Gleichung sind wie folgt definiert:
+\begin{itemize}
+    \item $s_\mathrm{hybrid}$: Der finale, kombinierte Score für ein potenziell zu empfehlendes Item. 
+    Die finale Empfehlungsliste wird durch das absteigende Sortieren der Items nach diesem Score erstellt.
+    
+    \item $s_\mathrm{cbf}$ und $s_\mathrm{cf}$: Die von der Content-Based- bzw. der Collaborative-Filtering-Komponente 
+    generierten Roh-Scores. Vor der Kombination in der Zielfunktion ist eine Normalisierung dieser 
+    Scores erforderlich, um sicherzustellen, dass sie auf einer vergleichbaren Skala liegen.
+    
+    \item $w_\mathrm{cbf}$ und $w_\mathrm{cf}$: Die nicht-negativen Gewichtungsparameter, welche den Einfluss 
+    der jeweiligen Modellkomponente auf das Endergebnis steuern. Für diese Gewichte gilt die Nebenbedingung 
+    $w_\mathrm{cbf} + w_\mathrm{cf} = 1$, wodurch die Optimierung auf die Bestimmung eines einzigen 
+    Parameters reduziert wird.
+\end{itemize}
+
+Das zentrale Ziel des in~\ref{sec:opt_strat} beschriebenen Optimierungsprozesses 
+ist es, die optimalen Werte für die Gewichtungsparameter $w_\mathrm{cbf}$ und $w_\mathrm{cf}$ zu finden, 
+sodass die in Abschnitt~\ref{sec:metrics} definierte Evaluationsmetrik (nDCG@10) maximiert wird.
+
+\subsection{Evaluationsmetriken}
 \label{sec:metrics}
 Die empirische Bewertung und Optimierung des hybriden Empfehlungssystems erfordert ein klar definiertes 
 Evaluationsprotokoll sowie eine geeignete Zielfunktion. Als primäre Zielfunktion für die in Kapitel 4 
 beschriebene Hyperparameter-Optimierung dient die Maximierung der Empfehlungsqualität, gemessen durch 
 den normalisierten diskontierten kumulativen Gewinn bei einer Listenlänge von 10 (nDCG@10). Diese Metrik 
-wurde ausgewählt, da sie nicht nur die reine Trefferquote (ob ein relevanter Artikel in der Liste ist), 
-sondern auch die Position des Treffers innerhalb der Empfehlungsliste berücksichtigt, was das 
-Nutzerverhalten realistischer abbildet.
+wurde ausgewählt, da sie nicht nur die reine Trefferquote erfasst, sondern vor allem die exakte Position 
+eines relevanten Treffers innerhalb der Empfehlungsliste gewichtet, was das reale Nutzerverhalten präzise abbildet.
+
+Die besondere Eignung des nDCG als Metrik für Empfehlungssysteme liegt in seiner positions-sensitiven 
+("top-heavy") Natur. Mathematisch wird dies durch eine logarithmische Diskontierung erreicht, bei der der 
+Wert eines Treffers am Rang $r$ mit dem Faktor $1/\log_2(r+1)$ abgewertet wird. Dies führt dazu, dass ein 
+Treffer an den vordersten Rängen exponentiell mehr zur Gesamtbewertung beiträgt als ein Treffer an einer 
+späteren Position. So ist beispielsweise ein relevanter Artikel an Rang 1 signifikant wertvoller als 
+an Rang 2, während der Unterschied zwischen Rang 100 und 101 nur noch marginal ist. Diese Eigenschaft ist 
+essenziell, da Nutzer Interaktionen auf den vordersten Plätzen der Ergebnisliste konzentrieren und weiter 
+hinten platzierte Vorschläge selten beachten (vgl. \cite{krichene_sampled_2020}).
 
 Ein entscheidender Aspekt des Evaluationsdesigns ist die Handhabung negativer Instanzen. Anstatt auf 
 Verfahren des Negative Samplings zurückzugreifen, bei denen eine kleine, zufällige Teilmenge 
@@ -35,6 +74,7 @@ Empfehlungssystemen bei der SV-Gruppe.
 % Hybridmodell (Score-Fusion: $\alpha \cdot \text{CBF} + (1 - \alpha) \cdot \text{CF}$)
 
 \subsection{Optimierungsstrategie}
+\label{sec:opt_strat}
 % α-Tuning (Score Fusion)
 % Vergleichsbaselines
 % Evaluation mit GA4-Daten
