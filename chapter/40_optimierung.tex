@@ -44,7 +44,7 @@ eines relevanten Treffers innerhalb der Empfehlungsliste gewichtet, was das real
 Die besondere Eignung des nDCG als Metrik für Empfehlungssysteme liegt in seiner positions-sensitiven 
 ("top-heavy") Natur. Mathematisch wird dies durch eine logarithmische Diskontierung erreicht, bei der der 
 Wert eines Treffers am Rang $r$ mit dem Faktor $1/\log_2(r+1)$ abgewertet wird. Dies führt dazu, dass ein 
-Treffer an den vordersten Rängen exponentiell mehr zur Gesamtbewertung beiträgt als ein Treffer an einer 
+Treffer an den vordersten Rängen überproportional mehr zur Gesamtbewertung beiträgt als ein Treffer an einer 
 späteren Position. So ist beispielsweise ein relevanter Artikel an Rang 1 signifikant wertvoller als 
 an Rang 2, während der Unterschied zwischen Rang 100 und 101 nur noch marginal ist. Diese Eigenschaft ist 
 essenziell, da Nutzer Interaktionen auf den vordersten Plätzen der Ergebnisliste konzentrieren und weiter 
@@ -68,12 +68,57 @@ besonders anspruchsvollen und unverzerrten Evaluationsprotokolls
 robuste und verlässliche Grundlage für die zukünftige Weiterentwicklung von 
 Empfehlungssystemen bei der SV-Gruppe.
 
+\subsection{Experimenteller Aufbau und Validierungsdatensatz}
+Die Grundlage für die Optimierung und Evaluation bildet ein Validierungsdatensatz, der aus den 
+Nutzerinteraktionen der letzten Januarwoche 2025 extrahiert wurde. Die statistischen Kennzahlen 
+dieses Zeitraums sind in Tabelle~\ref{tab:statistiken_test} zusammengefasst.
+
+\begin{table}[H]
+    \centering
+    \caption{Statistische Kennzahlen des Test- und Validierungsdatensatzes, basierend auf den Klick-Logs der letzten Januarwoche.}
+    \label{tab:statistiken_test}
+    \begin{tabular}{lr}
+        \toprule
+        \textbf{Metrik} & \textbf{Wert} \\
+        \midrule
+        Gesamte Interaktionen (Klicks) & 3.627.024 \\
+        Einzigartige Nutzer & 1.099.289 \\
+        Einzigartige Artikel & 57.100 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Aus dem Gesamt-Pool an Nutzern wurde eine repräsentative Validierungsstichprobe von 1.000 
+einzigartigen Nutzern zufällig gezogen, um den für die Optimierung erforderlichen Rechenaufwand in einem praktikablen 
+Rahmen zu halten. Für jeden Nutzer in der Stichprobe wurde nach dem \textit{Leave-Last-Out}-Prinzip 
+der letzte interagierte Artikel als Ground Truth für die Evaluation definiert.
 
 \subsection{Optimierungsstrategie}
 \label{sec:opt_strat}
-% α-Tuning (Score Fusion)
-% Vergleichsbaselines
-% Evaluation mit GA4-Daten
+Die Bestimmung der optimalen Gewichtungsparameter $w_\mathrm{cbf}$ und $w_\mathrm{cf}$ aus 
+Gleichung~\ref{eq:target} erfolgt durch einen automatisierten Hyperparameter-Optimierungsprozess.
+
+Als Framework für diesen Prozess wurde \textit{Optuna} gewählt, das eine effiziente Suche im 
+Parameterraum ermöglicht. Über insgesamt 515 Iterationen (Trials) wurden verschiedene 
+Gewichtungskombinationen evaluiert, mit dem Ziel, die in Abschnitt~\ref{sec:metrics} definierte 
+nDCG@10-Metrik zu maximieren.
+
+Der Ablauf eines einzelnen Optimierungs-Trials gestaltet sich wie folgt:
+\begin{enumerate}
+    \item Optuna schlägt eine neue Wertekombination für $w_\mathrm{cbf}$ und $w_\mathrm{cf}$ vor.
+    \item Für jeden der 1.000 Nutzer in der Validierungsstichprobe werden die Empfehlungen der 
+    \ac{CBF}- und \ac{CF}-Modelle über deren jeweilige API-Endpunkte parallel und asynchron abgerufen.
+    \item Die Ergebnislisten der beiden Modelle werden mittels der vorgeschlagenen Gewichte zu einer 
+    finalen hybriden Empfehlungsliste fusioniert.
+    \item Der nDCG@10-Wert dieser finalen Liste wird berechnet, indem sie mit dem Ground-Truth-Artikel 
+    des Nutzers verglichen wird.
+    \item Der über alle 1.000 Nutzer gemittelte nDCG@10-Wert wird an Optuna zurückgegeben, um 
+    den nächsten, informierteren Suchschritt zu steuern.
+\end{enumerate}
+
+Dieser Prozess entspricht einem Gesamtaufwand von 515.000 individuellen Evaluierungen des 
+Hybridmodells, was eine gründliche und robuste Suche nach der optimalen Parameterkonfiguration 
+gewährleistet.
 \input{content/figures/hyperparameterraum.tex}
 
 \subsection{Ergebnisse}
