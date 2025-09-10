@@ -119,24 +119,43 @@ Der Ablauf eines einzelnen Optimierungs-Trials gestaltet sich wie folgt:
 Dieser Prozess entspricht einem Gesamtaufwand von 515.000 individuellen Evaluierungen des 
 Hybridmodells, was eine gründliche und robuste Suche nach der optimalen Parameterkonfiguration 
 gewährleistet.
+
+Die Visualisierung der Optimierungslandschaft in Abbildung~\ref{fig:hyperparameterraum} verdeutlicht die 
+komplexe, nicht-lineare Beziehung zwischen den Modellgewichten und der resultierenden Empfehlungsqualität. 
+Angesichts dieser zerklüfteten Landschaft mit mehreren lokalen Optima ist ein naiver Ansatz wie eine 
+Rastersuche (Grid Search) ineffizient. Der Einsatz eines fortschrittlichen Optimierungsframeworks 
+wie Optuna, das mit intelligenten Suchalgorithmen arbeitet, ist daher notwendig, um den global 
+optimalen Bereich im Parameterraum effizient und verlässlich zu identifizieren.
+
 \input{content/figures/hyperparameterraum.tex}
+
+Konkret wurde für die Suche der in Optuna standardmäßig implementierte \ac{TPE} als Suchalgorithmus verwendet (vgl. \cite{Akiba_Optuna_2019}). Der TPE-Algorithmus ist eine 
+Variante der Bayes'schen Optimierung, die ein probabilistisches Modell der Zielfunktion erstellt, 
+um intelligent zu entscheiden, welche Parameterkombination als Nächstes getestet werden soll. 
+Dafür werden die bisherigen Evaluationsergebnisse in eine Gruppe mit vielversprechenden (guten) 
+und eine mit weniger erfolgreichen (schlechten) Ergebnissen aufgeteilt.
+
+Für beide Gruppen werden separate Wahrscheinlichkeitsverteilungen modelliert. Der Algorithmus maximiert 
+anschließend die erwartete Verbesserung Expected Improvement, indem er gezielt nach Parametern sucht, 
+die eine hohe Wahrscheinlichkeit unter der Verteilung der guten Ergebnisse und gleichzeitig eine 
+niedrige Wahrscheinlichkeit unter der Verteilung der schlechten Ergebnisse aufweisen. Diese Strategie 
+ermöglicht eine effiziente Balance zwischen der Exploitation bereits bekannter guter 
+Regionen und der Exploration neuer, potenziell noch besserer Bereiche des Suchraums. 
+Durch diesen informierten Suchprozess kann das Optimum in komplexen Landschaften, wie der in 
+Abbildung~\ref{fig:hyperparameterraum} gezeigten, deutlich schneller und ressourcenschonender 
+gefunden werden als durch uninformierte Methoden.
 
 \subsection{Ergebnisse}
 % % Tabellen: Precision@5, APS je α
-% \input{content/tables/vergleich_baselines.tex}
+\input{content/tables/vergleich_baselines.tex}
 % % Visualisierungen: Liniendiagramme, ggf. UMAP-Spaces
-% \input{content/tables/test_stats.tex}
-% \input{content/tables/train_stats.tex}
-% \input{content/figures/userverteilung_test.tex}
-% \input{content/figures/userverteilung_train.tex}
-% \input{content/figures/artikelverteilung_test.tex}
-% \input{content/figures/artikelverteilung_train.tex}
+
 % \subsection{Interpretation und Analyse}
 % % Hybridisierung wirkungsvoll?
 % % Trade-offs und Nutzenklärung
 % % Ablationsidee: z. B. Ausschalten von CBF-/CF-Signal
-% \input{content/figures/2d_performace.tex}
+\input{content/figures/2d_performace.tex}
 % \input{content/figures/3d_scatter_plot.tex}
-% \input{content/figures/plot_kontour.tex}
-% \input{content/figures/plot_optimierungsverlauf.tex}
+\input{content/figures/plot_kontour.tex}
+\input{content/figures/plot_optimierungsverlauf.tex}
 % \input{content/figures/hyperparameterraum.tex}
