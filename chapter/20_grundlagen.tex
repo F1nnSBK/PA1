@@ -91,12 +91,13 @@ Interaktionen, gewichtet nach der Vertrauenswürdigkeit (Konfidenz) jeder Beobac
 
 Ein modernerer Ansatz, das Neural Collaborative Filtering (NCF), erweitert dieses 
 Prinzip, indem es das lineare Skalarprodukt ($x_u^\top y_i$) durch ein nichtlineares 
-neuronales Netz, ein \ac{MLP}, ersetzt (vgl. \cite{he_neural_2017}). 
+neuronales Netz, ein \ac{MLP}, ersetzt (vgl. \cite{he_neural_2017}). Siehe Abbildung~\ref{fig:ncf_architektur}.
 Dadurch kann das Modell komplexere und subtilere Zusammenhänge in den 
 Nutzer-Item-Interaktionen erfassen. NCF-Modelle werden typischerweise mit den 
 beobachteten positiven Interaktionen und einer Auswahl an zufällig gezogenen 
 negativen Beispielen (Negative Sampling) oder den gesamten negativen Artikeln trainiert, 
 was für die Modellqualität entscheidend ist.
+\input{content/figures/ncf_diagram.tex}
 
 Trotz ihrer Leistungsfähigkeit weisen CF-Methoden zwei systematische Schwächen auf. 
 Erstens leiden sie unter dem Item-Cold-Start-Problem, da sie für neue Artikel ohne 
