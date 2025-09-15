@@ -145,21 +145,41 @@ Optimierung im Zentrum der Untersuchung steht.
 % sondern auch überraschend und bereichernd ist.
 
 \subsection{Qualitätsdimensionen und Erfolgsmetriken}
-Um \ac{ES} miteinander vergleichen zu können, braucht es Metriken, welche die Performace unterschiedlicher
-Systeme abbilden können. 
+Um die Güte von \ac{ES} objektiv zu bewerten und verschiedene 
+Ansätze miteinander vergleichen zu können, sind standardisierte 
+Erfolgsmetriken erforderlich. Da \ac{ES} typischerweise eine sortierte 
+Liste von Items ausgeben, müssen diese Metriken nicht nur die Relevanz der 
+Vorschläge, sondern auch deren Rangposition berücksichtigen.
+
+Eine der etabliertesten Metriken für diese Anforderung ist der \ac{DCG}. 
+Der Grundgedanke des \ac{DCG} ist, 
+die Relevanzwerte aller empfohlenen Items bis zu einer bestimmten Listenlänge 
+K zu summieren. Um der Beobachtung Rechnung zu tragen, dass Nutzer den vorderen 
+Plätzen mehr Beachtung schenken, wird der Relevanzwert (\(rel_{i}\)) eines Items an 
+Position i durch einen logarithmischen Faktor abgewertet (diskontiert). 
+Ein relevantes Item an Position 1 trägt somit mehr zum Gesamtscore bei als
+dasselbe Item an Position 10.
 
 \begin{equation}
 \label{eq:dcg}
 DCG@K=\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}
 \end{equation}
 
-\label{sec:idcg}
+Da der absolute \ac{DCG}-Wert von der Anzahl der verfügbaren relevanten 
+Items abhängt, ist er für einen fairen Vergleich zwischen verschiedenen Nutzern 
+oder Anfragen ungeeignet. Aus diesem Grund wird der \ac{DCG} normalisiert, 
+indem er ins Verhältnis zum bestmöglichen \ac{DCG}-Wert gesetzt wird. Dieser 
+Idealwert, der \ac{IDCG}, repräsentiert den \ac{DCG} einer perfekten,
+ nach absteigender Relevanz sortierten Empfehlungsliste.
+
+Das Ergebnis dieser Normalisierung ist der \ac{nDCG}. Sein Wert liegt immer zwischen 0.0 
+(kein Treffer) und 1.0 (perfekte Rangfolge) und ermöglicht so eine 
+vergleichbare und aussagekräftige Bewertung der Performance eines \ac{ES} 
+(vgl. \cite{Jarvelin_ndcg_2002}).
 
 \begin{equation}
 \label{eq:ndcg}
-NDCG@K=\frac{DCG@K}{IDCG@K}=\frac{\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}}{\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}}
+NDCG@K=\frac{DCG@K}{IDCG@K}
 \end{equation}
-
-\Cite{Jarvelin_ndcg_2002}
 
 

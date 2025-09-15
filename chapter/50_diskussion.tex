@@ -1,16 +1,104 @@
 \section{Diskussion}
+In diesem Kapitel werden die im Rahmen der Arbeit erzielten Ergebnisse kritisch reflektiert, 
+die Limitationen der Arbeit erörtert und die praktische Relevanz der Erkenntnisse für die \ac{SV-Gruppe} beleuchtet. 
+Abschließend wird die Übertragbarkeit des entwickelten Ansatzes auf andere Kontexte diskutiert.
 \subsection{Reflexion der Ergebnisse}
-% Was liefern die Optimierungsmetriken wirklich?
-% Wie robust sind die Modelle?
+Die in Kapitel~\ref{chap:opt} präsentierten Ergebnisse bestätigen nicht nur die grundsätzliche Funktionsfähigkeit 
+des hybriden Ansatzes, sondern liefern auch tiefere Einblicke in die Dynamik des Nutzerverhaltens im Nachrichtenumfeld. 
+Die datengetriebene Optimierung der Modellgewichtungen ermöglicht eine differenzierte Interpretation der 
+Systemkomponenten.
+
+Eine der zentralen Erkenntnisse ist die deutliche Dominanz der \ac{CBF}-Komponente, deren optimales Gewicht 
+bei über 0.7 liegt. Dies lässt sich auf die spezifischen Charakteristika des Nachrichtenkonsums zurückführen: 
+Die unmittelbar nächste Interaktion eines Nutzers wird sehr stark vom thematischen Kontext des aktuell gelesenen 
+Artikels beeinflusst. Das \ac{CBF}-Modell bildet diese kontextuelle Relevanz präzise ab und liefert somit das 
+notwendige Fundament für eine qualitativ hochwertige Empfehlung.
+
+Gleichzeitig belegt das identifizierte Optimum, dass ein rein kontextuelles Modell nicht ausreicht. Der Beitrag des 
+\ac{CF}-Modells, wenngleich geringer gewichtet, ist entscheidend, um die Empfehlungsqualität auf das globale 
+Maximum zu heben. Es fungiert als personalisierender "Fein-Tuner", der auf der starken \ac{CBF}-Basis aufsetzt 
+und Muster aus dem kollektiven Nutzerverhalten einbringt. Dadurch wird die Gefahr einer Überspezialisierung 
+gemindert und dem Nutzer der Ausbruch aus einem engen thematischen Korridor ermöglicht.
+
+Die Analyse der Optimierungslandschaft deutet zudem auf eine erfreuliche Robustheit des Systems hin. Das relativ 
+breite Plateau um das Optimum signalisiert, dass das hybride \ac{ES} nicht übermäßig empfindlich auf geringfügige 
+Änderungen der Gewichtungsparameter reagiert, was für einen stabilen Betrieb in einer produktiven Umgebung von 
+Vorteil ist.
+
+Bei der Interpretation der absoluten \ac{nDCG}@10-Werte muss das anspruchsvolle Evaluationsprotokoll des 
+Full-Catalog Rankings berücksichtigt werden. Die erzielten Werte sind als Konsequenz dieser rigorosen und 
+unverzerrten Methodik zu verstehen. Viel entscheidender als der absolute Wert ist daher die signifikante relative 
+Steigerung gegenüber den Baseline-Modellen, welche die Wirksamkeit des optimierten hybriden \ac{ES} klar belegt.
 
 \subsection{Limitationen}
-% GA4-Datenlimitierung
-% Embedding-Coverage (nur 70k Artikel)
-% Keine Echtzeitdaten / Live-Tests
+Trotz der vielversprechenden Ergebnisse unterliegt die vorliegende Arbeit bestimmten Limitationen, 
+die für eine ausgewogene Einordnung essenziell sind und Ansatzpunkte für zukünftige Forschung bieten.
+
+Eine wesentliche Einschränkung stellt die Datenbasis dar. Die Beschränkung auf 
+\ac{GA4}-Interaktionsdaten aus einem einzigen Monat verhindert die Modellierung saisonaler Effekte 
+oder langfristiger Interessensentwicklungen. Ein Modell, das auf Daten aus dem Januar trainiert wurde, 
+könnte im Sommer eine andere Performance aufweisen.
+
+Darüber hinaus ist zu beachten, dass zum Zeitpunkt der Implementierung nur ein Teil des 
+Artikelkorpus – rund 70.000 Artikel – über vorab berechnete und im Vektorindex gespeicherte 
+Text-Embeddings verfügt. Um dennoch eine vollständige Abdeckung zu gewährleisten, 
+wurde ein Ad-hoc-Mechanismus implementiert: Für einen Artikel ohne vorhandenes Embedding wird 
+dieses bei der ersten Anfrage in Echtzeit über eine externe Schnittstelle generiert.
+
+Dieser Prozess stellt zwar die grundsätzliche Funktionsfähigkeit des \ac{CBF}-Ansatzes 
+für alle Artikel sicher, führt jedoch zu einer potenziellen Inkonsistenz in der System-Performance. 
+Der externe API-Aufruf und die anschließende Berechnung des Embeddings verursachen eine signifikant 
+höhere Latenz für die betroffenen Anfragen. Diese kann das in Abschnitt 3.1 definierte \ac{SLO} 
+von 2000 Millisekunden verletzen und führt zudem zu variablen operationalen Kosten. 
+Die Limitation liegt somit weniger in einer eingeschränkten Anwendbarkeit des \ac{ES}, 
+sondern vielmehr in der Gewährleistung einer durchgehend niedrigen Antwortzeit für den gesamten 
+Artikelkorpus.
+
+Die wohl wichtigste Limitation dieser Arbeit liegt in der Natur der Offline-Evaluation. Metriken wie 
+\ac{nDCG}@10 sind bewährte Indikatoren, können jedoch das tatsächliche Nutzerverhalten in einer Live-Umgebung 
+nur approximieren. Um den kausalen Einfluss auf zentrale Geschäftsmetriken wie die Sitzungsdauer oder die 
+Nutzerbindung zu messen, wäre ein Online-Experiment in Form eines A/B-Tests der unumgängliche nächste Schritt.
+
+Zudem basiert die Modellierung ausschließlich auf Klick-Interaktionen. Dieses implizite Feedback ist zwar 
+reichhaltig, aber auch ambivalent, da ein Klick nicht zwangsläufig Zufriedenheit oder tatsächliches Lesen signalisiert. 
+Die Integration weiterer Signale wie der Verweildauer oder der Scrolltiefe könnte zu einer noch präziseren 
+Abbildung der Nutzerpräferenzen führen.
 
 \subsection{Relevanz für die SV-Gruppe}
-% Produktive Einsatzmöglichkeiten
-% Redaktionsprozessunterstützung
+Über den wissenschaftlichen Beitrag hinaus generiert diese Arbeit direkten und umsetzbaren Wert für die
+ \ac{SV-Gruppe}. Der entwickelte Prototyp ist nicht nur ein Proof-of-Concept, sondern dient als robuste 
+ und datenvalidierte Grundlage für die Produktivsetzung eines personalisierten Empfehlungsdienstes.
+
+Aus geschäftlicher Sicht ist die nachgewiesene Steigerung der Empfehlungsrelevanz von großer strategischer
+Bedeutung. Es ist anzunehmen, dass sich die Verbesserung des \ac{nDCG}@10 direkt in einer Erhöhung der Metrik 
+„Artikel pro Session” niederschlägt. Dies würde nicht nur die Nutzerbindung stärken, 
+sondern auch die Monetarisierungsmöglichkeiten durch eine höhere Anzahl an Werbeeinblendungen verbessern.
+
+Darüber hinaus adressiert das \ac{ES} die Herausforderung der Content-Entdeckung. Indem es relevante 
+Nischen-Inhalte aus dem "Long Tail" des Artikelarchivs an die passende Leserschaft ausspielt, erhöht es 
+den Wert des gesamten Content-Portfolios und sorgt dafür, dass auch ältere, aber weiterhin relevante Beiträge 
+sichtbar bleiben.
+
+Neben der direkten Ausspielung an die Nutzer eröffnet die zugrundeliegende Technologie neue Möglichkeiten zur 
+Effizienzsteigerung interner Redaktionsprozesse. Beispielsweise könnte die \ac{CBF}-Komponente Redakteuren 
+automatisiert thematisch passende Artikel für interne Verlinkungen vorschlagen und so den manuellen 
+Rechercheaufwand reduzieren.
 
 \subsection{Übertragbarkeit}
-% Auf andere Branchen / Medien / Domains
+Die Erkenntnisse dieser Arbeit sind nicht auf den spezifischen Kontext der \ac{SV-Gruppe} beschränkt, 
+sondern lassen sich auf breitere Anwendungsfelder übertragen. Die identifizierten Prinzipien und methodischen 
+Vorgehensweisen besitzen generischen Charakter.
+
+Insbesondere für andere digitale Nachrichtenverlage sind die Resultate von hoher Relevanz, da die grundlegenden 
+Datenstrukturen und Nutzerverhaltensmuster, wie die Dominanz des Lesekontexts, sehr ähnlich sind. 
+Der hier entwickelte Ansatz kann als Vorlage für vergleichbare Medienhäuser dienen.
+
+Der architektonische Grundgedanke, ein schnelles kontextuelles \ac{CBF}-Modell mit einem personalisierten 
+\ac{CF}-Modell zu hybridisieren, ist auch in anderen Domänen ein bewährtes Muster. Im E-Commerce beispielsweise 
+entspricht dies der Kombination von produktbasierter Ähnlichkeit für Neukunden mit personalisierten Empfehlungen 
+für Bestandskunden.
+
+Vor allem der hier demonstrierte methodische Prozess – von der Auswahl eines rigorosen Evaluationsprotokolls 
+wie dem Full-Catalog Ranking bis zur systematischen Optimierung der Modellgewichte mittels Bayes'scher 
+Verfahren – stellt eine generische und wiederverwendbare Blaupause für die Entwicklung und Validierung 
+datengetriebener hybrider \ac{ES} dar.

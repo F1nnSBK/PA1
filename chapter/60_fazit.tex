@@ -1,10 +1,51 @@
 \section{Fazit und Ausblick} % Kapitel 6
 
 \subsection{Zusammenfassung zentraler Erkenntnisse}
-% Hybridmodell bringt Performance-Boost
-% GCP → leistungsfähige Produktionsinfrastruktur
+Die vorliegende Arbeit demonstrierte erfolgreich die Konzeption, 
+Implementierung und Optimierung eines hybriden Empfehlungssystems zur 
+Steigerung der Nutzerbindung für die \ac{SV-Gruppe}. 
+Es wurde der empirische Nachweis erbracht, dass ein datengetriebener 
+Ansatz zur Gewichtung der Systemkomponenten zu einer signifikanten Verbesserung 
+der Empfehlungsqualität führt.
+
+Die zentrale Erkenntnis ist, dass eine hybride Architektur, 
+die ein kontextuelles \ac{CBF}-Modell mit einem personalisierten 
+\ac{CF}-Modell kombiniert, den reinen Baseline-Strategien signifikant überlegen ist. 
+Die systematische Optimierung mittels Optuna identifizierte eine robuste 
+Konfiguration, in der die thematische Relevanz des unmittelbaren Kontexts dominiert, 
+aber durch kollaborative Signale entscheidend angereichert wird. 
+Die Maximierung der \ac{nDCG}@10-Metrik dient hierbei als validierter Indikator 
+für eine verbesserte Nutzererfahrung.
+
+Darüber hinaus wurde gezeigt, dass der Prototyp auf Basis der bestehenden 
+\ac{GCP}-Infrastruktur die definierten Anforderungen an Skalierbarkeit und 
+Latenz erfüllt. Die Arbeit liefert somit nicht nur ein theoretisch 
+fundiertes Modell, sondern auch eine praktisch umsetzbare und leistungsfähige 
+technische Blaupause für den produktiven Einsatz.
 
 \subsection{Zukünftige Optimierungsmöglichkeiten}
-% Online-A/B-Test-Szenarien
-% Personalisierte Redaktionsassistenten
-% Regelbasiertes Re-Ranking (z. B. nach Nutzerprofil)
+Aufbauend auf den gewonnenen Erkenntnissen ergeben sich mehrere vielversprechende
+Richtungen für die Weiterentwicklung des Systems.
+
+Ein zentraler nächster Schritt ist die Durchführung von Online-A/B-Tests, 
+um die in der Offline-Evaluation gemessenen Qualitätsgewinne unter realen 
+Bedingungen zu validieren. Hierbei würde das entwickelte \ac{ES} gegen das 
+bestehende System ausgespielt, um den kausalen Einfluss auf zentrale 
+Geschäftsmetriken wie die „Artikel pro Session”, 
+die Klickrate und die Verweildauer zu quantifizieren.
+
+Darüber hinaus könnte die aktuell genutzte, einfache gewichtete 
+Hybridisierung durch mehrstufige Architekturen ersetzt werden. 
+Ein vielversprechender Ansatz wäre ein regelbasiertes Re-Ranking der 
+Top-Empfehlungen. In diesem zweiten Schritt könnten die Kandidaten basierend 
+auf weiteren Kriterien umsortiert werden, beispielsweise um Artikel hinter einer 
+Paywall für abonnierte Nutzer zu priorisieren, eine höhere thematische 
+Diversität sicherzustellen oder die Aktualität der Nachrichten zu berücksichtigen.
+
+Ein weiterer vielversprechender Anwendungsfall liegt in der Entwicklung 
+personalisierter Redaktionsassistenten. Die dem \ac{CBF}-Modell zugrundeliegende 
+Technologie zur semantischen Ähnlichkeit könnte Redakteuren in Echtzeit passende 
+interne Verlinkungen vorschlagen, beim Tagging von Artikeln unterstützen 
+oder aufzeigen, welche Inhalte aus dem Archiv zu einem aktuellen Thema relevant 
+sind. Dies würde nicht nur die Effizienz der Redaktionsprozesse steigern, 
+sondern auch die Qualität und Vernetzung der Inhalte verbessern.
