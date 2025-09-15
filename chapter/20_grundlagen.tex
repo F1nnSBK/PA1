@@ -39,7 +39,7 @@ In der Praxis wird daher häufig das Skalarprodukt auf normalisierten Vektoren v
 die resultierenden Ranglisten entsprechen der Kosinus-Ähnlichkeit.
 
 Eine zentrale Herausforderung bei der Implementierung von CBF-Systemen ist die performante Durchführung 
-dieser Ähnlichkeitssuche in Echtzeit, insbesondere bei einem großen Korpus von Hunderttausenden Artikeln. 
+dieser Ähnlichkeitssuche in Echtzeit, insbesondere bei einem großen Korpus von Hunderttausenden Artikeln. % hunderttausenden klein oder?
 Eine naive Brute-Force-Suche, bei der jeder Vektor mit jedem anderen verglichen wird, ist für produktive Anwendungen 
 zu rechenintensiv und langsam. Daher kommen spezialisierte Vektorindizes für \ac{ANN} zum Einsatz, 
 die den Vektorraum partitionieren und komprimieren. Quantisierungsbasierte Ansätze (z.B. Anisotropic Vector Quantization) 
@@ -160,6 +160,6 @@ DCG@K=\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}
 NDCG@K=\frac{DCG@K}{IDCG@K}=\frac{\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}}{\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}}
 \end{equation}
 
-\Cite{Jarvelin_ndcg_2002}
+\Cite{Jarvelin_ndcg_2002} % Hier natürlich noch die Formeln genauer beschreiben, referenzieren usw. :-)
 
 

@@ -10,7 +10,7 @@ End-to-End-Latenz im 95. Perzentil von unter 2000 Millisekunden angestrebt, sieh
 Zweitens ist eine horizontale Skalierbarkeit erforderlich, um auf wachsende Nutzerzahlen und Datenmengen 
 im dynamischen Umfeld eines Nachrichtenportals reagieren zu können.
 Drittens ist eine einfache Integrierbarkeit sicherzustellen; hierzu wird eine standardisierte REST-API bereitgestellt, 
-die die Einbindung in bestehende Redaktions- und IT-Workflows vereinfacht.
+die die Einbindung in bestehende Redaktions- und IT-Workflows vereinfacht. % wäre noch gut, wenn Du hierfür wissenschaftliche Quellen findest, die bspw. definieren dass der SLO von 2000 ms gut ist
 \input{content/figures/latenzanalyse.tex}
 
 Obwohl es sich um einen Prototyp handelt, wurden weitere, für einen späteren Produktivbetrieb relevante Anforderungen 
@@ -20,18 +20,18 @@ Transparenz der Empfehlungslogik zur Stärkung des Nutzervertrauens. Diese Aspek
 \subsection{Rahmenbedingungen}
 Die bestehende, auf der \ac{GCP} basierende IT-Infrastruktur der SV-Gruppe setzt die zentralen Rahmenbedingungen. 
 Der Artikelkorpus sowie die aus \ac{GA4} stammenden Nutzerinteraktionsdaten liegen in BigQuery-Tabellen vor. 
-Eine zentrale Ressource bilden hochdimensionale Artikel-Embeddings (3072D), die aus Titeln und Volltexten erzeugt 
-wurden und sich in verwandten Anwendungsfällen (z.\,B. semantische Anzeigenausspielung) bewährt haben. 
+Eine zentrale Ressource bilden hochdimensionale Artikel-Embeddings (3072D), die aus Titeln und Volltexten erzeugt % für was steht 3072D ?
+wurden und sich in verwandten Anwendungsfällen (z.\,B. semantische Anzeigenausspielung) bewährt haben. % ist das mit den anderen Anwendungsfällen relevant für diese Arbeit?
 Diese Embeddings werden in dieser Arbeit für den Content-basierten Ansatz wiederverwendet.
 
 Die \texttt{user\_pseudo\_id} ist ein pseudonymer Geräte-/Browser-Identifier. Sie bleibt auf demselben Gerät/Browser 
 meist über mehrere Sitzungen stabil, kann sich jedoch durch Cookie-/App-Resets oder Geräte-/Browserwechsel ändern. 
 Eine Person kann daher mehrere \texttt{user\_pseudo\_id}s haben; umgekehrt kann eine \texttt{user\_pseudo\_id} bei 
 geteilten Geräten mehrere Personen abbilden. Sie ist folglich kein eindeutiger Nutzer, sondern wird hier als Proxy 
-für eine Geräte-/Browser-Instanz genutzt; ein loginbasierter \texttt{user\_id}-Schlüssel lag nicht vor.
+für eine Geräte-/Browser-Instanz genutzt; ein loginbasierter \texttt{user\_id}-Schlüssel lag nicht vor. % ggf. ein Beispiel für die user_pseudo_id geben
 
 Trotz fehlender Eindeutigkeit auf Personenebene ist die user\_pseudo\_id für Empfehlungen praxistauglich,
-weil (i) ein großer Teil des Traffics anonym ist und ohne Login-ID sonst keinerlei Personalisierung möglich wäre, 
+weil (i) ein großer Teil des Traffics anonym ist und ohne Login-ID sonst keinerlei Personalisierung möglich wäre, % hier würde ich eine genaue Statistik liefern, wie viel Traffic, auf welcher Seite, genauer Anteil usw.
 (ii) sie auf demselben Gerät/Browser über mehrere Sitzungen hinreichend stabil ist, um kurz- bis mittelfristige 
 Präferenzen zu lernen, und (iii) im Nachrichtenkontext vor allem jüngste Interaktionen und der unmittelbare 
 Artikelkontext prädiktiv sind. Letzteres wird durch die Hybridisierung genutzt: Der CBF-Anteil arbeitet kontextuell 
@@ -48,8 +48,8 @@ Orchestrator dient ein in Python implementierter Service auf Basis von FastAPI. 
 steuert die Modell-Endpunkte, aggregiert die Teilergebnisse und führt die Hybridisierung aus. Das Design ist modular, 
 um künftig alternative Hybridisierungsstrategien mit geringem Integrationsaufwand aufnehmen zu können. 
 Für die latenzkritische Online-Auslieferung werden der Artikelkorpus und Embeddings in einer operativen 
-Datenbank vorgehalten; die ML-Modelle sind auf Vertex~AI deployt.
-\input{content/figures/architektur.tex}
+Datenbank vorgehalten; die ML-Modelle sind auf Vertex~AI deployt. % ich würde hier noch Verlinkungen zu den genutzten Tools machen + bestenfalls noch Literatur-Belege für den Microsevice-Ansatz finden
+\input{content/figures/architektur.tex} % was mir hier gerade einfällt: Habt ihr auch die Vorgabe, dass jede Abbildung mind. 1x im Voraus im Text referenziert werden muss? Falls ja, musst Du das noch machen :-)
 
 \label{sec:api_design}
 Das Herzstück des Systems bildet der API-Service, der die externe Schnittstelle und die interne Orchestrierung 
@@ -79,7 +79,7 @@ Hybridisierung gezielt adressiert (vgl. \ref{sec:hybrid}).
 
 \subsection{Datenbasis und Einschränkungen}
 \label{sec:data}
-Der Datensatz \textit{SM-News-Jan25} umfasst ausschließlich \ac{GA4}-Interaktionsdaten aus dem Januar 2025. 
+Der Datensatz \textit{SM-News-Jan25} umfasst ausschließlich \ac{GA4}-Interaktionsdaten aus dem Januar 2025. % hier noch sagen, dass Du dich auf die Website https://www.schwaebische.de/ beziehst
 Aus Kostengründen wird das NCF-Modell auf den ersten drei Wochen trainiert und in der vierten Woche getestet. 
 Eine zentrale Eigenschaft des Trainingsdatensatzes ist die in Abbildung~\ref{fig:artikelverteilung_train} gezeigte stark 
 rechtsschiefe Verteilung der Artikelpopularität als auch der in Abbildung~\ref{fig:nutzerverteilung_train}
@@ -93,7 +93,7 @@ Die Long-Tail-Struktur manifestiert sich in zwei Dimensionen:
     konzentriert sich ein \newline überproportional großer Anteil der Seitenaufrufe auf wenige virale „Hit“-Artikel 
     (Kopf der Verteilung). Die kurze Lebensdauer von Nachrichtenartikeln verstärkt diesen Effekt zusätzlich.
     \item \textbf{Nutzeraktivität:} Analog zeigt sich beim Nutzerverhalten eine kleine Kohorte hochaktiver 
-    „Power-Nutzer“, die einen Großteil der Klicks generiert, während die Mehrheit nur sporadisch interagiert.
+    „Power-Nutzer“, die einen Großteil der Klicks generiert, während die Mehrheit nur sporadisch interagiert. % sind es tatsächlich Klicks oder doch PageViews?
 \end{itemize}
 Diese ungleiche Verteilung induziert einen inhärenten Popularity Bias: Naive Modelle empfehlen tendenziell 
 wiederholt dieselben Bestseller-Artikel, was Personalisierung untergräbt und das Risiko einer Filterblase erhöht. 

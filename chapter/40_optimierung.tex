@@ -93,7 +93,7 @@ dieses Zeitraums sind in Tabelle~\ref{tab:statistiken_test} zusammengefasst.
 
 Aus dem Gesamt-Pool an Nutzern wurde eine repräsentative Validierungsstichprobe von 1.000 
 einzigartigen Nutzern zufällig gezogen, um den für die Optimierung erforderlichen Rechenaufwand in einem praktikablen 
-Rahmen zu halten. Für jeden Nutzer in der Stichprobe wurde nach dem \textit{Leave-Last-Out}-Prinzip 
+Rahmen zu halten. Für jeden Nutzer in der Stichprobe wurde nach dem \textit{Leave-Last-Out}-Prinzip % Referenz für dieses Prinzip noch finden
 der letzte interagierte Artikel als Ground Truth für die Evaluation definiert.
 
 \subsection{Optimierungsstrategie}
@@ -101,7 +101,7 @@ der letzte interagierte Artikel als Ground Truth für die Evaluation definiert.
 Die Bestimmung der optimalen Gewichtungsparameter $w_\mathrm{cbf}$ und $w_\mathrm{cf}$ aus 
 Gleichung~\ref{eq:target} erfolgt durch einen automatisierten Hyperparameter-Optimierungsprozess.
 
-Als Framework für diesen Prozess wurde \textit{Optuna} gewählt, das eine effiziente Suche im 
+Als Framework für diesen Prozess wurde \textit{Optuna} gewählt, das eine effiziente Suche im % Referenz für Optuna finden
 Parameterraum ermöglicht. Über insgesamt 515 Iterationen (Trials) wurden verschiedene 
 Gewichtungskombinationen evaluiert, mit dem Ziel, die in Abschnitt~\ref{sec:metrics} definierte 
 nDCG@10-Metrik zu maximieren.
