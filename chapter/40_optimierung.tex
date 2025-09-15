@@ -163,9 +163,14 @@ Gegenüberstellung der Ergebnisse bietet.
 Abbildung~\ref{fig:kontourplot} zeigt die einzelnen Trials (Schwarze Punkte) auf der Hyperparameterlandschaft. 
 Es ist gut zu erkennen, dass die größte Anzahl an optima in einem Bereich liegt, in dem $w_{cbf}$ größer als 0.5 ist und
 $w_{cf}$ kleiner als 0.5.
+
+Diese Ergebnisse bestätigen nicht nur die Wirksamkeit des gwählten
+Hybridisierungsansatzes, sondern liefern auch den empirischen Beleg für dessen Überlegenheit gegenüber den reinen
+Einzelkomponenten. Der Optimierungsprozess durchsuchte den gesamten Gewichtungsraum, einschließlich der Extremfälle,
+die einem reinen \ac{CF}-Modell ($w_{cf} = 1$) oder einem reinen \ac{CBF}-Modell ($w_{cb} = 1$) entsprechen.
 \input{content/figures/plot_kontour.tex}
-Diese Ergebnisse zeigen, dass
-% % Visualisierungen: Liniendiagramme, ggf. UMAP-Spaces
+Das identifizierte Optimum liegt jedoch klar bei einer Konfiguration von \(w_{cbf} \equiv 0.7226\) und
+\(w_{cf} \equiv 0.2774\)
 
 % \subsection{Interpretation und Analyse}
 % % Hybridisierung wirkungsvoll?
