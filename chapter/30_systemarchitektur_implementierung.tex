@@ -5,8 +5,11 @@ die klar definierten Rahmenbedingungen genügt. Aus dem Anwendungsfall lassen si
 \label{sec:nfr}
 
 Für den initialen Proof-of-Concept wurden drei erfolgskritische \ac{NFR}s identifiziert:
-Erstens muss das System niedrige Antwortzeiten unter Last gewährleisten. Als konkretes \ac{SLO} wird eine 
-End-to-End-Latenz im 95. Perzentil von unter 2000 Millisekunden angestrebt, siehe Abbildung~\ref{fig:latenz_ecdf}.
+Erstens muss das System niedrige Antwortzeiten unter Last gewährleisten. Als konkretes \ac{SLO} wird eine End-to-End-Latenz 
+im 95. Perzentil von unter 2000 Millisekunden angestrebt, siehe Abbildung~\ref{fig:latenz_ecdf}. Diese Anforderung orientiert sich an etablierten 
+Erkenntnissen der Usability-Forschung, welche besagen, dass Antwortzeiten über einer Sekunde die Konzentration des 
+Nutzers unterbrechen, während Latenzen von bis zu zehn Sekunden die Obergrenze darstellen, um die Aufmerksamkeit zu halten 
+(vgl. \cite{Nielsen_Response_Times_1993}).
 Zweitens ist eine horizontale Skalierbarkeit erforderlich, um auf wachsende Nutzerzahlen und Datenmengen 
 im dynamischen Umfeld eines Nachrichtenportals reagieren zu können.
 Drittens ist eine einfache Integrierbarkeit sicherzustellen; hierzu wird eine standardisierte REST-API bereitgestellt, 
@@ -20,18 +23,25 @@ Transparenz der Empfehlungslogik zur Stärkung des Nutzervertrauens. Diese Aspek
 \subsection{Rahmenbedingungen}
 Die bestehende, auf der \ac{GCP} basierende IT-Infrastruktur der SV-Gruppe setzt die zentralen Rahmenbedingungen. 
 Der Artikelkorpus sowie die aus \ac{GA4} stammenden Nutzerinteraktionsdaten liegen in BigQuery-Tabellen vor. 
-Eine zentrale Ressource bilden hochdimensionale Artikel-Embeddings (3072D), die aus Titeln und Volltexten erzeugt 
-wurden und sich in verwandten Anwendungsfällen (z.\,B. semantische Anzeigenausspielung) bewährt haben. 
-Diese Embeddings werden in dieser Arbeit für den Content-basierten Ansatz wiederverwendet.
+Eine zentrale Ressource bilden hochdimensionale Artikel-Embeddings (3072 Dimensionen), die aus Titeln und Volltexten 
+erzeugt wurden. Da sich diese Embeddings bereits in verwandten Anwendungsfällen innerhalb der \ac{SV-Gruppe} 
+(z.B. semantische Anzeigenausspielung) als qualitativ hochwertig erwiesen haben, werden sie in dieser Arbeit wiederverwendet. 
+Dieser Ansatz reduziert den Entwicklungsaufwand und baut auf einer validierten Datenressource auf.
+% Ja, ist relevant. Ein Leser würde sonst davon ausgehen, dass extra Embeddings für diese Arbeit rezeugt wurden.
+% Wenn nur die Referenz zur "semantischen Anzeigenausspielung" gemeint ist, ja könnte man weglassen.
 
 Die \texttt{user\_pseudo\_id} ist ein pseudonymer Geräte-/Browser-Identifier. Sie bleibt auf demselben Gerät/Browser 
 meist über mehrere Sitzungen stabil, kann sich jedoch durch Cookie-/App-Resets oder Geräte-/Browserwechsel ändern. 
 Eine Person kann daher mehrere \texttt{user\_pseudo\_id}s haben; umgekehrt kann eine \texttt{user\_pseudo\_id} bei 
 geteilten Geräten mehrere Personen abbilden. Sie ist folglich kein eindeutiger Nutzer, sondern wird hier als Proxy 
 für eine Geräte-/Browser-Instanz genutzt; ein loginbasierter \texttt{user\_id}-Schlüssel lag nicht vor.
+Eine typische \texttt{user\_pseudo\_id} hat beispielsweise das Format \texttt{18475638.1694782345}.
 
+% Hier musst du eine Zahl aus deiner Datenanalyse liefern. Ich gebe dir eine Textvorlage, in die du sie einfügen kannst.
 Trotz fehlender Eindeutigkeit auf Personenebene ist die user\_pseudo\_id für Empfehlungen praxistauglich,
-weil (i) ein großer Teil des Traffics anonym ist und ohne Login-ID sonst keinerlei Personalisierung möglich wäre, 
+weil (i) Analysen des Traffics auf schwaebische.de zeigen, dass rund [XX]\,\% 
+der Sitzungen von nicht eingeloggten Nutzern stammen und
+ohne Login-ID sonst keinerlei Personalisierung möglich wäre, 
 (ii) sie auf demselben Gerät/Browser über mehrere Sitzungen hinreichend stabil ist, um kurz- bis mittelfristige 
 Präferenzen zu lernen, und (iii) im Nachrichtenkontext vor allem jüngste Interaktionen und der unmittelbare 
 Artikelkontext prädiktiv sind. Letzteres wird durch die Hybridisierung genutzt: Der CBF-Anteil arbeitet kontextuell 
@@ -42,13 +52,14 @@ robuste Qualitätsgewinne erzielen lassen; die Architektur erlaubt später jeder
 loginbasierte user\_id.
 
 \subsection{Systemarchitektur}
-Die technologische Architektur in Abbildung~\ref{fig:architektur} folgt einem cloud-nativen Microservice-Ansatz auf der \ac{GCP}, um die in 
-Abschnitt~\ref{sec:nfr} skizzierten Anforderungen an Skalierbarkeit und Latenz zu erfüllen. Als zentraler 
+Die technologische Architektur in Abbildung~\ref{fig:architektur} folgt einem cloud-nativen Microservice-Ansatz auf der 
+\ac{GCP}. Diese Architektur wurde gewählt, da sie durch lose gekoppelte, unabhängige Dienste eine hohe Skalierbarkeit, 
+Wartbarkeit und technologische Flexibilität ermöglicht (vgl. \cite{Newman_Microservices_2015}). Als zentraler 
 Orchestrator dient ein in Python implementierter Service auf Basis von FastAPI. Der Service nimmt Anfragen entgegen, 
 steuert die Modell-Endpunkte, aggregiert die Teilergebnisse und führt die Hybridisierung aus. Das Design ist modular, 
 um künftig alternative Hybridisierungsstrategien mit geringem Integrationsaufwand aufnehmen zu können. 
 Für die latenzkritische Online-Auslieferung werden der Artikelkorpus und Embeddings in einer operativen 
-Datenbank vorgehalten; die ML-Modelle sind auf Vertex~AI deployt.
+Datenbank vorgehalten; die ML-Modelle sind auf Vertex~AI\footnote{Siehe \url{https://cloud.google.com/vertex-ai}} deployt.
 \input{content/figures/architektur.tex}
 
 \label{sec:api_design}
@@ -79,7 +90,18 @@ Hybridisierung gezielt adressiert (vgl. \ref{sec:hybrid}).
 
 \subsection{Datenbasis und Einschränkungen}
 \label{sec:data}
-Der Datensatz \textit{SM-News-Jan25} umfasst ausschließlich \ac{GA4}-Interaktionsdaten aus dem Januar 2025. 
+Der Datensatz \textit{SM-News-Jan25} umfasst ausschließlich \ac{GA4}-Interaktionsdaten des Nachrichtenportals 
+schwaebische.de aus dem Januar 2025.
+
+
+Um sicherzustellen, dass das Modell ausschließlich auf relevanten Nutzerinteraktionen trainiert wird, 
+wurde der Rohdatensatz der \texttt{page\_view}-Events aus \ac{GA4} einem entscheidenden Filterschritt unterzogen. 
+Ein \texttt{page\_view}-Event wird nicht nur für Artikel, sondern auch für Übersichts- oder Kategorieseiten ausgelöst. 
+Daher wurden nur solche Events für die weitere Analyse berücksichtigt, deren zugehöriger Seitenpfad einem vordefinierten 
+Muster für Artikelseiten entspricht. Der resultierende Datensatz repräsentiert somit ausschließlich explizite 
+Artikelaufrufe.
+
+
 Aus Kostengründen wird das NCF-Modell auf den ersten drei Wochen trainiert und in der vierten Woche getestet. 
 Eine zentrale Eigenschaft des Trainingsdatensatzes ist die in Abbildung~\ref{fig:artikelverteilung_train} gezeigte stark 
 rechtsschiefe Verteilung der Artikelpopularität als auch der in Abbildung~\ref{fig:nutzerverteilung_train}
@@ -93,7 +115,7 @@ Die Long-Tail-Struktur manifestiert sich in zwei Dimensionen:
     konzentriert sich ein \newline überproportional großer Anteil der Seitenaufrufe auf wenige virale „Hit“-Artikel 
     (Kopf der Verteilung). Die kurze Lebensdauer von Nachrichtenartikeln verstärkt diesen Effekt zusätzlich.
     \item \textbf{Nutzeraktivität:} Analog zeigt sich beim Nutzerverhalten eine kleine Kohorte hochaktiver 
-    „Power-Nutzer“, die einen Großteil der Klicks generiert, während die Mehrheit nur sporadisch interagiert.
+    „Power-Nutzer“, die einen Großteil der Artikelaufrufe generiert, während die Mehrheit nur sporadisch interagiert.
 \end{itemize}
 Diese ungleiche Verteilung induziert einen inhärenten Popularity Bias: Naive Modelle empfehlen tendenziell 
 wiederholt dieselben Bestseller-Artikel, was Personalisierung untergräbt und das Risiko einer Filterblase erhöht. 
@@ -106,7 +128,7 @@ Die statistischen Kennzahlen des Trainingsdatensatzes sind in Tabelle~\ref{tab:t
 \input{content/tables/train_stats.tex}
 \label{tab:train_stats}
 
-Zur Nutzung der Klick-Events im \ac{NCF}-Modell werden diese in eine \newline User–Item-Interaktionsmatrix überführt. 
+Zur Nutzung der PageView-Events im \ac{NCF}-Modell werden diese in eine \newline User–Item-Interaktionsmatrix überführt. 
 Zeilen repräsentieren eindeutige Nutzer, Spalten eindeutige Artikel des Trainingszeitraums. 
 Eine Zelle $(i,j)$ erhält den Wert 1, wenn Nutzer $i$ mit Artikel $j$ interagiert hat, andernfalls 0. 
 Die resultierende binäre Matrix mit circa 2{,}3~Mio.\ Nutzern und 104{,}000 Artikeln weist eine Dichte 
@@ -118,8 +140,8 @@ Bei der Interpretation der Ergebnisse sind folgende Limitationen zu berücksicht
 \begin{itemize}
     \item \textbf{Zeitlicher Rahmen:} Der Datensatz deckt ausschließlich den Januar 2025 ab und bildet damit 
     eine Momentaufnahme. Saisonale Effekte (z.\,B. Feiertage) oder längerfristige Trends können nicht erfasst werden.
-    \item \textbf{Implizites Feedback:} Als Signal dienen ausschließlich Klicks. Dieses implizite Feedback ist 
-    zwar reichhaltig, jedoch mehrdeutig: Ein Klick ist kein direkter Indikator für Zufriedenheit 
+    \item \textbf{Implizites Feedback:} Als Signal dienen ausschließlich Artikelaufrufe. Dieses implizite Feedback ist 
+    zwar reichhaltig, jedoch mehrdeutig: Ein Artikelaufruf ist kein direkter Indikator für Zufriedenheit 
     (z.\,B. bei sofortigem Absprung). Weitere Signale wie Verweildauer werden im Prototyp nicht berücksichtigt.
     \item \textbf{Offline-Evaluation:} Die Modellgüte wird offline auf historischen Daten anhand etablierter 
     Metriken (z.\,B. \ac{nDCG}) evaluiert. Die tatsächliche Wirkung auf Nutzerverhalten im 

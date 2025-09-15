@@ -27,10 +27,13 @@ Nur so lassen sich die Interessen der Nutzer präzise abbilden und gleichzeitig 
 
 Die technische Realisierung wird durch drei primäre Faktoren erschwert:
 
+
+
 \begin{enumerate}
-    \item \textbf{Datenvolumen und Skalierbarkeit:} Das System muss über 440.000 Artikel sowie mehr als 6,5 TB 
-    an Nutzerinteraktionsdaten effizient verarbeiten können. Die performante Verknüpfung dieser beiden Datenquellen 
-    ist eine grundlegende Anforderung.
+    \item \textbf{Datenvolumen und Skalierbarkeit:} Das System muss über 440.000 Artikel sowie mehr als 6,5 TB an 
+    Nutzerinteraktionsdaten effizient verarbeiten können. Diese Kennzahlen basieren auf einer Analyse des im 
+    BigQuery-Data-Warehouse der \ac{SV-Gruppe} vorgehaltenen Gesamtbestandes. Die performante Verknüpfung dieser beiden 
+    Datenquellen ist eine grundlegende Anforderung.
     
     \item \textbf{Item-Cold-Start-Problem:} Neu publizierte Artikel verfügen definitionsgemäß über keine 
     oder nur sehr wenige Nutzerinteraktionen. Modelle des Collaborative Filtering (CF), wie das hier eingesetzte \ac{NCF}-Modell (\cite{he_neural_2017}), 
@@ -48,14 +51,14 @@ Die technische Realisierung wird durch drei primäre Faktoren erschwert:
 \subsection{Zielsetzung und Aufbau der Arbeit}
 \label{sec:zielsetzung}
 Das primäre Ziel dieser Arbeit ist die Konzeption, Entwicklung und Optimierung eines prototypischen, 
-hybriden Empfehlungssystems für die \ac{SV-Gruppe}, das auf der Google Cloud Platform implementiert wird. 
+hybriden Empfehlungssystems für die \ac{SV-Gruppe}, das auf der Google Cloud Platform~\footnote{Siehe \url{https://cloud.google.com/}} implementiert wird. 
 Der Fokus liegt auf der Optimierung einer gewichteten Hybridisierungsstrategie, bei der die Empfehlungslisten 
 eines \ac{CBF}- und eines \ac{CF}-Modells mittels einer gewichteten Summe 
 kombiniert werden. Dieser Ansatz bildet eine validierte Grundlage, auf der künftig komplexere 
 Hybridisierungsarchitekturen aufbauen können (vgl. \cite{burke_hybrid_2002}).
 
 Um die Übertragbarkeit der Resultate auf ein produktives Einsatzszenario zu gewährleisten, 
-erfolgt die Evaluation des Systems auf Basis realer Nutzerdaten unter Anwendung einer strengen 
+erfolgt die Evaluation des Systems auf Basis realer Nutzerdaten unter Anwendung einer 
 chronologischen Aufteilung von Trainings- und Testdaten. Ein weiteres Ziel besteht darin zu zeigen, dass der hier gewählte 
 hybride Ansatz eine deutlich höhere Empfehlungsqualität 
 erzielt als etablierte Baseline-Strategien, wie die zufällige 
