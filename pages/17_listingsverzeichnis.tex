@@ -1,0 +1,15 @@
+%Listingnummering je Sektion zurücksetzen
+\numberwithin{lstlisting}{section}
+%Listingnummerierung mit Section
+\renewcommand{\thelstlisting}{\arabic{section}.\arabic{lstlisting}}
+%Listingsverzeichnis in das Inhaltsverzeichnis aufnehmen.
+\renewcommand{\lstlistingname}{Listingsverzeichnis}
+\renewcommand{\lstlistoflistings}{\begingroup
+\tocchapter
+\tocfile{\lstlistingname}{lol}
+\endgroup}
+
+\lstlistoflistings
+\newpage
+
+\renewcommand{\lstlistingname}{Listing}
