@@ -38,7 +38,7 @@
 *.xdy
 
 # Folders for auxiliary files (if you configure LaTeX Workshop to use one)
-build/
+#build/
 out/
 paper/
 # VS Code specific (optional, but good practice)

@@ -1,0 +1,998 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{Abdollahpouri_Popularity_Bias_2019}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=89965f95d54051bc0d471e6b6b5d4cfd}{%
+           family={Abdollahpouri},
+           familyi={A\bibinitperiod},
+           given={Himan},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{fullhash}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{fullhashraw}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{bibnamehash}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{authorbibnamehash}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{authornamehash}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{authorfullhash}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \strng{authorfullhashraw}{89965f95d54051bc0d471e6b6b5d4cfd}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Popularity Bias in Ranking and Recommendation}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1145/3306618.3314309
+      \endverb
+    \endentry
+    \entry{Akiba_Optuna_2019}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=2939d0d5b491018f7cc7812609071a79}{%
+           family={Akiba},
+           familyi={A\bibinitperiod},
+           given={Takuya},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=92311081bb41fd01eb1ce06f61805909}{%
+           family={Sano},
+           familyi={S\bibinitperiod},
+           given={Shotaro},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a841fb8471f00b147fdd8954fb01c03f}{%
+           family={Yanase},
+           familyi={Y\bibinitperiod},
+           given={Toshihiko},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=db73c7d77457602e9a75d75bbe181aba}{%
+           family={Ohta},
+           familyi={O\bibinitperiod},
+           given={Takeru},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d18b784f7f35111bc05bcbd245a34ce7}{%
+           family={Koyama},
+           familyi={K\bibinitperiod},
+           given={Masanori},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Anchorage, AK, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{0da4c5b8107cb83a6bd4ba0c9b294621}
+      \strng{fullhash}{6a8f61fd5680dbd348b2b27b4a54d0d8}
+      \strng{fullhashraw}{6a8f61fd5680dbd348b2b27b4a54d0d8}
+      \strng{bibnamehash}{0da4c5b8107cb83a6bd4ba0c9b294621}
+      \strng{authorbibnamehash}{0da4c5b8107cb83a6bd4ba0c9b294621}
+      \strng{authornamehash}{0da4c5b8107cb83a6bd4ba0c9b294621}
+      \strng{authorfullhash}{6a8f61fd5680dbd348b2b27b4a54d0d8}
+      \strng{authorfullhashraw}{6a8f61fd5680dbd348b2b27b4a54d0d8}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The purpose of this study is to introduce new design-criteria for next-generation hyperparameter optimization software. The criteria we propose include (1) define-by-run API that allows users to construct the parameter search space dynamically, (2) efficient implementation of both searching and pruning strategies, and (3) easy-to-setup, versatile architecture that can be deployed for various purposes, ranging from scalable distributed computing to light-weight experiment conducted via interactive interface. In order to prove our point, we will introduce Optuna, an optimization software which is a culmination of our effort in the development of a next generation optimization software. As an optimization software designed with define-by-run principle, Optuna is particularly the first of its kind. We will present the design-techniques that became necessary in the development of the software that meets the above criteria, and demonstrate the power of our new design through experimental results and real world applications. Our software is available under the MIT license (https://github.com/pfnet/optuna/).}
+      \field{booktitle}{Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining}
+      \field{isbn}{9781450362016}
+      \field{series}{KDD '19}
+      \field{title}{Optuna: A Next-generation Hyperparameter Optimization Framework}
+      \field{year}{2019}
+      \field{pages}{2623\bibrangedash 2631}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1145/3292500.3330701
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3292500.3330701
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3292500.3330701
+      \endverb
+      \keyw{Bayesian optimization,black-box optimization,hyperparameter optimization,machine learning system}
+    \endentry
+    \entry{burke_hybrid_2002}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=927ab4206ced595b50d2ac5fb4535b88}{%
+           family={Burke},
+           familyi={B\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{fullhash}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{fullhashraw}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{bibnamehash}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{authorbibnamehash}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{authornamehash}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{authorfullhash}{927ab4206ced595b50d2ac5fb4535b88}
+      \strng{authorfullhashraw}{927ab4206ced595b50d2ac5fb4535b88}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Recommender systems represent user preferences for the purpose of suggesting items to purchase or examine. They have become fundamental applications in electronic commerce and information access, providing suggestions that effectively prune large information spaces so that users are directed toward those items that best meet their needs and preferences. A variety of techniques have been proposed for performing recommendation, including content-based, collaborative, knowledge-based and other techniques. To improve performance, these methods have sometimes been combined in hybrid recommenders. This paper surveys the landscape of actual and possible hybrid recommenders, and introduces a novel hybrid, EntreeC, a system that combines knowledge-based recommendation and collaborative filtering to recommend restaurants. Further, we show that semantic ratings obtained from the knowledge-based part of the system enhance the effectiveness of collaborative filtering.}
+      \field{issn}{1573-1391}
+      \field{journaltitle}{User Modeling and User-Adapted Interaction}
+      \field{month}{11}
+      \field{number}{4}
+      \field{title}{Hybrid {Recommender} {Systems}: {Survey} and {Experiments}}
+      \field{volume}{12}
+      \field{year}{2002}
+      \field{pages}{331\bibrangedash 370}
+      \range{pages}{40}
+      \verb{doi}
+      \verb 10.1023/A:1021240730564
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1023/A:1021240730564
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1023/A:1021240730564
+      \endverb
+    \endentry
+    \entry{Carbonell_mmr_1998}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4e523aba9ce388c6b542f2f6e52293c2}{%
+           family={Carbonell},
+           familyi={C\bibinitperiod},
+           given={Jaime},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5a7bdcff9ed8ccf984fb863a5b17c7a0}{%
+           family={Goldstein},
+           familyi={G\bibinitperiod},
+           given={Jade},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Melbourne, Australia}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{fullhash}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{fullhashraw}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{bibnamehash}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{authorbibnamehash}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{authornamehash}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{authorfullhash}{488667490aaee0d602674e7f0ff3fa66}
+      \strng{authorfullhashraw}{488667490aaee0d602674e7f0ff3fa66}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 21st Annual International ACM SIGIR Conference on Research and Development in Information Retrieval}
+      \field{isbn}{1581130155}
+      \field{series}{SIGIR '98}
+      \field{title}{The use of MMR, diversity-based reranking for reordering documents and producing summaries}
+      \field{year}{1998}
+      \field{pages}{335\bibrangedash 336}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.1145/290941.291025
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/290941.291025
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/290941.291025
+      \endverb
+    \endentry
+    \entry{covington_DNN_YT_Recommendations_2016}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=0169f2fa7857fb3f84d58bffdd4ab3f6}{%
+           family={Covington},
+           familyi={C\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=46b2323af4a505d3970aa48d3d4707a4}{%
+           family={Adams},
+           familyi={A\bibinitperiod},
+           given={Jay},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=135c293c9df32bc8ce6b0e3cc2d4e2e4}{%
+           family={Sargin},
+           familyi={S\bibinitperiod},
+           given={Emre},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{fullhash}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{fullhashraw}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{bibnamehash}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{authorbibnamehash}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{authornamehash}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{authorfullhash}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \strng{authorfullhashraw}{5f9b7be4001a6da1a2a2c48cb1a325a0}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{09}
+      \field{title}{Deep Neural Networks for YouTube Recommendations}
+      \field{year}{2016}
+      \field{pages}{191\bibrangedash 198}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/2959100.2959190
+      \endverb
+    \endentry
+    \entry{avq_2020}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=bc4269d24ee8552dd7805db9a057ef60}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Ruiqi},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2284e7e0f19699ebb70426b09192ea7f}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2ac64fe3f20d05b7d3ec7a9697269cbe}{%
+           family={Lindgren},
+           familyi={L\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3ec76cad8aed33fefee3efe0bc6f4a96}{%
+           family={Geng},
+           familyi={G\bibinitperiod},
+           given={Quan},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cc000b5e1a50c708a65d95e489e3647c}{%
+           family={Simcha},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b908f682ab1155c4dd0f3712e29bc834}{%
+           family={Chern},
+           familyi={C\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b0b77d59993d2550f1dac0336347c8a}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Sanjiv},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {JMLR.org}%
+      }
+      \strng{namehash}{746a3f9681a86198b502b8fce85a357a}
+      \strng{fullhash}{53be12bde17a4bdb7ba9c515acc1fc88}
+      \strng{fullhashraw}{53be12bde17a4bdb7ba9c515acc1fc88}
+      \strng{bibnamehash}{746a3f9681a86198b502b8fce85a357a}
+      \strng{authorbibnamehash}{746a3f9681a86198b502b8fce85a357a}
+      \strng{authornamehash}{746a3f9681a86198b502b8fce85a357a}
+      \strng{authorfullhash}{53be12bde17a4bdb7ba9c515acc1fc88}
+      \strng{authorfullhashraw}{53be12bde17a4bdb7ba9c515acc1fc88}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Quantization based techniques are the current state-of-the-art for scaling maximum inner product search to massive databases. Traditional approaches to quantization aim to minimize the reconstruction error of the database points. Based on the observation that for a given query, the database points that have the largest inner products are more relevant, we develop a family of anisotropic quantization loss functions. Under natural statistical assumptions, we show that quantization with these loss functions leads to a new variant of vector quantization that more greatly penalizes the parallel component of a datapoint's residual relative to its orthogonal component. The proposed approach, whose implementation is open-source, achieves state-of-the-art results on the public benchmarks available at ann-benchmarks.com.}
+      \field{booktitle}{Proceedings of the 37th International Conference on Machine Learning}
+      \field{series}{ICML'20}
+      \field{title}{Accelerating large-scale inference with anisotropic vector quantization}
+      \field{year}{2020}
+    \endentry
+    \entry{he_neural_2017}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=cf3f1b6bfe8e9131a8c719c1af0dce5d}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Xiangnan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=98c2b47a69b228e811390ee98c8d81f4}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Lizi},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6f410a596e335c299e3550a4e9990bb4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Hanwang},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc7884a5203c192ab9125f81d18db97d}{%
+           family={Nie},
+           familyi={N\bibinitperiod},
+           given={Liqiang},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=13be76d254e7c2f65cfc92bc75bb18fd}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Xia},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=57e4257ea3484acff91be2a3df96d16b}{%
+           family={Chua},
+           familyi={C\bibinitperiod},
+           given={Tat-Seng},
+           giveni={T\bibinithyphendelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Perth, Australia}%
+      }
+      \list{publisher}{1}{%
+        {International World Wide Web Conferences Steering Committee}%
+      }
+      \strng{namehash}{5288584512ef6ddfdb0f4e97d3bced50}
+      \strng{fullhash}{9ae5af45ea1e621baea878b357a6a477}
+      \strng{fullhashraw}{9ae5af45ea1e621baea878b357a6a477}
+      \strng{bibnamehash}{5288584512ef6ddfdb0f4e97d3bced50}
+      \strng{authorbibnamehash}{5288584512ef6ddfdb0f4e97d3bced50}
+      \strng{authornamehash}{5288584512ef6ddfdb0f4e97d3bced50}
+      \strng{authorfullhash}{9ae5af45ea1e621baea878b357a6a477}
+      \strng{authorfullhashraw}{9ae5af45ea1e621baea878b357a6a477}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In recent years, deep neural networks have yielded immense success on speech recognition, computer vision and natural language processing. However, the exploration of deep neural networks on recommender systems has received relatively less scrutiny. In this work, we strive to develop techniques based on neural networks to tackle the key problem in recommendation --- collaborative filtering --- on the basis of implicit feedback.Although some recent work has employed deep learning for recommendation, they primarily used it to model auxiliary information, such as textual descriptions of items and acoustic features of musics. When it comes to model the key factor in collaborative filtering --- the interaction between user and item features, they still resorted to matrix factorization and applied an inner product on the latent features of users and items.By replacing the inner product with a neural architecture that can learn an arbitrary function from data, we present a general framework named NCF, short for Neural network-based Collaborative Filtering. NCF is generic and can express and generalize matrix factorization under its framework. To supercharge NCF modelling with non-linearities, we propose to leverage a multi-layer perceptron to learn the user-item interaction function. Extensive experiments on two real-world datasets show significant improvements of our proposed NCF framework over the state-of-the-art methods. Empirical evidence shows that using deeper layers of neural networks offers better recommendation performance.}
+      \field{booktitle}{Proceedings of the 26th International Conference on World Wide Web}
+      \field{isbn}{9781450349130}
+      \field{series}{WWW '17}
+      \field{title}{Neural Collaborative Filtering}
+      \field{year}{2017}
+      \field{pages}{173\bibrangedash 182}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/3038912.3052569
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3038912.3052569
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3038912.3052569
+      \endverb
+      \keyw{collaborative filtering,deep learning,implicit feedback,matrix factorization,neural networks}
+    \endentry
+    \entry{hu_collaborative_2008}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=855f3b81b4485b5f0dcd527f5803bb66}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Yifan},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fce0a5d2aa4ba307f448e452e68fdbcb}{%
+           family={Koren},
+           familyi={K\bibinitperiod},
+           given={Yehuda},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=57bb7f21fb4a415436a1ab85ff5288c9}{%
+           family={Volinsky},
+           familyi={V\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Pisa, Italy}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{94c2c594f728c3bffe26090632b5a910}
+      \strng{fullhash}{94c2c594f728c3bffe26090632b5a910}
+      \strng{fullhashraw}{94c2c594f728c3bffe26090632b5a910}
+      \strng{bibnamehash}{94c2c594f728c3bffe26090632b5a910}
+      \strng{authorbibnamehash}{94c2c594f728c3bffe26090632b5a910}
+      \strng{authornamehash}{94c2c594f728c3bffe26090632b5a910}
+      \strng{authorfullhash}{94c2c594f728c3bffe26090632b5a910}
+      \strng{authorfullhashraw}{94c2c594f728c3bffe26090632b5a910}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2008 {Eighth} {IEEE} {International} {Conference} on {Data} {Mining}}
+      \field{isbn}{978-0-7695-3502-9}
+      \field{month}{12}
+      \field{title}{Collaborative {Filtering} for {Implicit} {Feedback} {Datasets}}
+      \field{urlday}{4}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2008}
+      \field{urldateera}{ce}
+      \field{pages}{263\bibrangedash 272}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/ICDM.2008.22
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/4781121/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/4781121/
+      \endverb
+    \endentry
+    \entry{Kotkov_Serendipity_2016}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=f9edcd8d05f59ebffc37b822bd447447}{%
+           family={Kotkov},
+           familyi={K\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=643e7d4623069c06fde728f3a80e9613}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Shuaiqiang},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e2dcb035cc99b6586336a6391a76e096}{%
+           family={Veijalainen},
+           familyi={V\bibinitperiod},
+           given={Jari},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{fullhash}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{fullhashraw}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{bibnamehash}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{authorbibnamehash}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{authornamehash}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{authorfullhash}{caf6dd3e9403f99fcc9a192aee386e88}
+      \strng{authorfullhashraw}{caf6dd3e9403f99fcc9a192aee386e88}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Knowledge-Based Systems}
+      \field{month}{08}
+      \field{title}{A Survey of Serendipity in Recommender Systems}
+      \field{volume}{111}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1016/j.knosys.2016.08.014
+      \endverb
+    \endentry
+    \entry{krichene_sampled_2020}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a030b7911cea0197aefc5216860e403c}{%
+           family={Krichene},
+           familyi={K\bibinitperiod},
+           given={Walid},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4303170423b0e1fbf0462c6a59260374}{%
+           family={Rendle},
+           familyi={R\bibinitperiod},
+           given={Steffen},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Virtual Event CA USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{fullhash}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{fullhashraw}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{bibnamehash}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{authorbibnamehash}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{authornamehash}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{authorfullhash}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \strng{authorfullhashraw}{cf12ab2221310ad6bd2fe9610ec63c01}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 26th {ACM} {SIGKDD} {International} {Conference} on {Knowledge} {Discovery} \& {Data} {Mining}}
+      \field{isbn}{978-1-4503-7998-4}
+      \field{month}{8}
+      \field{title}{On {Sampled} {Metrics} for {Item} {Recommendation}}
+      \field{urlday}{1}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{1748\bibrangedash 1757}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/3394486.3403226
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.1145/3394486.3403226
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.1145/3394486.3403226
+      \endverb
+    \endentry
+    \entry{linden_amazon_2003}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9bda5a593644c7d18a9ab67b734f63d1}{%
+           family={Linden},
+           familyi={L\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=661af25efdcede2da6f1d84feee822d2}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=16752b805f854e8dd063805b873dd889}{%
+           family={York},
+           familyi={Y\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{fullhash}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{fullhashraw}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{bibnamehash}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{authorbibnamehash}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{authornamehash}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{authorfullhash}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \strng{authorfullhashraw}{9eb3bd74987ab7b1d209381ecca2d07b}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Internet Computing, IEEE}
+      \field{month}{02}
+      \field{title}{Linden G, Smith B and York J: ‘Amazon.com recommendations: item-to-item collaborative filtering’, Internet Comput. IEEE, , 7}
+      \field{volume}{7}
+      \field{year}{2003}
+      \field{pages}{76\bibrangedash 80}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/MIC.2003.1167344
+      \endverb
+    \endentry
+    \entry{Lops_CBRS_SOTA_2011}{inbook}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=e2de4717b0a7f2faba103bdaf4b03bee}{%
+           family={Lops},
+           familyi={L\bibinitperiod},
+           given={Pasquale},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2f106eb722eff496058a71938fe7f236}{%
+           family={Gemmis},
+           familyi={G\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0,
+           prefix={de},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=648dfaca113383f23724ce78b40b515f}{%
+           family={Semeraro},
+           familyi={S\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{fullhash}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{fullhashraw}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{bibnamehash}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{authorbibnamehash}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{authornamehash}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{authorfullhash}{aa18da94833ea2bc46a83befb16f9485}
+      \strng{authorfullhashraw}{aa18da94833ea2bc46a83befb16f9485}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-387-85819-7}
+      \field{journaltitle}{Recommender Systems Handbook}
+      \field{month}{01}
+      \field{title}{Content-based Recommender Systems: State of the Art and Trends}
+      \field{year}{2011}
+      \field{pages}{73\bibrangedash 105}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1007/978-0-387-85820-3_3
+      \endverb
+    \endentry
+    \entry{nguyen_filter_bubble_2014}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=5d6f8bbae3fc6d54e5775c8f8f721e98}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Tien\bibnamedelima T.},
+           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64d36d75e78a1036d5241cae65c501c4}{%
+           family={Hui},
+           familyi={H\bibinitperiod},
+           given={Pik-Mai},
+           giveni={P\bibinithyphendelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95c1b94af421fa579fafe01078c70b37}{%
+           family={Harper},
+           familyi={H\bibinitperiod},
+           given={F.\bibnamedelimi Maxwell},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=93870d471dd00976b612c275fc9ac94f}{%
+           family={Terveen},
+           familyi={T\bibinitperiod},
+           given={Loren},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4d9331f432435b9538e5760a6e33696c}{%
+           family={Konstan},
+           familyi={K\bibinitperiod},
+           given={Joseph\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Seoul, Korea}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{993e93649a8a6de6776c47892c94d538}
+      \strng{fullhash}{660b27ffb3a5644de61802f79ad9696d}
+      \strng{fullhashraw}{660b27ffb3a5644de61802f79ad9696d}
+      \strng{bibnamehash}{993e93649a8a6de6776c47892c94d538}
+      \strng{authorbibnamehash}{993e93649a8a6de6776c47892c94d538}
+      \strng{authornamehash}{993e93649a8a6de6776c47892c94d538}
+      \strng{authorfullhash}{660b27ffb3a5644de61802f79ad9696d}
+      \strng{authorfullhashraw}{660b27ffb3a5644de61802f79ad9696d}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Eli Pariser coined the term 'filter bubble' to describe the potential for online personalization to effectively isolate people from a diversity of viewpoints or content. Online recommender systems - built on algorithms that attempt to predict which items users will most enjoy consuming - are one family of technologies that potentially suffers from this effect. Because recommender systems have become so prevalent, it is important to investigate their impact on users in these terms. This paper examines the longitudinal impacts of a collaborative filtering-based recommender system on users. To the best of our knowledge, it is the first paper to measure the filter bubble effect in terms of content diversity at the individual level. We contribute a novel metric to measure content diversity based on information encoded in user-generated tags, and we present a new set of methods to examine the temporal effect of recommender systems on the user experience. We do find that recommender systems expose users to a slightly narrowing set of items over time. However, we also see evidence that users who actually consume the items recommended to them experience lessened narrowing effects and rate items more positively.}
+      \field{booktitle}{Proceedings of the 23rd International Conference on World Wide Web}
+      \field{isbn}{9781450327442}
+      \field{series}{WWW '14}
+      \field{title}{Exploring the filter bubble: the effect of using recommender systems on content diversity}
+      \field{year}{2014}
+      \field{pages}{677\bibrangedash 686}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/2566486.2568012
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/2566486.2568012
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/2566486.2568012
+      \endverb
+      \keyw{user experience,recommender systems,longitudinal data,filter bubble,content diversity}
+    \endentry
+    \entry{raza_news_2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=268cdb8991dfd617f8a9dbfe86e0c8e0}{%
+           family={Raza},
+           familyi={R\bibinitperiod},
+           given={Shaina},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b85c736722ed503c520995a243eb268d}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Chen},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{71b9485f284228dc72dd65cf762fefec}
+      \strng{fullhash}{71b9485f284228dc72dd65cf762fefec}
+      \strng{fullhashraw}{71b9485f284228dc72dd65cf762fefec}
+      \strng{bibnamehash}{71b9485f284228dc72dd65cf762fefec}
+      \strng{authorbibnamehash}{71b9485f284228dc72dd65cf762fefec}
+      \strng{authornamehash}{71b9485f284228dc72dd65cf762fefec}
+      \strng{authorfullhash}{71b9485f284228dc72dd65cf762fefec}
+      \strng{authorfullhashraw}{71b9485f284228dc72dd65cf762fefec}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Nowadays, more and more news readers read news online where they have access to millions of news articles from multiple sources. In order to help users find the right and relevant content, news recommender systems (NRS) are developed to relieve the information overload problem and suggest news items that might be of interest for the news readers. In this paper, we highlight the major challenges faced by the NRS and identify the possible solutions from the state-of-the-art. Our discussion is divided into two parts. In the first part, we present an overview of the recommendation solutions, datasets, evaluation criteria beyond accuracy and recommendation platforms being used in the NRS. We also talk about two popular classes of models that have been successfully used in recent years. In the second part, we focus on the deep neural networks as solutions to build the NRS. Different from previous surveys, we study the effects of news recommendations on user behaviors and try to suggest possible remedies to mitigate those effects. By providing the state-of-the-art knowledge, this survey can help researchers and professional practitioners have a better understanding of the recent developments in news recommendation algorithms. In addition, this survey sheds light on the potential new directions.}
+      \field{issn}{1573-7462}
+      \field{journaltitle}{Artificial Intelligence Review}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{News recommender system: a review of recent progress, challenges, and opportunities}
+      \field{volume}{55}
+      \field{year}{2022}
+      \field{pages}{749\bibrangedash 800}
+      \range{pages}{52}
+      \verb{doi}
+      \verb 10.1007/s10462-021-10043-x
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s10462-021-10043-x
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s10462-021-10043-x
+      \endverb
+    \endentry
+    \entry{soar_2023}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=2284e7e0f19699ebb70426b09192ea7f}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cc000b5e1a50c708a65d95e489e3647c}{%
+           family={Simcha},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=edd6ec6c97c58a0430759e6f9af89b02}{%
+           family={Dopson},
+           familyi={D\bibinitperiod},
+           given={Dave},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc4269d24ee8552dd7805db9a057ef60}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Ruiqi},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b0b77d59993d2550f1dac0336347c8a}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Sanjiv},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New Orleans, LA, USA}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates Inc.}%
+      }
+      \strng{namehash}{01fbd12041227a916b0a53b21f9f960c}
+      \strng{fullhash}{61be4eaa24655af669c79da6c93135cd}
+      \strng{fullhashraw}{61be4eaa24655af669c79da6c93135cd}
+      \strng{bibnamehash}{01fbd12041227a916b0a53b21f9f960c}
+      \strng{authorbibnamehash}{01fbd12041227a916b0a53b21f9f960c}
+      \strng{authornamehash}{01fbd12041227a916b0a53b21f9f960c}
+      \strng{authorfullhash}{61be4eaa24655af669c79da6c93135cd}
+      \strng{authorfullhashraw}{61be4eaa24655af669c79da6c93135cd}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper introduces SOAR: Spilling with Orthogonality-Amplified Residuals, a novel data indexing technique for approximate nearest neighbor (ANN) search. SOAR extends upon previous approaches to ANN search, such as spill trees, that utilize multiple redundant representations while partitioning the data to reduce the probability of missing a nearest neighbor during search. Rather than training and computing these redundant representations independently, however, SOAR uses an orthogonality-amplified residual loss, which optimizes each representation to compensate for cases where other representations perform poorly. This drastically improves the overall index quality, resulting in state-of-the-art ANN benchmark performance while maintaining fast indexing times and low memory consumption.}
+      \field{booktitle}{Proceedings of the 37th International Conference on Neural Information Processing Systems}
+      \field{series}{NIPS '23}
+      \field{title}{SOAR: improved indexing for approximate nearest neighbor search}
+      \field{year}{2023}
+    \endentry
+    \entry{Vaswani_transformer_2017}{inproceedings}{}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=7f28e84700536646dd6620a0db07ad09}{%
+           family={Vaswani},
+           familyi={V\bibinitperiod},
+           given={Ashish},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=62efade83d70f0323fe248755e6c90c5}{%
+           family={Shazeer},
+           familyi={S\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=06649ebab1ea5cac0250746a19764975}{%
+           family={Parmar},
+           familyi={P\bibinitperiod},
+           given={Niki},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=831027ee0ebf22375e2a86afc1881909}{%
+           family={Uszkoreit},
+           familyi={U\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2fd2982e30ebcec93ec1cf76e0d797fd}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Llion},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27b07e4eacbf4ef7a1438e3badb7dd8d}{%
+           family={Gomez},
+           familyi={G\bibinitperiod},
+           given={Aidan\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=540fcd72e1fa4bbed46604f4e6cff817}{%
+           family={Kaiser},
+           familyi={K\bibinitperiod},
+           given={Łukasz},
+           giveni={Ł\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95595a0fefb86187cbc36e551017d332}{%
+           family={Polosukhin},
+           familyi={P\bibinitperiod},
+           given={Illia},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Long Beach, California, USA}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates Inc.}%
+      }
+      \strng{namehash}{ee273ab30cfb889666f8c4d806eb9ce7}
+      \strng{fullhash}{cb26e47f6b8133865271fc8483132297}
+      \strng{fullhashraw}{cb26e47f6b8133865271fc8483132297}
+      \strng{bibnamehash}{ee273ab30cfb889666f8c4d806eb9ce7}
+      \strng{authorbibnamehash}{ee273ab30cfb889666f8c4d806eb9ce7}
+      \strng{authornamehash}{ee273ab30cfb889666f8c4d806eb9ce7}
+      \strng{authorfullhash}{cb26e47f6b8133865271fc8483132297}
+      \strng{authorfullhashraw}{cb26e47f6b8133865271fc8483132297}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.0 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature.}
+      \field{booktitle}{Proceedings of the 31st International Conference on Neural Information Processing Systems}
+      \field{isbn}{9781510860964}
+      \field{series}{NIPS'17}
+      \field{title}{Attention is all you need}
+      \field{year}{2017}
+      \field{pages}{6000\bibrangedash 6010}
+      \range{pages}{11}
+    \endentry
+    \entry{wu_personalized_2022}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a429df9214aeaeb673535ebb905cae3c}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Chuhan},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=16f044156bc52bf249ef3b8c82f71405}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Fangzhao},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0ba15c5c3274335d5cec6d3e5bf4eae}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Yongfeng},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0801da56d6877e3eff32e6a6030425d3}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Xing},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{0a92def458eb6c867f76cf8a0d691181}
+      \strng{fullhash}{cfe841ef4a38d873dcd7dda5384cb022}
+      \strng{fullhashraw}{cfe841ef4a38d873dcd7dda5384cb022}
+      \strng{bibnamehash}{0a92def458eb6c867f76cf8a0d691181}
+      \strng{authorbibnamehash}{0a92def458eb6c867f76cf8a0d691181}
+      \strng{authornamehash}{0a92def458eb6c867f76cf8a0d691181}
+      \strng{authorfullhash}{cfe841ef4a38d873dcd7dda5384cb022}
+      \strng{authorfullhashraw}{cfe841ef4a38d873dcd7dda5384cb022}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Personalized news recommendation is important for users to find interesting news information and alleviate information overload. Although it has been extensively studied over decades and has achieved notable success in improving user experience, there are still many problems and challenges that need to be further studied. To help researchers master the advances in personalized news recommendation, in this article, we present a comprehensive overview of personalized news recommendation. Instead of following the conventional taxonomy of news recommendation methods, in this article, we propose a novel perspective to understand personalized news recommendation based on its core problems and the associated techniques and challenges. We first review the techniques for tackling each core problem in a personalized news recommender system and the challenges they face. Next, we introduce the public datasets and evaluation methods for personalized news recommendation. We then discuss the key points on improving the responsibility of personalized news recommender systems. Finally, we raise several research directions that are worth investigating in the future. This article can provide up-to-date and comprehensive views on personalized news recommendation. We hope this article can facilitate research on personalized news recommendation as well as related fields in natural language processing and data mining.}
+      \field{issn}{1046-8188}
+      \field{journaltitle}{ACM Trans. Inf. Syst.}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Personalized News Recommendation: Methods and Challenges}
+      \field{volume}{41}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.1145/3530257
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3530257
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3530257
+      \endverb
+      \keyw{natural language processing,user modeling,survey,personalization,News recommendation}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
