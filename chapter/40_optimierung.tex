@@ -169,12 +169,26 @@ Hybridisierungsansatzes, sondern liefern auch den empirischen Beleg für dessen 
 Einzelkomponenten. Der Optimierungsprozess durchsuchte den gesamten Gewichtungsraum, einschließlich der Extremfälle,
 die einem reinen \ac{CF}-Modell ($w_{cf} = 1$) oder einem reinen \ac{CBF}-Modell ($w_{cb} = 1$) entsprechen.
 \input{content/figures/plot_kontour.tex}
-Das identifizierte Optimum liegt jedoch klar bei einer Konfiguration von \(w_{cbf} \equiv 0.7226\) und
-\(w_{cf} \equiv 0.2774\)
+Das identifizierte Optimum liegt jedoch klar bei einer Konfiguration von \(w_{cbf} \approx 0.7226\) und
+\(w_{cf} \approx 0.2774\). Diese Tatsache belegt, dasss beide Komponenten einen positiven Beitrag zur Maximierung
+des \ac{nDCG}@10 leisten und die gewichtete Kombination eine signifikant höhere Empfehlungsqualität erzielt, als es durch den
+alleinigen Einsatz des \ac{CBF}- oder \ac{CF}-Modells möglich gewesen wäre. Die konzeptionelle Notwendigkeit des hybriden
+Ansatzes zur Ausbalancierung von Relevanz und Diversität wird somit durch die datengetriebene Optimierung quantitativ
+untermauert.
 
-% \subsection{Interpretation und Analyse}
-% % Hybridisierung wirkungsvoll?
-% % Trade-offs und Nutzenklärung
-% % Ablationsidee: z. B. Ausschalten von CBF-/CF-Signal
+Die dominante Rolle der \ac{CBF}-Komponente wird in Abbildung~\ref{fig:2d_performance} nochmals verdeutlicht. Die 
+Visualisierung zeigt die \ac{nDCG}@10 Performance aller 515 Trialsin Abhängigkeit vom normalisierten \ac{CBF}-Gewicht.
+
+Es ist ein deutlicher Leistungssprung (Phasensprung) bei einem Gewicht von \(w_{cbf} \approx 0.5\) zu erkennen.
+Unterhalb dieser Schwelle werden durchweg nur niedrige \ac{nDCG}@10-Werte erreicht. Oberhalb davon steigt die Performance 
+signifikant an, und alle optimalen Ergebnisse (orange markiert) konzentrieren sich im Bereich \(w_{cbf} > 0.6\)
+
+Diese Beobachtung untermauert die Hypothese, dass im Nachrichtenkontext der unmittelbare thematische Bezug zum 
+gerade gelesenen Artikel der stärkste Prädiktor für die nächste Interaktion ist. 
+Das CBF-Modell liefert hier das notwendige Fundament für eine relevante Empfehlung. 
+Die CF-Komponente dient in diesem Zusammenspiel als entscheidender „Fein-Tuner”, der auf dieser starken Basis aufsetzt, 
+um die Performance durch Personalisierung auf das globale Maximum zu heben, wie es im Konturplot (Abbildung~\ref{fig:kontourplot}) 
+ersichtlich wurde.
+
 \input{content/figures/2d_performace.tex}
 % \input{content/figures/3d_scatter_plot.tex}
