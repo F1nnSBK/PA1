@@ -9,7 +9,7 @@ relevante Inhalte zu identifizieren. Dies erzeugt einen erheblichen Bedarf an ef
 In diesem Kontext spielen Empfehlungssysteme (ES) eine entscheidende Rolle, 
 indem sie die Informationsüberlastung von einem Hindernis für das Engagement in eine Chance für personalisierte 
 Inhalte verwandeln und so die Leseerfahrung der Nutzer verbessern (vgl. \cite{wu_personalized_2022}).
-Diese Personalisierung birgt jedoch die inhärente Gefahr, sogenannte Filterblasen zu erzeugen.
+Diese Personalisierung birgt jedoch das inhärente Risiko, sogenannte Filterblasen zu erzeugen.
 Eine Filterblase tritt auf, wenn einem Nutzer nur noch Artikel zu einem spezifischen Thema angezeigt werden. 
 Das führt zu einer Verzerrung der Wahrnehmung von Informationen und begünstigt eine einseitige Meinungsbildung (vgl. \cite{nguyen_filter_bubble_2014})
 
@@ -19,7 +19,7 @@ E-Commerce, Streaming und Nachrichten zeigen Verbesserungen von Engagement-Metri
 (vgl. \cite{linden_amazon_2003,covington_DNN_YT_Recommendations_2016,raza_news_2020}).
 
 % \subsection{Problemstellung}
-Die Generierung qualitativ hochwertiger Artikel-Empfehlungen für die Nutzer der SV-Gruppe stellt eine 
+Die Generierung qualitativ hochwertiger Artikel-Empfehlungen für die Nutzer der \ac{SV-Gruppe} stellt eine 
 mehrdimensionale Herausforderung dar. 
 Ein zentrales Gütekriterium besteht in der Balance zwischen thematischer Relevanz und inhaltlicher Diversität. 
 Nur so lassen sich die Interessen der Nutzer präzise abbilden und gleichzeitig die Entstehung von Filterblasen vermeiden.
@@ -38,7 +38,7 @@ Die technische Realisierung wird durch drei primäre Faktoren erschwert:
     Der Ansatz des Content-Based Filtering (CBF), der auf textueller Ähnlichkeit basiert, wirkt diesem Problem entgegen (vgl. \cite{Lops_CBRS_SOTA_2011}).
     
     \item \textbf{Balance zwischen Relevanz und Serendipität (siehe Abschnitt \ref{sec:serendipitaet}):} Während das CBF-Modell eine hohe thematische Genauigkeit 
-    sicherstellt, birgt es die Gefahr, Nutzer in ihren bekannten Interessen zu isolieren. 
+    sicherstellt, birgt es die Tendenz, Nutzer in ihren bekannten Interessen zu isolieren. 
     Das CF-Modell neigt hingegen zu einem Popularity Bias (vgl. \cite{Abdollahpouri_Popularity_Bias_2019}). Die zentrale Problemstellung dieser Arbeit liegt in der 
     Konzeption und Optimierung einer hybriden Architektur, die diese gegensätzlichen Eigenschaften der Modelle gezielt 
     kombiniert, um eine optimale Balance zu erreichen (vgl. \cite{Kotkov_Serendipity_2016}).
@@ -47,7 +47,7 @@ Die technische Realisierung wird durch drei primäre Faktoren erschwert:
 \subsection{Zielsetzung und Aufbau der Arbeit}
 \label{sec:zielsetzung}
 Das primäre Ziel dieser Arbeit ist die Konzeption, Entwicklung und Optimierung eines prototypischen, 
-hybriden Empfehlungssystems für die SV-Gruppe, das auf der Google Cloud Platform implementiert wird. 
+hybriden Empfehlungssystems für die \ac{SV-Gruppe}, das auf der Google Cloud Platform implementiert wird. 
 Der Fokus liegt auf der Optimierung einer gewichteten Hybridisierungsstrategie, bei der die Empfehlungslisten 
 eines \ac{CBF}- und eines \ac{CF}-Modells mittels einer gewichteten Summe 
 kombiniert werden. Dieser Ansatz bildet eine validierte Grundlage, auf der künftig komplexere 
@@ -55,9 +55,9 @@ Hybridisierungsarchitekturen aufbauen können (vgl. \cite{burke_hybrid_2002}).
 
 Um die Übertragbarkeit der Resultate auf ein produktives Einsatzszenario zu gewährleisten, 
 erfolgt die Evaluation des Systems auf Basis realer Nutzerdaten unter Anwendung einer strengen 
-chronologischen Aufteilung von Trainings- und Testdaten. Ein weiteres Ziel besteht darin zu zeigen, 
-dass bereits ein einfaches, datengetriebenes Empfehlungssystem eine deutlich höhere 
-Empfehlungsqualität erzielt als Baseline-Strategien wie die zufällige 
+chronologischen Aufteilung von Trainings- und Testdaten. Ein weiteres Ziel besteht darin zu zeigen, dass der hier gewählte 
+hybride Ansatz eine deutlich höhere Empfehlungsqualität 
+erzielt als etablierte Baseline-Strategien, wie die zufällige 
 Auswahl oder die Empfehlung populärer Artikel (vgl. \cite{wu_personalized_2022}).
 
 Die Arbeit ist wie folgt strukturiert:
