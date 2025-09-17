@@ -70,8 +70,8 @@ unterstützen eine robuste Integration.
 
 \label{sec:cbf_service}
 Das \ac{CBF}-Retrieval erfolgt über einen Vektorindex (Vertex~AI Vector Search) auf den 
-3072D-Artikel-Embeddings. Abfragen nutzen L2-normalisierte Vektoren und \ac{MIPS}; 
-pro Kontextartikel werden die Top-$k$ semantisch ähnlichsten Artikel mit niedriger Latenz 
+3072-dimensionale Artikel-Embeddings. Abfragen nutzen L2-normalisierte Vektoren und \ac{MIPS}; 
+pro Kontextartikel werden die Top-$K$ semantisch ähnlichsten Artikel mit niedriger Latenz 
 geliefert. Die zugrunde liegenden \ac{ANN}-Prinzipien und der Latenz–Recall-Trade-off 
 sind in Abschnitt~\ref{sec:cbf} erläutert.
 
@@ -122,7 +122,6 @@ relevante Nischeninhalte an passende Nutzer ausspielt (vgl. \cite{Abdollahpouri_
 
 Die statistischen Kennzahlen des Trainingsdatensatzes sind in Tabelle~\ref{tab:train_stats} zusammengefasst.
 \input{content/tables/train_stats.tex}
-\label{tab:train_stats}
 
 Zur Nutzung der PageView-Events im \ac{NCF}-Modell werden diese in eine \newline User–Item-Interaktionsmatrix überführt. 
 Zeilen repräsentieren eindeutige Nutzer, Spalten eindeutige Artikel des Trainingszeitraums. 

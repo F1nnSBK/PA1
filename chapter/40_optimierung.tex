@@ -25,6 +25,7 @@ Die einzelnen Terme der Gleichung sind wie folgt definiert:
     \item $s_\mathrm{cbf}$ und $s_\mathrm{cf}$: Die von der Content-Based- bzw. der Collaborative-Filtering-Komponente 
     generierten Roh-Scores. Vor der Kombination in der Zielfunktion ist eine Normalisierung dieser 
     Scores erforderlich, um sicherzustellen, dass sie auf einer vergleichbaren Skala liegen.
+    In dieser Arbeit werden die Scores mit der Min-Max-Skalierung auf $[0, 1]$ normalisiert.
     
     \item $w_\mathrm{cbf}$ und $w_\mathrm{cf}$: Die nicht-negativen Gewichtungsparameter, welche den Einfluss 
     der jeweiligen Modellkomponente auf das Endergebnis steuern. Für diese Gewichte gilt die Nebenbedingung 
