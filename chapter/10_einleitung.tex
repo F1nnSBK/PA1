@@ -41,11 +41,15 @@ Die technische Realisierung wird durch drei primäre Faktoren erschwert:
     um neue Inhalte unmittelbar nach der Veröffentlichung fair und effektiv in den Empfehlungsprozess zu integrieren. 
     Der Ansatz des Content-Based Filtering (CBF), der auf textueller Ähnlichkeit basiert, wirkt diesem Problem entgegen (vgl. \cite{Lops_CBRS_SOTA_2011}).
     
-    \item \textbf{Balance zwischen Relevanz und Serendipität (siehe Abschnitt \ref{sec:serendipitaet}):} Während das CBF-Modell eine hohe thematische Genauigkeit 
-    sicherstellt, birgt es die Tendenz, Nutzer in ihren bekannten Interessen zu isolieren. 
-    Das CF-Modell neigt hingegen zu einem Popularity Bias (vgl. \cite{Abdollahpouri_Popularity_Bias_2019}). Die zentrale Problemstellung dieser Arbeit liegt in der 
-    Konzeption und Optimierung einer hybriden Architektur, die diese gegensätzlichen Eigenschaften der Modelle gezielt 
-    kombiniert, um eine optimale Balance zu erreichen (vgl. \cite{Kotkov_Serendipity_2016}).
+    \item \textbf{Balance komplementärer Empfehlungslogiken:} Die beiden Ansätze weisen gegensätzliche 
+    Stärken und Schwächen auf. Während das \ac{CBF}-Modell eine hohe thematische Genauigkeit sicherstellt, 
+    birgt es die Tendenz, Nutzer in ihren bekannten Interessen zu isolieren. 
+    Das \ac{CF}-Modell hingegen kann durch das kollektive Nutzerverhalten neuartige Inhalte entdecken, 
+    neigt aber zu einem Popularity Bias (vgl. \cite{Abdollahpouri_Popularity_Bias_2019}). 
+    Die zentrale Problemstellung dieser Arbeit liegt in der Konzeption und Optimierung einer 
+    hybriden Architektur, die diese komplementären Eigenschaften gezielt kombiniert. 
+    Das Ziel ist es, durch die Fusion der beiden Ansätze eine Empfehlungsliste zu generieren, 
+    deren Gesamtrelevanz maximiert wird.
 \end{enumerate}
 
 \subsection{Zielsetzung und Aufbau der Arbeit}

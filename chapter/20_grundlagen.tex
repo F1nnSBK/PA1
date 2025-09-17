@@ -25,26 +25,29 @@ maschinenlesbare Form überführt. Dies geschieht durch den Einsatz von Transfor
 (vgl. \cite{Vaswani_transformer_2017}), die den Text in hochdimensionale numerische Vektoren, sogenannte Embeddings,
 transformieren. Jeder Vektor repräsentiert dabei die semantische Position eines Artikels in einem vieldimensionalen Vektorraum. 
 Die thematische Ähnlichkeit zwischen zwei Artikeln kann anschließend über gängige Maße wie Kosinus-Ähnlichkeit, 
-\ac{MIPS} oder euklidische Distanz quantifiziert werden. Zunächst gilt
+\ac{MIPS} oder euklidische Distanz quantifiziert werden (vgl. \Cite{Reimers2019SentenceBERTSE}). Zunächst gilt
 \begin{equation}
 \label{eq:cosine_similarity}
-\cos(u,v) = \frac{u^{T} \cdot v}{\lVert u^{T} \rVert \,\lVert v \rVert}
+\cos(u,v) = \frac{u^{T} \cdot v}{\lVert u \rVert \,\lVert v \rVert}
 \end{equation}
-
-Bei L2-normalisierten Vektoren ($\lVert u \rVert = \lVert v \rVert = 1$) sind diese Maße für die Rangbildung äquivalent:
+Bei L2-normalisierten Vektoren sind Kosinus-Ähnlichkeit und Skalarprodukt identisch ($\lVert u \rVert = \lVert v \rVert = 1$); 
+die euklidische Distanz ist eine monotone Transformation davon, sodass die Rangordnung erhalten bleibt.
 \[
 \cos(u,v) = u^{T} \cdot v
 \]
-In der Praxis wird daher häufig das Skalarprodukt auf normalisierten Vektoren verwendet; 
-die resultierenden Ranglisten entsprechen der Kosinus-Ähnlichkeit.
+In der Praxis wird daher häufig das Skalarprodukt auf normalisierten Vektoren verwendet.
 
 Eine zentrale Herausforderung bei der Implementierung von CBF-Systemen ist die performante Durchführung 
 dieser Ähnlichkeitssuche in Echtzeit, insbesondere bei einem großen Korpus von hunderttausenden Artikeln. 
 Eine naive Brute-Force-Suche, bei der jeder Vektor mit jedem anderen verglichen wird, ist für produktive Anwendungen 
-zu rechenintensiv und langsam. Daher kommen spezialisierte Vektorindizes für \ac{ANN} zum Einsatz, 
-die den Vektorraum partitionieren und komprimieren. Quantisierungsbasierte Ansätze (z.B. Anisotropic Vector Quantization) 
-und redundante Repräsentationen mit orthogonalisierten Residuen (z.B. \ac{SOAR}) reduzieren Speicherbedarf und Suchlatenz 
-bei kontrolliertem Recall-Verlust (vgl. \cite{avq_2020,soar_2023}).
+zu rechenintensiv und langsam. Daher kommen spezialisierte Vektorindizes für die Suche nach 
+ungefähren nächsten Nachbarn (\ac{ANN}) zum Einsatz. Diese Indizes partitionieren und komprimieren 
+den hochdimensionalen Vektorraum, um eine Suche in logarithmischer statt linearer Zeit zu ermöglichen. 
+Moderne Techniken erreichen dies durch Ansätze wie die Vektor-Quantisierung, zum Beispiel mittels 
+\ac{AVQ}. Auch fortgeschrittene Methoden wie \ac{SOAR}, die auf redundanten Repräsentationen mit 
+orthogonalisierten Residuen basieren, reduzieren den Speicherbedarf und die Suchlatenz drastisch. 
+Dieser Geschwindigkeitsgewinn wird durch einen kontrollierten, geringen Recall-Verlust erreicht
+(vgl. \cite{avq_2020, soar_2023}).
 
 \subsection{Collaborative Filtering}
 \label{sec:cf}
@@ -156,13 +159,14 @@ Der Grundgedanke des \ac{DCG} ist,
 die Relevanzwerte aller empfohlenen Items bis zu einer bestimmten Listenlänge 
 K zu summieren. Um der Beobachtung Rechnung zu tragen, dass Nutzer den vorderen 
 Plätzen mehr Beachtung schenken, wird der Relevanzwert (\(rel_{i}\)) eines Items an 
-Position i durch einen logarithmischen Faktor abgewertet (diskontiert). 
+Position i durch einen logarithmischen Faktor abgewertet (diskontiert).
+In dieser Arbeit ist \(rel_{i}\) binär; 1 steht für einen angeklickten Artikel.
 Ein relevantes Item an Position 1 trägt somit mehr zum Gesamtscore bei als
 dasselbe Item an Position 10.
 
 \begin{equation}
 \label{eq:dcg}
-DCG@K=\sum_{i=1}^{k}\frac{rel_{i}}{\log_2(i+1)}
+DCG@K=\sum_{i=1}^{K}\frac{rel_{i}}{\log_2(i+1)}
 \end{equation}
 
 Da der absolute \ac{DCG}-Wert von der Anzahl der verfügbaren relevanten 
