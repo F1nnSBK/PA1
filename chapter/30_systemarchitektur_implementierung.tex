@@ -30,26 +30,22 @@ Dieser Ansatz reduziert den Entwicklungsaufwand und baut auf einer validierten D
 % Ja, ist relevant. Ein Leser würde sonst davon ausgehen, dass extra Embeddings für diese Arbeit rezeugt wurden.
 % Wenn nur die Referenz zur "semantischen Anzeigenausspielung" gemeint ist, ja könnte man weglassen.
 
-Die \texttt{user\_pseudo\_id} ist ein pseudonymer Geräte-/Browser-Identifier. Sie bleibt auf demselben Gerät/Browser 
-meist über mehrere Sitzungen stabil, kann sich jedoch durch Cookie-/App-Resets oder Geräte-/Browserwechsel ändern. 
-Eine Person kann daher mehrere \texttt{user\_pseudo\_id}s haben; umgekehrt kann eine \texttt{user\_pseudo\_id} bei 
-geteilten Geräten mehrere Personen abbilden. Sie ist folglich kein eindeutiger Nutzer, sondern wird hier als Proxy 
-für eine Geräte-/Browser-Instanz genutzt; ein loginbasierter \texttt{user\_id}-Schlüssel lag nicht vor.
-Eine typische \texttt{user\_pseudo\_id} hat beispielsweise das Format \texttt{18475638.1694782345}.
+Die \texttt{user\_pseudo\_id} ist ein pseudonymer Geräte-/Browser-Identifier. 
+Sie bleibt auf demselben Gerät/Browser meist über mehrere Sitzungen stabil, kann sich jedoch durch Cookie-/App-Resets 
+oder Geräte-/Browserwechsel ändern. Eine typische \texttt{user\_pseudo\_id} hat beispielsweise das Format 
+\texttt{18475638.1694782345}.
 
-% Hier musst du eine Zahl aus deiner Datenanalyse liefern. Ich gebe dir eine Textvorlage, in die du sie einfügen kannst.
-Trotz fehlender Eindeutigkeit auf Personenebene ist die user\_pseudo\_id für Empfehlungen praxistauglich,
-weil (i) Analysen des Traffics auf schwaebische.de zeigen, dass rund [XX]\,\% 
-der Sitzungen von nicht eingeloggten Nutzern stammen und
-ohne Login-ID sonst keinerlei Personalisierung möglich wäre, 
-(ii) sie auf demselben Gerät/Browser über mehrere Sitzungen hinreichend stabil ist, um kurz- bis mittelfristige 
-Präferenzen zu lernen, und (iii) im Nachrichtenkontext vor allem jüngste Interaktionen und der unmittelbare 
-Artikelkontext prädiktiv sind. Letzteres wird durch die Hybridisierung genutzt: Der CBF-Anteil arbeitet kontextuell 
-(wenig abhängig von langlebiger Nutzerhistorie), während der NCF-Anteil gerätebezogene Wiederholungsmuster erfasst. 
-Die Pseudonymität senkt zudem Integrationsaufwand und Datenschutzrisiko gegenüber geräteübergreifendem Identity-Matching. 
-Empirisch zeigt die Offline-Evaluation (vgl. Kapitel~4), dass sich trotz Identitätsfragmentierung 
-robuste Qualitätsgewinne erzielen lassen; die Architektur erlaubt später jederzeit den Wechsel auf eine 
-loginbasierte user\_id.
+Für eingeloggte Nutzer wird zusätzlich eine eindeutige, geräteübergreifende 
+\texttt{user\_id} erfasst. Eine Analyse der Nutzerbasis im Untersuchungszeitraum (Januar bis März 2025) zeigt jedoch, 
+dass mit 99,01\,\% der weitaus größte Teil der Nutzer anonym auf das Angebot zugreift und somit nur über eine 
+\texttt{user\_pseudo\_id} verfügt.
+
+Um ein Empfehlungssystem zu entwickeln, das der gesamten Leserschaft und nicht nur der kleinen Kohorte 
+eingeloggter Nutzer dient, wurde die \texttt{user\_pseudo\_id} konsequent als primärer Schlüssel für die Personalisierung 
+verwendet. Dieser Ansatz ist praxistauglich, da (i) die \texttt{user\_pseudo\_id} auf demselben Gerät über mehrere 
+Sitzungen hinreichend stabil ist, um kurz- bis mittelfristige Präferenzen zu lernen, und (ii) im Nachrichtenkontext 
+vor allem jüngste Interaktionen und der unmittelbare Artikelkontext prädiktiv sind. Letzteres wird durch die Hybridisierung 
+genutzt: Der \ac{CBF}-Anteil arbeitet kontextuell, während der \ac{NCF}-Anteil gerätebezogene Wiederholungsmuster erfasst.
 
 \subsection{Systemarchitektur}
 Die technologische Architektur in Abbildung~\ref{fig:architektur} folgt einem cloud-nativen Microservice-Ansatz auf der 
